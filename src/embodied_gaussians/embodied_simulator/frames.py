@@ -17,12 +17,31 @@ class Frames:
     X_CWs_opencv_gpu: torch.Tensor
     colors_gpu: torch.Tensor
     device: str = "cuda"
+    loss_weights_gpu: torch.Tensor | None = None
 
     def update_colors(self, name: str, timestamp: float, color: torch.Tensor):
         index = self.names.index(name)
         assert color.shape == (self.height, self.width, 3)
         self.timestamps[index] = timestamp
         self.colors_gpu[index].copy_(color)
+
+    def set_loss_weights(self, loss_weights: torch.Tensor | None):
+        """Set per-camera per-pixel confidence weights for visual-force loss."""
+        if loss_weights is None:
+            self.loss_weights_gpu = None
+            return
+        expected = (len(self.names), self.height, self.width)
+        if loss_weights.shape == (*expected, 1):
+            loss_weights = loss_weights[..., 0]
+        if loss_weights.shape != expected:
+            raise ValueError(
+                f"Expected visual loss weights shape {expected}, got {loss_weights.shape}"
+            )
+        if not torch.isfinite(loss_weights).all() or torch.any(loss_weights < 0.0):
+            raise ValueError("Visual loss weights must be finite and non-negative")
+        self.loss_weights_gpu = loss_weights.to(
+            device=self.device, dtype=torch.float32
+        ).contiguous()
 
 
 class FramesBuilder:

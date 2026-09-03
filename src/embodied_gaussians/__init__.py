@@ -1,4 +1,4 @@
-from embodied_gaussians.scene_builders.domain import Body, Ground
+from embodied_gaussians.scene_builders.domain import Body, Ground, SoftBody
 from embodied_gaussians.scene_builders.simple_body_builder import (
     SimpleBodyBuilder,
     SimpleBodyBuilderSettings,
@@ -33,6 +33,7 @@ from embodied_gaussians.environments.virtual_cameras import VirtualCamerasBuilde
 __all__ = [
     "Body",
     "Ground",
+    "SoftBody",
     "SimpleBodyBuilder",
     "SimpleBodyBuilderSettings",
     "EmbodiedGaussiansSimulator",

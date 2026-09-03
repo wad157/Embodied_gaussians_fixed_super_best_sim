@@ -38,10 +38,13 @@ class EmbodiedGUI(marsoom.Window):
         imgui.begin("3D Viewer")
         with self.viewer_3d.draw(in_imgui_window=True):
             self.viewer_3d.render()
+            # 3-D callbacks must execute while the viewer framebuffer and its
+            # projection/view uniform blocks are still active. Calling them
+            # after leaving this context draws outside the visible 3-D panel.
+            for callback in self.callbacks_3d:
+                callback()
 
         self.viewer_3d.render_manipulation()
-        for callback in self.callbacks_3d:
-            callback()
 
         if self.draw_controls:
             self.viewer_3d.render_controls()

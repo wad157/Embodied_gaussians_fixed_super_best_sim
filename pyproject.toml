@@ -14,6 +14,7 @@ dependencies=[
     "trio",
     "trio-util",
     "opencv-python",
+    "tetgen==0.8.3",
     "marsoom @ git+https://github.com/jc211/marsoom.git",
 
     "torchcodec@https://download.pytorch.org/whl/cu124/TorchCodec-0.1.1%2Bcu124-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", # TODO: Make this not a wheel

@@ -24,6 +24,59 @@ from embodied_gaussians.environments.embodied_environment import (
 )
 
 
+def _build_arrow_segments(
+    positions: torch.Tensor,
+    directions: torch.Tensor,
+    vector_scale: float,
+    head_length_ratio: float = 0.30,
+    head_width_ratio: float = 0.15,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    """Expand vectors into shafts plus four 3-D arrowhead line segments."""
+    if positions.shape != directions.shape or positions.ndim != 2 or positions.shape[1] != 3:
+        raise ValueError("Arrow positions/directions must both have shape (N, 3)")
+    norms = torch.linalg.vector_norm(directions, dim=1)
+    valid = torch.isfinite(norms) & (norms > 1.0e-12)
+    positions = positions[valid]
+    directions = directions[valid]
+    norms = norms[valid]
+    if len(positions) == 0:
+        return positions, directions
+
+    unit = directions / norms[:, None]
+    reference_z = torch.zeros_like(unit)
+    reference_z[:, 2] = 1.0
+    reference_x = torch.zeros_like(unit)
+    reference_x[:, 0] = 1.0
+    use_x = torch.abs((unit * reference_z).sum(dim=1)) > 0.90
+    reference = torch.where(use_x[:, None], reference_x, reference_z)
+    side_1 = torch.linalg.cross(unit, reference, dim=1)
+    side_1 = side_1 / torch.clamp(
+        torch.linalg.vector_norm(side_1, dim=1, keepdim=True), min=1.0e-12
+    )
+    side_2 = torch.linalg.cross(unit, side_1, dim=1)
+
+    # VectorRenderer multiplies every supplied direction by vector_scale.
+    # Keep the head directions in the same pre-scale units as the shaft.
+    backward = -head_length_ratio * unit
+    heads = torch.stack(
+        (
+            backward + head_width_ratio * side_1,
+            backward - head_width_ratio * side_1,
+            backward + head_width_ratio * side_2,
+            backward - head_width_ratio * side_2,
+        ),
+        dim=1,
+    ) * norms[:, None, None]
+    endpoints = positions + float(vector_scale) * directions
+    segment_positions = torch.cat(
+        (positions, endpoints.repeat_interleave(4, dim=0)), dim=0
+    )
+    segment_directions = torch.cat(
+        (directions, heads.reshape(-1, 3)), dim=0
+    )
+    return segment_positions.contiguous(), segment_directions.contiguous()
+
+
 def _set_calibrated_camera_image_geometry(
     camera: marsoom.CameraWireframeWithImage,
     K: np.ndarray,
@@ -98,6 +151,9 @@ class VisualizerSettings:
     gaussian_render_alpha: float = 1.0
     visual_forces_scale: float = 25.0
     visual_forces_pose_scale: float = 25.0
+    soft_force_display_gain: float = 10.0
+    soft_force_line_width: float = 2.0
+    soft_force_max_arrows: int = 1000
     near_plane: float = 0.01
     far_plane: float = 10.0
     wireframe_alpha: float = 0.5
@@ -116,6 +172,7 @@ class EmbodiedViewer(SimulationViewer):
             np.array(mesh.vertex_normals),
         )
         self.vector_renderer = VectorRenderer()
+        self.last_soft_force_arrow_count = 0
         # gsplat rasterization returns RGB; using GL_BGR swaps red and blue.
         self.gaussian_texture = marsoom.Texture(640, 480, fmt=gl.GL_RGB)
         self.gaussian_overlay = marsoom.Overlay(self.gaussian_texture.id, alpha=1.0)  # type: ignore
@@ -127,6 +184,7 @@ class EmbodiedViewer(SimulationViewer):
         self.env: EmbodiedGaussiansEnvironment | None = None
         self.cameras: dict[str, marsoom.CameraWireframeWithImage] = {}
         self.virtual_cameras: dict[str, marsoom.CameraWireframeWithImage] = {}
+        self._side_view_pose: tuple[PyVec3, PyVec3, PyVec3] | None = None
         self.save_dialog: pfd.save_file | None = None
 
     def set_environment(self, env: EmbodiedGaussiansEnvironment):
@@ -167,9 +225,22 @@ class EmbodiedViewer(SimulationViewer):
         if imgui.is_item_hovered():
             imgui.set_tooltip("Render full gaussian visualization")
 
-        _, s.draw_physics = imgui.checkbox("Show Physics", s.draw_physics)
-        if imgui.is_item_hovered():
-            imgui.set_tooltip("Display physics simulation elements")
+        sim_reconstruction_mode = bool(
+            getattr(self.env, "super_sim_reconstruction_mode", False)
+        )
+        if sim_reconstruction_mode:
+            _, s.draw_physics = imgui.checkbox(
+                "Show Reconstructed Tissue Physics", s.draw_physics
+            )
+            if imgui.is_item_hovered():
+                imgui.set_tooltip(
+                    "Only deformable tissue particles/skin; legacy SUPER "
+                    "rigid geometry stays hidden"
+                )
+        else:
+            _, s.draw_physics = imgui.checkbox("Show Physics", s.draw_physics)
+            if imgui.is_item_hovered():
+                imgui.set_tooltip("Display physics simulation elements")
 
         _, s.draw_cameras = imgui.checkbox("Show Cameras", s.draw_cameras)
         _, s.draw_virtual_cameras = imgui.checkbox(
@@ -198,6 +269,13 @@ class EmbodiedViewer(SimulationViewer):
         _, s.visual_forces_pose_scale = imgui.slider_float(
             "Force Pose Scale", s.visual_forces_pose_scale, 1.0, 100.0
         )
+        _, s.soft_force_display_gain = imgui.slider_float(
+            "Soft Force Display Gain", s.soft_force_display_gain, 1.0, 100.0
+        )
+        _, s.soft_force_line_width = imgui.slider_float(
+            "Soft Force Line Width", s.soft_force_line_width, 1.0, 6.0
+        )
+        imgui.text(f"Soft particle arrows: {self.last_soft_force_arrow_count}")
 
         imgui.spacing()
         imgui.spacing()
@@ -252,6 +330,23 @@ class EmbodiedViewer(SimulationViewer):
             imgui.pop_style_color(3)
 
             imgui.same_line(spacing=10)
+
+            if self._side_view_pose is not None:
+                imgui.push_style_color(imgui.Col_.button, (0.25, 0.65, 0.35, 0.8))
+                imgui.push_style_color(
+                    imgui.Col_.button_hovered, (0.35, 0.75, 0.45, 1.0)
+                )
+                imgui.push_style_color(
+                    imgui.Col_.button_active, (0.15, 0.55, 0.25, 1.0)
+                )
+                if imgui.button("Side View##side_view", (120, 30)):
+                    self.go_to_side_view()
+                imgui.pop_style_color(3)
+                if imgui.is_item_hovered():
+                    imgui.set_tooltip(
+                        "Show the calibrated physical side view of tool-tissue contact"
+                    )
+                imgui.same_line(spacing=10)
 
             imgui.push_style_color(imgui.Col_.button, (0.8, 0.3, 0.3, 0.8))
             imgui.push_style_color(imgui.Col_.button_hovered, (0.9, 0.4, 0.4, 1.0))
@@ -354,6 +449,56 @@ class EmbodiedViewer(SimulationViewer):
     def reset_cameras(self):
         for cam in self.cameras.values():
             cam.timestamp = -1.0
+
+    def configure_side_view(
+        self,
+        *,
+        position: tuple[float, float, float],
+        front: tuple[float, float, float],
+        up: tuple[float, float, float] = (0.0, 0.0, 1.0),
+        activate: bool = False,
+    ) -> None:
+        """Register a named side view without creating another render path."""
+        position_values = np.asarray(position, dtype=np.float64)
+        front_values = np.asarray(front, dtype=np.float64)
+        up_values = np.asarray(up, dtype=np.float64)
+        if not (
+            position_values.shape == (3,)
+            and front_values.shape == (3,)
+            and up_values.shape == (3,)
+            and np.isfinite(position_values).all()
+            and np.isfinite(front_values).all()
+            and np.isfinite(up_values).all()
+        ):
+            raise ValueError("Side-view position/front/up must be finite 3-vectors")
+        front_norm = float(np.linalg.norm(front_values))
+        up_norm = float(np.linalg.norm(up_values))
+        if front_norm <= 1.0e-12 or up_norm <= 1.0e-12:
+            raise ValueError("Side-view front and up vectors must be non-zero")
+        front_values /= front_norm
+        up_values /= up_norm
+        if abs(float(np.dot(front_values, up_values))) >= 1.0 - 1.0e-6:
+            raise ValueError("Side-view front and up vectors must not be parallel")
+        self._side_view_pose = (
+            PyVec3(*position_values.tolist()),
+            PyVec3(*front_values.tolist()),
+            PyVec3(*up_values.tolist()),
+        )
+        if activate:
+            self.go_to_side_view()
+
+    def go_to_side_view(self) -> bool:
+        """Switch the shared 3-D viewport to the configured physical side view."""
+        if self._side_view_pose is None:
+            return False
+        position, front, up = self._side_view_pose
+        self._camera_pos = PyVec3(position.x, position.y, position.z)
+        self._camera_front = PyVec3(front.x, front.y, front.z)
+        self._camera_up = PyVec3(up.x, up.y, up.z)
+        self._render_new_frame = True
+        self.update_view_matrix()
+        self.update_projection_matrix()
+        return True
 
     def render_cameras(self):
         assert self.env is not None
@@ -473,29 +618,36 @@ class EmbodiedViewer(SimulationViewer):
         ):
             return
 
-        X_CWs = torch.tensor(self.x_vw("opencv")).cuda().unsqueeze(0)
-        Ks = torch.tensor(self.K()).cuda().unsqueeze(0)
         gl.glEnable(gl.GL_DEPTH_TEST)
         assert self.env is not None
-        sim = self.env.sim
-        render_colors, render_alphas, meta = sim.render_visual_forces(
-            X_CWs=X_CWs,
-            Ks=Ks,
-            width=self.screen_width,
-            height=self.screen_height,
-            background=torch.tensor([1.0, 1.0, 1.0]).cuda().unsqueeze(0),
-        )
-
         ss = self.env.sim
-        ids = meta.get("gaussian_ids")
-        if ids is None:
-            ids = torch.arange(
-                ss.visual_forces.means.shape[0], device=ss.visual_forces.means.device
+        meta = None
+        draw_force_gaussians = (
+            s.draw_visual_forces_gaussians_outlines
+            or s.draw_visual_forces_gaussians_meshes
+            or s.draw_visual_forces_render
+        )
+        if draw_force_gaussians:
+            X_CWs = torch.tensor(self.x_vw("opencv")).cuda().unsqueeze(0)
+            Ks = torch.tensor(self.K()).cuda().unsqueeze(0)
+            _, _, meta = ss.render_visual_forces(
+                X_CWs=X_CWs,
+                Ks=Ks,
+                width=self.screen_width,
+                height=self.screen_height,
+                background=torch.tensor([1.0, 1.0, 1.0]).cuda().unsqueeze(0),
             )
         involved = ~ss.visual_forces._gaussians_not_involved_in_visual_forces
-        ids = ids[involved[ids]]
-        if len(ids) == 0:
-            return
+        if meta is None:
+            ids = torch.nonzero(involved, as_tuple=False).flatten()
+        else:
+            ids = meta.get("gaussian_ids")
+            if ids is None:
+                ids = torch.arange(
+                    ss.visual_forces.means.shape[0],
+                    device=ss.visual_forces.means.device,
+                )
+            ids = ids[involved[ids]]
 
         with torch.no_grad():
             preview_positions = ss.gaussian_state.means[ids] + (
@@ -515,6 +667,7 @@ class EmbodiedViewer(SimulationViewer):
                 )
                 self.mesh_ellipse_renderer.draw()
             if s.draw_visual_forces_gaussians_outlines:
+                assert meta is not None
                 self.ellipse_renderer.update(
                     positions=ss.visual_forces.means[ids],
                     colors=force_colors,
@@ -524,11 +677,73 @@ class EmbodiedViewer(SimulationViewer):
                 self.ellipse_renderer.draw(3.0)
 
             if s.draw_visual_forces:
-                self.vector_renderer.update(
-                    positions=ss.gaussian_state.means[ids],
-                    directions=ss.visual_forces.forces[ids],
+                # Preserve the historical rigid-Gaussian force display, but do
+                # not send soft Gaussians (body_id=-1) through its zero-valued
+                # rigid-force array.
+                rigid_ids = ids[ss.gaussian_model.body_ids[ids] >= 0]
+                rigid_positions, rigid_directions = _build_arrow_segments(
+                    ss.gaussian_state.means[rigid_ids],
+                    ss.visual_forces.forces[rigid_ids],
+                    vector_scale=s.visual_forces_scale,
                 )
-                self.vector_renderer.draw(vector_scale=s.visual_forces_scale)
+                if len(rigid_positions) > 0:
+                    self.vector_renderer.update(
+                        positions=rigid_positions,
+                        directions=rigid_directions,
+                    )
+                    self.vector_renderer.draw(
+                        vector_scale=s.visual_forces_scale,
+                        line_width=2.0,
+                    )
+
+                # Soft visual forces bypass body_f: they are barycentrically
+                # scattered and globally clamped before entering particle_f.
+                # Draw that actual post-clamp value at the PBD particle, not
+                # the old per-Gaussian rigid-force buffer.
+                self.last_soft_force_arrow_count = 0
+                scatter = ss.last_soft_force_scatter
+                if scatter is not None and ss.model.particle_count > 0:
+                    applied_forces = (
+                        scatter.particle_forces * scatter.global_scale.reshape(1, 1)
+                    )
+                    force_norms = torch.linalg.vector_norm(applied_forces, dim=1)
+                    dynamic = wp.to_torch(ss.model.particle_inv_mass) > 0.0
+                    supported = ss._soft_particle_weight_sums > 0.0
+                    candidates = torch.nonzero(
+                        dynamic
+                        & supported
+                        & torch.isfinite(force_norms)
+                        & (force_norms > 1.0e-12),
+                        as_tuple=False,
+                    ).flatten()
+                    if len(candidates) > s.soft_force_max_arrows:
+                        strongest = torch.topk(
+                            force_norms[candidates],
+                            k=s.soft_force_max_arrows,
+                            sorted=False,
+                        ).indices
+                        candidates = candidates[strongest]
+                    particle_positions = wp.to_torch(ss.state_0.particle_q)[candidates]
+                    particle_directions = (
+                        applied_forces[candidates] * s.soft_force_display_gain
+                    )
+                    soft_positions, soft_directions = _build_arrow_segments(
+                        particle_positions,
+                        particle_directions,
+                        vector_scale=s.visual_forces_scale,
+                    )
+                    if len(soft_positions) > 0:
+                        self.vector_renderer.update(
+                            positions=soft_positions,
+                            directions=soft_directions,
+                        )
+                        self.vector_renderer.draw(
+                            vector_scale=s.visual_forces_scale,
+                            line_width=s.soft_force_line_width,
+                        )
+                        self.last_soft_force_arrow_count = len(candidates)
+            else:
+                self.last_soft_force_arrow_count = 0
 
         # if s.draw_gaussian_render:
         #     self.gaussian_texture.copy_from_device(render_colors.squeeze(0))
@@ -596,9 +811,17 @@ class EmbodiedViewer(SimulationViewer):
     def render(self):
         if self.env is None:
             return
-        if self.settings.draw_physics:
+        sim_reconstruction_mode = bool(
+            getattr(self.env, "super_sim_reconstruction_mode", False)
+        )
+        if self.settings.draw_physics and not sim_reconstruction_mode:
             self.render_meshes()
         self.render_gaussians()
+        # Draw the orange deformable skin after the 2-D Gaussian overlay so it
+        # remains visible as a physics diagnostic. The soft-only renderer has
+        # shape_count=0, hence it cannot contain the old PSM.
+        if self.settings.draw_physics and sim_reconstruction_mode:
+            self.render_soft_meshes()
         self.render_visual_forces()
         if self.settings.draw_cameras:
             self.render_cameras()

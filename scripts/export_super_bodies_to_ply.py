@@ -120,7 +120,7 @@ def main() -> None:
     )
 
     comments = [
-        "world frame: left rectified OpenCV camera frame",
+        "world frame: existing frozen right-handed table frame",
         "red=tissue particles",
         "orange=tissue gaussians",
         "green=ground visual gaussians",

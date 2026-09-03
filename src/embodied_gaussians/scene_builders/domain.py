@@ -118,6 +118,143 @@ class Body(BaseModel):
     particles: Particles | None = None
 
 
+@dataclass
+class TetraMesh:
+    rest_positions: np.ndarray
+    tet_indices: np.ndarray
+    surface_faces: np.ndarray
+    particle_mass: np.ndarray
+    particle_radius: np.ndarray
+    fixed_mask: np.ndarray
+    support_candidate_mask: np.ndarray
+    rest_tet_volume: np.ndarray
+    surface_face_markers: np.ndarray | None = None
+    collision_skin_faces: np.ndarray | None = None
+    collision_skin_face_markers: np.ndarray | None = None
+    collision_skin_enabled_faces: np.ndarray | None = None
+    particle_visual_radius: np.ndarray | None = None
+    particle_target_spacing: np.ndarray | None = None
+    particle_inward_depth: np.ndarray | None = None
+    surface_node_mask: np.ndarray | None = None
+    top_node_mask: np.ndarray | None = None
+    top_rest_curvature_faces: np.ndarray | None = None
+    top_rest_curvature_edges: np.ndarray | None = None
+    top_rest_curvature_opposite_vertices: np.ndarray | None = None
+    top_rest_dihedral_angle: np.ndarray | None = None
+
+
+@dataclass
+class GaussianSkinning:
+    rest_means: np.ndarray
+    rest_quats_wxyz: np.ndarray
+    scales: np.ndarray
+    opacities: np.ndarray
+    colors_rgb: np.ndarray
+    tet_ids: np.ndarray
+    particle_indices: np.ndarray
+    barycentric_weights: np.ndarray
+    rest_offset: np.ndarray
+    binding_mode: str = "tetrahedron"
+    face_particle_indices: np.ndarray | None = None
+    face_barycentric_weights: np.ndarray | None = None
+    visual_surface_rest_vertices: np.ndarray | None = None
+    visual_surface_faces: np.ndarray | None = None
+    visual_vertex_particle_indices: np.ndarray | None = None
+    visual_vertex_barycentric_weights: np.ndarray | None = None
+    visual_vertex_rest_offsets: np.ndarray | None = None
+    visual_face_ids: np.ndarray | None = None
+
+
+@dataclass
+class SoftBody:
+    name: str
+    tetra_mesh: TetraMesh
+    gaussian_skinning: GaussianSkinning | None = None
+
+    @staticmethod
+    def from_npz(path: Path | str, name: str = "soft_body") -> "SoftBody":
+        with np.load(path) as loaded:
+            def optional(key: str) -> np.ndarray | None:
+                return loaded[key].copy() if key in loaded.files else None
+
+            mesh = TetraMesh(
+                rest_positions=loaded["rest_positions_table"].copy(),
+                tet_indices=loaded["tet_indices"].copy(),
+                surface_faces=loaded["surface_faces"].copy(),
+                particle_mass=loaded["particle_mass"].copy(),
+                particle_radius=loaded["particle_radius"].copy(),
+                fixed_mask=loaded["fixed_mask"].copy(),
+                support_candidate_mask=loaded["support_candidate_mask"].copy(),
+                rest_tet_volume=loaded["rest_tet_volume"].copy(),
+                surface_face_markers=optional("surface_face_markers"),
+                collision_skin_faces=optional("collision_skin_faces"),
+                collision_skin_face_markers=optional(
+                    "collision_skin_face_markers"
+                ),
+                collision_skin_enabled_faces=optional(
+                    "collision_skin_enabled_faces"
+                ),
+                particle_visual_radius=optional("particle_visual_radius"),
+                particle_target_spacing=optional("particle_target_spacing"),
+                particle_inward_depth=optional("particle_inward_depth"),
+                surface_node_mask=optional("surface_node_mask"),
+                top_node_mask=optional("top_node_mask"),
+                top_rest_curvature_faces=optional(
+                    "top_rest_curvature_faces"
+                ),
+                top_rest_curvature_edges=optional(
+                    "top_rest_curvature_edges"
+                ),
+                top_rest_curvature_opposite_vertices=optional(
+                    "top_rest_curvature_opposite_vertices"
+                ),
+                top_rest_dihedral_angle=optional(
+                    "top_rest_dihedral_angle"
+                ),
+            )
+            skinning = GaussianSkinning(
+                rest_means=loaded["gaussian_rest_means_table"].copy(),
+                rest_quats_wxyz=loaded[
+                    "gaussian_rest_quats_table_wxyz"
+                ].copy(),
+                scales=loaded["gaussian_scales"].copy(),
+                opacities=loaded["gaussian_opacities"].copy(),
+                colors_rgb=loaded["gaussian_colors_rgb"].copy(),
+                tet_ids=loaded["gaussian_tet_ids"].copy(),
+                particle_indices=loaded["gaussian_particle_indices"].copy(),
+                barycentric_weights=loaded[
+                    "gaussian_barycentric_weights"
+                ].copy(),
+                rest_offset=loaded["gaussian_rest_offset_table"].copy(),
+                binding_mode=(
+                    str(loaded["gaussian_binding_mode"].item())
+                    if "gaussian_binding_mode" in loaded.files
+                    else "tetrahedron"
+                ),
+                face_particle_indices=optional(
+                    "gaussian_face_particle_indices"
+                ),
+                face_barycentric_weights=optional(
+                    "gaussian_face_barycentric_weights"
+                ),
+                visual_surface_rest_vertices=optional(
+                    "visual_surface_rest_vertices_table"
+                ),
+                visual_surface_faces=optional("visual_surface_faces"),
+                visual_vertex_particle_indices=optional(
+                    "visual_vertex_particle_indices"
+                ),
+                visual_vertex_barycentric_weights=optional(
+                    "visual_vertex_barycentric_weights"
+                ),
+                visual_vertex_rest_offsets=optional(
+                    "visual_vertex_rest_offset_table"
+                ),
+                visual_face_ids=optional("gaussian_visual_face_ids"),
+            )
+        return SoftBody(name=name, tetra_mesh=mesh, gaussian_skinning=skinning)
+
+
 class GaussianActivations:
     quat = torch.nn.functional.normalize
     scale = torch.exp

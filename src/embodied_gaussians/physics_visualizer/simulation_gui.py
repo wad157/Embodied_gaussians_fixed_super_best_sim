@@ -33,10 +33,9 @@ class SimulationGUI(marsoom.Window):
         imgui.begin("3D Viewer")
         with self.viewer_3d.draw(in_imgui_window=True):
             self.viewer_3d.render_meshes()
+            for callback in self.callbacks_3d:
+                callback()
         self.viewer_3d.render_manipulation()
-
-        for callback in self.callbacks_3d:
-            callback()
 
         self.viewer_3d.process_nav()
         imgui.end()

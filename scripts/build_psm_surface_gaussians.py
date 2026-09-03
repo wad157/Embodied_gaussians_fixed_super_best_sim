@@ -42,6 +42,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-normal-scale", type=float, default=0.0008)
     parser.add_argument("--opacity", type=float, default=0.90)
     parser.add_argument("--color", type=float, nargs=3, default=[0.65, 0.67, 0.70])
+    parser.add_argument(
+        "--use-urdf-material-colors",
+        action="store_true",
+        help=(
+            "Use each visual element's URDF material color when present; "
+            "fall back to --color otherwise."
+        ),
+    )
     parser.add_argument("--seed", type=int, default=0)
     return parser.parse_args()
 
@@ -63,6 +71,17 @@ def visual_transform(visual: ET.Element) -> np.ndarray:
     transform[:3, :3] = Rotation.from_euler("xyz", rpy).as_matrix()
     transform[:3, 3] = xyz
     return transform
+
+
+def visual_color(visual: ET.Element, fallback: np.ndarray) -> np.ndarray:
+    color = visual.find("material/color")
+    if color is None or color.get("rgba") is None:
+        return fallback.copy()
+    rgba = parse_vector(color.get("rgba"), (0.0, 0.0, 0.0, 1.0))
+    rgb = rgba[:3]
+    if not np.all(np.isfinite(rgb)) or np.any(rgb <= 0.0) or np.any(rgb >= 1.0):
+        return fallback.copy()
+    return rgb.astype(np.float32)
 
 
 def resolve_mesh_path(urdf_path: Path, filename: str) -> Path:
@@ -140,12 +159,15 @@ def sample_visual(
 
 def main() -> None:
     args = parse_args()
+    args.urdf = args.urdf.resolve()
+    args.output = args.output.resolve()
+    args.report = args.report.resolve()
     if args.density <= 0:
         raise ValueError("--density must be positive")
     if not 0.0 < args.opacity < 1.0:
         raise ValueError("--opacity must lie strictly between 0 and 1")
-    color = np.asarray(args.color, dtype=np.float32)
-    if np.any(color <= 0.0) or np.any(color >= 1.0):
+    fallback_color = np.asarray(args.color, dtype=np.float32)
+    if np.any(fallback_color <= 0.0) or np.any(fallback_color >= 1.0):
         raise ValueError("--color values must lie strictly between 0 and 1")
 
     o3d.utility.random.seed(args.seed)
@@ -168,6 +190,7 @@ def main() -> None:
         link_means: list[np.ndarray] = []
         link_quats: list[np.ndarray] = []
         link_scales: list[np.ndarray] = []
+        link_colors: list[np.ndarray] = []
         link_distances: list[np.ndarray] = []
         visual_reports: list[dict] = []
 
@@ -216,10 +239,16 @@ def main() -> None:
                 np.array([tangent_scale, tangent_scale, normal_scale], np.float32),
                 (num_samples, 1),
             )
+            sampled_color = (
+                visual_color(visual, fallback_color)
+                if args.use_urdf_material_colors
+                else fallback_color
+            )
 
             link_means.append(means)
             link_quats.append(quats)
             link_scales.append(scales)
+            link_colors.append(np.tile(sampled_color, (num_samples, 1)))
             link_distances.append(distances)
             visual_reports.append(
                 {
@@ -230,6 +259,7 @@ def main() -> None:
                     "estimated_spacing_m": float(spacing),
                     "tangent_scale_m": tangent_scale,
                     "normal_scale_m": normal_scale,
+                    "color_rgb": sampled_color.tolist(),
                     "surface_distance_max_m": float(np.max(distances)),
                 }
             )
@@ -239,13 +269,14 @@ def main() -> None:
         means = np.concatenate(link_means)
         quats = np.concatenate(link_quats)
         scales = np.concatenate(link_scales)
+        colors = np.concatenate(link_colors)
         distances = np.concatenate(link_distances)
         link_names.append(link_name)
         all_means.append(means)
         all_quats.append(quats)
         all_scales.append(scales)
         all_opacities.append(np.full(len(means), args.opacity, dtype=np.float32))
-        all_colors.append(np.tile(color, (len(means), 1)))
+        all_colors.append(colors)
         all_link_ids.append(np.full(len(means), link_id, dtype=np.int16))
         link_reports.append(
             {
@@ -292,6 +323,13 @@ def main() -> None:
         "density_per_m2": args.density,
         "min_samples_per_mesh": args.min_samples_per_mesh,
         "max_samples_per_mesh": args.max_samples_per_mesh,
+        "tangent_scale_factor": args.tangent_scale_factor,
+        "min_tangent_scale_m": args.min_tangent_scale,
+        "max_tangent_scale_m": args.max_tangent_scale,
+        "normal_scale_factor": args.normal_scale_factor,
+        "min_normal_scale_m": args.min_normal_scale,
+        "max_normal_scale_m": args.max_normal_scale,
+        "use_urdf_material_colors": args.use_urdf_material_colors,
         "surface_distance_max_m": float(np.max(all_distances)),
         "scale_m_percentiles": np.percentile(
             output["scales"], [0, 5, 50, 95, 100], axis=0

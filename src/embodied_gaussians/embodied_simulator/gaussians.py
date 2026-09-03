@@ -74,6 +74,30 @@ class GaussianModel:
     opacities: torch.Tensor  # (n_gaussians,)
     colors: torch.Tensor  # (n_gaussians, 3)
     body_ids: torch.Tensor  # (n_gaussians,)
+    # Sparse soft-body bindings.  These arrays contain one row per soft
+    # Gaussian rather than one row per Gaussian in the whole scene.
+    soft_gaussian_ids: torch.Tensor  # (n_soft_gaussians,)
+    soft_gaussian_particle_indices: torch.Tensor  # (n_soft_gaussians, 4)
+    soft_gaussian_tet_ids: torch.Tensor  # (n_soft_gaussians,)
+    soft_gaussian_barycentric_weights: torch.Tensor  # (n_soft_gaussians, 4)
+    soft_gaussian_rest_offsets: torch.Tensor  # (n_soft_gaussians, 3)
+    # 0: tetrahedral polar-rotation binding; 1: physical surface-face binding;
+    # 2: high-resolution visual-surface face-centroid binding.
+    soft_gaussian_binding_modes: torch.Tensor  # (n_soft_gaussians,)
+    soft_gaussian_face_particle_indices: torch.Tensor  # (n_soft_gaussians, 3)
+    soft_gaussian_rest_face_frames: torch.Tensor  # (n_soft_gaussians, 3, 3)
+    # Mode 2 reconstructs each of the visual face's three vertices from a
+    # physical boundary face.  The three physical supports for each of the
+    # three visual vertices are flattened to nine columns per Gaussian.
+    soft_gaussian_visual_vertex_particle_indices: torch.Tensor  # (n_soft, 9)
+    soft_gaussian_visual_vertex_weights: torch.Tensor  # (n_soft, 9)
+    soft_gaussian_visual_vertex_rest_offsets: torch.Tensor  # (n_soft, 3, 3)
+    soft_gaussian_visual_vertex_rest_physical_frames: torch.Tensor  # (n_soft, 3, 3, 3)
+    soft_gaussian_rest_visual_face_frames: torch.Tensor  # (n_soft, 3, 3)
+    # Inverse of [rest_edge_01, rest_edge_02, rest_unit_normal].
+    soft_gaussian_rest_visual_face_poses: torch.Tensor  # (n_soft, 3, 3)
+    soft_tet_rest_poses: torch.Tensor  # (n_tetrahedra, 3, 3), inverse rest Dm
+    num_body_gaussians: int
 
     @property
     def num_gaussians(self):
@@ -82,6 +106,10 @@ class GaussianModel:
     @property
     def device(self):
         return self.means.device
+
+    @property
+    def num_soft_gaussians(self):
+        return self.soft_gaussian_ids.shape[0]
 
     def state(self):
         return GaussianState(

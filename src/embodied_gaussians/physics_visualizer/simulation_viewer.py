@@ -1,7 +1,10 @@
 # Copyright (c) 2025 Robotics and AI Institute LLC dba RAI Institute. All rights reserved.
 
+import copy
+
 import marsoom
 import marsoom.cuda
+import numpy as np
 import torch
 import warp as wp
 import warp.sim.render
@@ -22,9 +25,37 @@ class SimulationViewer(marsoom.Viewer3D):
 
     def set_simulator(self, simulator: Simulator):
         self.simulator = simulator
+        # The renderer gets a shallow model copy so debug-only geometry cannot
+        # alter contact radii or triangle constraints in the live simulation.
+        render_model = copy.copy(self.simulator.model)
+        render_model.particle_radius = getattr(
+            self.simulator.model,
+            "particle_visual_radius",
+            self.simulator.model.particle_radius,
+        )
+        collision_skin_faces = np.asarray(
+            getattr(self.simulator.builder, "soft_collision_skin_faces", []),
+            dtype=np.int32,
+        ).reshape(-1, 3)
+        if len(collision_skin_faces):
+            render_model.tri_indices = wp.array(
+                collision_skin_faces,
+                dtype=wp.vec3i,
+                device=self.simulator.model.device,
+            )
+            render_model.tri_count = len(collision_skin_faces)
         self.sim_renderer = warp.sim.render.CreateSimRenderer(
             marsoom.cuda.OpenGLRendererWrapper
-        )(self.simulator.model, 0)
+        )(render_model, 0)
+        # A second debug renderer contains only deformable particles/skin.
+        # Dataset-reconstruction mode needs this view without reviving any of
+        # the legacy SUPER rigid shapes (PSM, table, background bodies).
+        soft_render_model = copy.copy(render_model)
+        soft_render_model.shape_count = 0
+        soft_render_model.ground = False
+        self.soft_sim_renderer = warp.sim.render.CreateSimRenderer(
+            marsoom.cuda.OpenGLRendererWrapper
+        )(soft_render_model, 0)
         self.render_state = self.simulator.model.state()
         self.num_bodies = self.simulator.model.body_count
         self.body_id = 0
@@ -36,6 +67,14 @@ class SimulationViewer(marsoom.Viewer3D):
         self._refresh_body_q()
         self.sim_renderer.render(self.render_state)
         self.sim_renderer.draw()
+
+    def render_soft_meshes(self):
+        """Render deformable particles/skin while hiding every rigid shape."""
+        if self.simulator is None:
+            return
+        self._refresh_body_q()
+        self.soft_sim_renderer.render(self.render_state)
+        self.soft_sim_renderer.draw()
 
     def render_manipulation(self):
         if self.simulator is None:
@@ -109,6 +148,17 @@ class SimulationViewer(marsoom.Viewer3D):
                 self.render_state.body_q,
             ],
         )
+        # CreateSimRenderer owns a separate State.  Body transforms were
+        # refreshed above, but soft particles previously stayed at the
+        # model's rest positions forever.  That made the debug tissue skin and
+        # "Physics Particles" look rigid even while state_0 was deforming.
+        # SUPER soft tissue currently uses one environment, so its particle
+        # coordinates already match the render world's coordinates.
+        if self.simulator.model.particle_count > 0:
+            wp.copy(
+                self.render_state.particle_q,
+                self.simulator.state_0.particle_q,
+            )
 
 
 @wp.kernel

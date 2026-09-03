@@ -1,0 +1,147 @@
+{
+  "schema": "fixedsuperbest.sim_foundation_depth_complete_evaluation.v2",
+  "protocol": {
+    "evaluation_points": "30 fixed non-grasp nodes; never optimizer inputs",
+    "optimizer_tracks": "175 fixed CoTracker RGB material tracks",
+    "depth": "FoundationStereo estimated from stereo RGB; simulator GT depth forbidden",
+    "reconstruction": "7:1 causal holdout; 37 scored frames",
+    "future_prediction": "first 80% adaptation; final 20% open-loop",
+    "same_state_correction_parameters_for_B_and_C": true,
+    "same_stiffness_policy_for_both_capabilities": true,
+    "no_protocol_branch_or_parameter_selection": true
+  },
+  "depth_generation": {
+    "summary": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_side_v2/estimated_depth/foundation_stereo_rgb_rig_aware_v1/depth_generation_summary.json",
+    "uses_ground_truth_depth_for_estimation": false,
+    "aggregate": {
+      "generated_frames": 300,
+      "left_valid_fraction_mean": 0.7469889110989041,
+      "left_lr_consistent_fraction_mean": 0.6520979634037724,
+      "privileged_gt_audit_frame_mean_absolute_error_mm": {
+        "mean": 0.7116687367359797,
+        "min_p05_p50_p95_max": [
+          0.5614920258522034,
+          0.6089627832174301,
+          0.7209180593490601,
+          0.8162203967571259,
+          0.9126772880554199
+        ]
+      }
+    }
+  },
+  "observation_assets": {
+    "report": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim02_planar_y_cotracker_foundation_v1/flow_depth_assets/report.json",
+    "depth_source": "sim02_foundation_stereo_rgb_rig_aware_v1",
+    "depth_estimated_from_rgb": true,
+    "optimizer_track_count": 175,
+    "bound_track_count": 175
+  },
+  "results": {
+    "reconstruction_7to1": {
+      "pbd": {
+        "label": "A：纯 PBD",
+        "frames": 37,
+        "evaluation_points": 30,
+        "3d_mean_mm": 1.4334982525273976,
+        "3d_rmse_mm": 2.2093175517331707,
+        "3d_median_mm": 0.5873412592336535,
+        "3d_p95_mm": 4.4910033931955695,
+        "3d_max_mm": 6.9088260643184185,
+        "2d_mean_px": 13.424078520466745,
+        "2d_rmse_px": 20.705388410502728,
+        "psnr_db": 16.42542728320156,
+        "ssim": 0.8170522105049443,
+        "lpips": 0.4294873033020947,
+        "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/reconstruction_7to1/pbd/trajectory_metrics.json",
+        "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/reconstruction_7to1/pbd/render_metrics.json"
+      },
+      "pbd_cotracker_foundation_depth": {
+        "label": "B：PBD + CoTracker轨迹校正 + FoundationStereo RGB深度",
+        "frames": 37,
+        "evaluation_points": 30,
+        "3d_mean_mm": 0.3779027851000924,
+        "3d_rmse_mm": 0.6584847893853708,
+        "3d_median_mm": 0.17246660718228668,
+        "3d_p95_mm": 1.5160866314545274,
+        "3d_max_mm": 4.083250183612108,
+        "2d_mean_px": 3.6996683538800648,
+        "2d_rmse_px": 6.937567265503546,
+        "psnr_db": 17.000915419717707,
+        "ssim": 0.8266645669937134,
+        "lpips": 0.41757120151777527,
+        "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/reconstruction_7to1/pbd_cotracker_foundation_depth/trajectory_metrics.json",
+        "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/reconstruction_7to1/pbd_cotracker_foundation_depth/render_metrics.json"
+      },
+      "pbd_cotracker_foundation_depth_global_only": {
+        "label": "C：B + 全局distance刚度与全局阻尼更新（无区域/逐粒子刚度）",
+        "frames": 37,
+        "evaluation_points": 30,
+        "3d_mean_mm": 0.37829396603499205,
+        "3d_rmse_mm": 0.6711668554091886,
+        "3d_median_mm": 0.17246660718228668,
+        "3d_p95_mm": 1.5160866314545274,
+        "3d_max_mm": 4.554370883852243,
+        "2d_mean_px": 3.7086214417896364,
+        "2d_rmse_px": 7.157295931294003,
+        "psnr_db": 17.013407211544155,
+        "ssim": 0.8265584304526046,
+        "lpips": 0.41788471389461207,
+        "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/reconstruction_7to1/pbd_cotracker_foundation_depth_global_only/trajectory_metrics.json",
+        "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/reconstruction_7to1/pbd_cotracker_foundation_depth_global_only/render_metrics.json"
+      }
+    },
+    "future_80to20": {
+      "pbd": {
+        "label": "A：纯 PBD",
+        "frames": 60,
+        "evaluation_points": 30,
+        "3d_mean_mm": 4.115153457969427,
+        "3d_rmse_mm": 4.223537366448869,
+        "3d_median_mm": 4.155461210757494,
+        "3d_p95_mm": 6.14276248961687,
+        "3d_max_mm": 6.945742294192314,
+        "2d_mean_px": 37.594972475654004,
+        "2d_rmse_px": 39.1519093048937,
+        "psnr_db": 15.475863402813586,
+        "ssim": 0.7996148606141408,
+        "lpips": 0.45367623269557955,
+        "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/future_80to20/pbd/trajectory_metrics.json",
+        "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/future_80to20/pbd/render_metrics.json"
+      },
+      "pbd_cotracker_foundation_depth": {
+        "label": "B：PBD + CoTracker轨迹校正 + FoundationStereo RGB深度",
+        "frames": 60,
+        "evaluation_points": 30,
+        "3d_mean_mm": 1.3338360357991204,
+        "3d_rmse_mm": 1.9078250802913588,
+        "3d_median_mm": 0.8227608632296324,
+        "3d_p95_mm": 4.5649578562006345,
+        "3d_max_mm": 6.423089653253555,
+        "2d_mean_px": 13.725751972373054,
+        "2d_rmse_px": 21.4227530601777,
+        "psnr_db": 16.56943819059073,
+        "ssim": 0.821219835182031,
+        "lpips": 0.4266180788477262,
+        "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/future_80to20/pbd_cotracker_foundation_depth/trajectory_metrics.json",
+        "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/future_80to20/pbd_cotracker_foundation_depth/render_metrics.json"
+      },
+      "pbd_cotracker_foundation_depth_global_only": {
+        "label": "C：B + 全局distance刚度与全局阻尼更新（无区域/逐粒子刚度）",
+        "frames": 60,
+        "evaluation_points": 30,
+        "3d_mean_mm": 1.3286750494444277,
+        "3d_rmse_mm": 1.9067078951254073,
+        "3d_median_mm": 0.8605885959696025,
+        "3d_p95_mm": 4.697722033597529,
+        "3d_max_mm": 6.773993372917175,
+        "2d_mean_px": 13.53001822373861,
+        "2d_rmse_px": 21.18503546333882,
+        "psnr_db": 16.67169923589969,
+        "ssim": 0.8218692238132159,
+        "lpips": 0.42598039507865904,
+        "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/future_80to20/pbd_cotracker_foundation_depth_global_only/trajectory_metrics.json",
+        "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim02/future_80to20/pbd_cotracker_foundation_depth_global_only/render_metrics.json"
+      }
+    }
+  }
+}

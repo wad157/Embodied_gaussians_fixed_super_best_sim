@@ -31,6 +31,10 @@ def load_mesh(url: str):
 
 def cuda_graph_capture(func):
     def wrapper(self, arg: dataclasses.dataclass):
+        device = wp.get_device(self.model.device)
+        if not device.is_cuda:
+            func(self, arg)
+            return
         recompile = False
         if not hasattr(self, f"{func.__name__}_cache"):
             recompile = True

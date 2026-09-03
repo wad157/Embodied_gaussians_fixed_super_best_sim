@@ -98,7 +98,10 @@ class EmbodiedGaussiansLoader(Loader):
             gaussian_state = self.get_gaussian_state_at_index(index, device)
         else:
             update_gaussian_transforms(
-                self.gaussian_model, wp.to_torch(state.body_q), self.gaussian_state
+                self.gaussian_model,
+                state.body_q,
+                self.gaussian_state,
+                particle_q=state.particle_q,
             )
             gaussian_state = self.gaussian_state
 

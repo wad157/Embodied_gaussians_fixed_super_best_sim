@@ -1,0 +1,1553 @@
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/numcodecs/__init__.py:106: DeprecationWarning: crc32c usage is deprecated since numcodecs v0.16.4. It is recommended to install google_crc32c instead.
+  from numcodecs.checksum32 import CRC32, Adler32, JenkinsLookup3
+Warp CUDA error: Failed to get driver entry point 'cuDeviceGetUuid' (CUDA error 1)
+Warp CUDA error: Function cuDeviceGetUuid_f: a suitable driver entry point was not found
+Warp CUDA error 36: API call is not supported in the installed CUDA driver (in function cuda_init, /builds/omniverse/warp/warp/native/warp.cu:268)
+[AVHWDeviceContext @ 0x562277d9eac0] Using current CUDA context.
+[AVHWDeviceContext @ 0x562276ad68c0] Using current CUDA context.
+[example_embodied_super_offline] 使用数据集目录: /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2
+[super_embodied] paper_pbd asset=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/gui_assets/tissue_fixedsuperbest.npz; particles=2658, tetrahedra=7602, skin_triangles=5312, depth_residual=OFF, stiffness_optimization=OFF
+Warp DeprecationWarning: Support for built-in functions called with non-Warp array types, such as lists, tuples, NumPy arrays, and others, will be dropped in the future. Use a Warp type such as `wp.vec`, `wp.mat`, `wp.quat`, or `wp.transform`.
+[super_embodied] PSM collisions disabled: shape_shape=0/29, shape_ground=0/29
+[super_embodied] paper_pbd triangle-skin contact configured: faces=5312, tool_samples=7579, jaw_only=ON, shaft_contact=OFF, jaw_top_plane=ON
+[super_embodied] paper_pbd fixed constraint baseline: k_dist=0.31, k_vol=1e+10, k_shape=0.0058, gravity=0.0m/s^2, damping=10.0/s, constraints=distance+volume+shape_matching, stiffness_optimization=OFF, depth_residual=OFF
+[example_embodied_super_offline] uniform initial material hypothesis: distance=0.2, shape=0.004; regional GT=UNUSED
+[example_embodied_super_offline] 仿真重建模式=ON；组织资产=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/gui_assets/tissue_fixedsuperbest.npz；旧 SUPER 背景/PSM 高斯=OFF；旧 PSM 几何接触=OFF（避免混用不一致的 link 坐标）；material_min_J=0.15
+[example_embodied_super_offline] psm_pose_driver=raw_paper_lnd_sam2_dense_contact_unbounded_xyz: /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/super/psm_visual_calibration/raw_paper_lnd_stereo_dense_contact_v4/surgicalsam2_multianchor_parts_dense_contact_v6/online_stereo_cma_se3_unbounded_dense_contact_v4/gui_unbounded_xyz_v1/psm_paper_lnd_gui_pose_driver.npz; visual_mode=full; tissue_mode=paper_pbd
+[example_embodied_super_offline] frozen manual correction=roll=+0.000 deg, camera_translation_mm=[0.0, 0.0, 0.0], world_translation_mm=[0.0, 0.0, 0.0], jaw_mode=raw_q7_full_closure_with_3_to_5_particle_gate
+[example_embodied_super_offline] embodied_gaussians_source=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/src/embodied_gaussians
+[example_embodied_super_offline] visual_feedback_mode=off; force_iterations=1; residual_iterations=8; update_interval=2; PSM feedback disabled
+[example_embodied_super_offline] tissue_visual_force_limits=lr_means=0.0002, kp=0.05, normalized=True, rigid_max_force=0.005N, soft_max_total_force=0.02N, soft_max_particle_acceleration=1.0m/s^2, soft_spread_layers=0, max_moment=5e-05Nm
+Physics file not found at /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/physics.zarr
+[example_embodied_super_offline] visual residual mask=exact full visible-tissue semantic mask; erosion=7px; legacy tool-local/posterior falloff=OFF
+[example_embodied_super_offline] enabled_cameras=['stereo_left', 'stereo_right']
+[example_embodied_super_offline] realtime visual residual mapper: particles=2658, tets=7602, soft_gaussians=36300, iterations=8, lr=4e-05m, image_scale=0.25, max_step=0.600mm
+[sim grasp boundary] ON; source=task_inputs prescribed trajectory + PSM grasp phase; mode=known_grasp_region; schema=fixedsuperbest.known_grasp_region_boundary.v1; first_grasp_frame=102; direct_particles=8; local_ids=[965, 966, 1002, 1003, 2294, 2295, 2331, 2332]; natural_pbd_neighbor_particles=60; diagnostic_neighbor_rings=2; grasp_center_mm=[23.945999145507812, 0.5419999957084656, 51.553001403808594]; boundary=prescribed_trajectory_while_closed; controlled patch is kinematic only while grasped and excluded from visual residual/stiffness
+[trajectory evaluation] headless schedule: frames=0..299, physics_steps_per_frame=2, mode=off, online_stiffness=False, open_loop_start=240, holdout_stride=None, holdout_offset=7, render_frame_mode=future, artifacts=outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd/artifacts
+[trajectory evaluation] future open loop entered at frame 240; RGB feedback=OFF; stiffness proposals=FROZEN; committed material=HELD
+[trajectory evaluation] complete: observed_frames=0..299, physics_iterations=600, flow_depth_updates=0
+{
+  "schema": "fixedsuperbest.trajectory_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd/artifacts/predicted_trajectories.npz",
+  "frames": 60,
+  "frame_start": 240,
+  "frame_end_inclusive": 299,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 240,
+    "end_exclusive": null,
+    "stride": 1,
+    "offset": 0,
+    "selected_frame_indices": [
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ]
+  },
+  "fixed_evaluation_nodes_before_control_exclusion": 240,
+  "evaluated_nodes": 30,
+  "evaluation_node_ids": [
+    386,
+    898,
+    868,
+    0,
+    30,
+    462,
+    434,
+    14,
+    692,
+    764,
+    208,
+    192,
+    516,
+    622,
+    504,
+    646,
+    278,
+    22,
+    200,
+    248,
+    8,
+    572,
+    874,
+    892,
+    318,
+    748,
+    334,
+    588,
+    150,
+    266
+  ],
+  "evaluation_node_manifest": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/evaluation/evaluation_points_30_non_grasp.json",
+  "controlled_boundary_evaluation_nodes_excluded": 2,
+  "allowed_nodes_not_selected_by_fixed_manifest": 208,
+  "controlled_boundary_source": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/task_inputs/known_grasp_region_boundary.npz",
+  "alignment": "按 tissue_node_ids 精确匹配；不做 SE(3)、尺度或时间对齐",
+  "3d": {
+    "count": 1800,
+    "mean": 4.281365833982515,
+    "rmse": 4.454591339602912,
+    "median": 4.1454327292740345,
+    "p95": 6.357237766496837,
+    "max": 9.788069874048233,
+    "fraction_le_1": 0.0,
+    "fraction_le_2": 0.03166666666666667,
+    "fraction_le_5": 0.8577777777777778,
+    "fraction_le_10": 1.0,
+    "unit": "mm",
+    "valid_fraction": 1.0
+  },
+  "2d": {
+    "stereo_left": {
+      "count": 1733,
+      "mean": 42.70240995310251,
+      "rmse": 44.701411893145206,
+      "median": 41.276123046875,
+      "p95": 66.94596099853516,
+      "max": 107.35121154785156,
+      "fraction_le_1": 0.0,
+      "fraction_le_3": 0.0005770340450086555,
+      "fraction_le_5": 0.002308136180034622,
+      "fraction_le_10": 0.02308136180034622,
+      "unit": "pixel",
+      "reference_visible_count": 1733,
+      "evaluated_fraction_of_visible": 1.0
+    },
+    "stereo_right": {
+      "count": 1780,
+      "mean": 42.95924346219288,
+      "rmse": 45.71301332973786,
+      "median": 40.44963455200195,
+      "p95": 70.73044319152832,
+      "max": 106.90216827392578,
+      "fraction_le_1": 0.0,
+      "fraction_le_3": 0.0,
+      "fraction_le_5": 0.0028089887640449437,
+      "fraction_le_10": 0.01853932584269663,
+      "unit": "pixel",
+      "reference_visible_count": 1780,
+      "evaluated_fraction_of_visible": 1.0
+    }
+  },
+  "segments": {
+    "all": {
+      "frame_count": 60,
+      "3d": {
+        "count": 1800,
+        "mean": 4.281365833982515,
+        "rmse": 4.454591339602912,
+        "median": 4.1454327292740345,
+        "p95": 6.357237766496837,
+        "max": 9.788069874048233,
+        "fraction_le_1": 0.0,
+        "fraction_le_2": 0.03166666666666667,
+        "fraction_le_5": 0.8577777777777778,
+        "fraction_le_10": 1.0,
+        "unit": "mm",
+        "valid_fraction": 1.0
+      },
+      "2d": {
+        "stereo_left": {
+          "count": 1733,
+          "mean": 42.70240995310251,
+          "rmse": 44.701411893145206,
+          "median": 41.276123046875,
+          "p95": 66.94596099853516,
+          "max": 107.35121154785156,
+          "fraction_le_1": 0.0,
+          "fraction_le_3": 0.0005770340450086555,
+          "fraction_le_5": 0.002308136180034622,
+          "fraction_le_10": 0.02308136180034622,
+          "unit": "pixel",
+          "reference_visible_count": 1733,
+          "evaluated_fraction_of_visible": 1.0
+        },
+        "stereo_right": {
+          "count": 1780,
+          "mean": 42.95924346219288,
+          "rmse": 45.71301332973786,
+          "median": 40.44963455200195,
+          "p95": 70.73044319152832,
+          "max": 106.90216827392578,
+          "fraction_le_1": 0.0,
+          "fraction_le_3": 0.0,
+          "fraction_le_5": 0.0028089887640449437,
+          "fraction_le_10": 0.01853932584269663,
+          "unit": "pixel",
+          "reference_visible_count": 1780,
+          "evaluated_fraction_of_visible": 1.0
+        }
+      }
+    }
+  },
+  "per_frame_csv": "trajectory_metrics.csv"
+}
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+[渲染评估] stereo_left 0001/0060 (frame=240)
+[渲染评估] stereo_left 0002/0060 (frame=241)
+[渲染评估] stereo_left 0003/0060 (frame=242)
+[渲染评估] stereo_left 0004/0060 (frame=243)
+[渲染评估] stereo_left 0005/0060 (frame=244)
+[渲染评估] stereo_left 0006/0060 (frame=245)
+[渲染评估] stereo_left 0007/0060 (frame=246)
+[渲染评估] stereo_left 0008/0060 (frame=247)
+[渲染评估] stereo_left 0009/0060 (frame=248)
+[渲染评估] stereo_left 0010/0060 (frame=249)
+[渲染评估] stereo_left 0011/0060 (frame=250)
+[渲染评估] stereo_left 0012/0060 (frame=251)
+[渲染评估] stereo_left 0013/0060 (frame=252)
+[渲染评估] stereo_left 0014/0060 (frame=253)
+[渲染评估] stereo_left 0015/0060 (frame=254)
+[渲染评估] stereo_left 0016/0060 (frame=255)
+[渲染评估] stereo_left 0017/0060 (frame=256)
+[渲染评估] stereo_left 0018/0060 (frame=257)
+[渲染评估] stereo_left 0019/0060 (frame=258)
+[渲染评估] stereo_left 0020/0060 (frame=259)
+[渲染评估] stereo_left 0021/0060 (frame=260)
+[渲染评估] stereo_left 0022/0060 (frame=261)
+[渲染评估] stereo_left 0023/0060 (frame=262)
+[渲染评估] stereo_left 0024/0060 (frame=263)
+[渲染评估] stereo_left 0025/0060 (frame=264)
+[渲染评估] stereo_left 0026/0060 (frame=265)
+[渲染评估] stereo_left 0027/0060 (frame=266)
+[渲染评估] stereo_left 0028/0060 (frame=267)
+[渲染评估] stereo_left 0029/0060 (frame=268)
+[渲染评估] stereo_left 0030/0060 (frame=269)
+[渲染评估] stereo_left 0031/0060 (frame=270)
+[渲染评估] stereo_left 0032/0060 (frame=271)
+[渲染评估] stereo_left 0033/0060 (frame=272)
+[渲染评估] stereo_left 0034/0060 (frame=273)
+[渲染评估] stereo_left 0035/0060 (frame=274)
+[渲染评估] stereo_left 0036/0060 (frame=275)
+[渲染评估] stereo_left 0037/0060 (frame=276)
+[渲染评估] stereo_left 0038/0060 (frame=277)
+[渲染评估] stereo_left 0039/0060 (frame=278)
+[渲染评估] stereo_left 0040/0060 (frame=279)
+[渲染评估] stereo_left 0041/0060 (frame=280)
+[渲染评估] stereo_left 0042/0060 (frame=281)
+[渲染评估] stereo_left 0043/0060 (frame=282)
+[渲染评估] stereo_left 0044/0060 (frame=283)
+[渲染评估] stereo_left 0045/0060 (frame=284)
+[渲染评估] stereo_left 0046/0060 (frame=285)
+[渲染评估] stereo_left 0047/0060 (frame=286)
+[渲染评估] stereo_left 0048/0060 (frame=287)
+[渲染评估] stereo_left 0049/0060 (frame=288)
+[渲染评估] stereo_left 0050/0060 (frame=289)
+[渲染评估] stereo_left 0051/0060 (frame=290)
+[渲染评估] stereo_left 0052/0060 (frame=291)
+[渲染评估] stereo_left 0053/0060 (frame=292)
+[渲染评估] stereo_left 0054/0060 (frame=293)
+[渲染评估] stereo_left 0055/0060 (frame=294)
+[渲染评估] stereo_left 0056/0060 (frame=295)
+[渲染评估] stereo_left 0057/0060 (frame=296)
+[渲染评估] stereo_left 0058/0060 (frame=297)
+[渲染评估] stereo_left 0059/0060 (frame=298)
+[渲染评估] stereo_left 0060/0060 (frame=299)
+[渲染评估] stereo_right 0001/0060 (frame=240)
+[渲染评估] stereo_right 0002/0060 (frame=241)
+[渲染评估] stereo_right 0003/0060 (frame=242)
+[渲染评估] stereo_right 0004/0060 (frame=243)
+[渲染评估] stereo_right 0005/0060 (frame=244)
+[渲染评估] stereo_right 0006/0060 (frame=245)
+[渲染评估] stereo_right 0007/0060 (frame=246)
+[渲染评估] stereo_right 0008/0060 (frame=247)
+[渲染评估] stereo_right 0009/0060 (frame=248)
+[渲染评估] stereo_right 0010/0060 (frame=249)
+[渲染评估] stereo_right 0011/0060 (frame=250)
+[渲染评估] stereo_right 0012/0060 (frame=251)
+[渲染评估] stereo_right 0013/0060 (frame=252)
+[渲染评估] stereo_right 0014/0060 (frame=253)
+[渲染评估] stereo_right 0015/0060 (frame=254)
+[渲染评估] stereo_right 0016/0060 (frame=255)
+[渲染评估] stereo_right 0017/0060 (frame=256)
+[渲染评估] stereo_right 0018/0060 (frame=257)
+[渲染评估] stereo_right 0019/0060 (frame=258)
+[渲染评估] stereo_right 0020/0060 (frame=259)
+[渲染评估] stereo_right 0021/0060 (frame=260)
+[渲染评估] stereo_right 0022/0060 (frame=261)
+[渲染评估] stereo_right 0023/0060 (frame=262)
+[渲染评估] stereo_right 0024/0060 (frame=263)
+[渲染评估] stereo_right 0025/0060 (frame=264)
+[渲染评估] stereo_right 0026/0060 (frame=265)
+[渲染评估] stereo_right 0027/0060 (frame=266)
+[渲染评估] stereo_right 0028/0060 (frame=267)
+[渲染评估] stereo_right 0029/0060 (frame=268)
+[渲染评估] stereo_right 0030/0060 (frame=269)
+[渲染评估] stereo_right 0031/0060 (frame=270)
+[渲染评估] stereo_right 0032/0060 (frame=271)
+[渲染评估] stereo_right 0033/0060 (frame=272)
+[渲染评估] stereo_right 0034/0060 (frame=273)
+[渲染评估] stereo_right 0035/0060 (frame=274)
+[渲染评估] stereo_right 0036/0060 (frame=275)
+[渲染评估] stereo_right 0037/0060 (frame=276)
+[渲染评估] stereo_right 0038/0060 (frame=277)
+[渲染评估] stereo_right 0039/0060 (frame=278)
+[渲染评估] stereo_right 0040/0060 (frame=279)
+[渲染评估] stereo_right 0041/0060 (frame=280)
+[渲染评估] stereo_right 0042/0060 (frame=281)
+[渲染评估] stereo_right 0043/0060 (frame=282)
+[渲染评估] stereo_right 0044/0060 (frame=283)
+[渲染评估] stereo_right 0045/0060 (frame=284)
+[渲染评估] stereo_right 0046/0060 (frame=285)
+[渲染评估] stereo_right 0047/0060 (frame=286)
+[渲染评估] stereo_right 0048/0060 (frame=287)
+[渲染评估] stereo_right 0049/0060 (frame=288)
+[渲染评估] stereo_right 0050/0060 (frame=289)
+[渲染评估] stereo_right 0051/0060 (frame=290)
+[渲染评估] stereo_right 0052/0060 (frame=291)
+[渲染评估] stereo_right 0053/0060 (frame=292)
+[渲染评估] stereo_right 0054/0060 (frame=293)
+[渲染评估] stereo_right 0055/0060 (frame=294)
+[渲染评估] stereo_right 0056/0060 (frame=295)
+[渲染评估] stereo_right 0057/0060 (frame=296)
+[渲染评估] stereo_right 0058/0060 (frame=297)
+[渲染评估] stereo_right 0059/0060 (frame=298)
+[渲染评估] stereo_right 0060/0060 (frame=299)
+{
+  "schema": "fixedsuperbest.render_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction_dir": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd/artifacts/renders",
+  "frames_per_camera": 60,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 240,
+    "end_exclusive": null,
+    "stride": 1,
+    "offset": 0,
+    "selected_frame_indices": [
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ]
+  },
+  "cameras": [
+    "stereo_left",
+    "stereo_right"
+  ],
+  "color_space": "sRGB PNG 数值直接归一化到 [0,1]",
+  "psnr": "RGB 通道 MSE，峰值 1.0，单位 dB",
+  "ssim": "RGB 通道平均；11×11 Gaussian window，sigma=1.5，K1=0.01，K2=0.03",
+  "lpips": "官方 LPIPS 0.1，AlexNet/ImageNet，输入缩放到 [-1,1]",
+  "primary_render_region": "tissue_layer_union_crop",
+  "tissue_layer": "真值 RGB 乘真值 tissue mask 后置黑，与黑背景组织 Gaussian 预测整图比较；每帧裁到真值 mask 与预测 alpha 并集外扩 16 px；预测组织落在真值轮廓外也会被惩罚且不被大面积背景稀释",
+  "summary": {
+    "stereo_left": {
+      "psnr_full_db": 9.218542929782611,
+      "ssim_full": 0.2591900691390038,
+      "psnr_tissue_db": 16.84053782095089,
+      "ssim_tissue": 0.7329312205314636,
+      "psnr_tissue_layer_db": 16.366955106834535,
+      "ssim_tissue_layer": 0.8123771379391352,
+      "lpips_tissue_layer_alex_v0.1": 0.4632951776186625
+    },
+    "stereo_right": {
+      "psnr_full_db": 9.373237032959771,
+      "ssim_full": 0.25185058613618216,
+      "psnr_tissue_db": 16.941414384130844,
+      "ssim_tissue": 0.7314267148574193,
+      "psnr_tissue_layer_db": 16.545845693460514,
+      "ssim_tissue_layer": 0.819649875164032,
+      "lpips_tissue_layer_alex_v0.1": 0.439109368622303
+    },
+    "all": {
+      "psnr_full_db": 9.295889981371193,
+      "ssim_full": 0.25552032763759297,
+      "psnr_tissue_db": 16.89097610254087,
+      "ssim_tissue": 0.7321789676944415,
+      "psnr_tissue_layer_db": 16.456400400147523,
+      "ssim_tissue_layer": 0.8160135065515836,
+      "lpips_tissue_layer_alex_v0.1": 0.4512022731204828
+    }
+  },
+  "segments": {
+    "all": {
+      "stereo_left": {
+        "psnr_full_db": 9.218542929782611,
+        "ssim_full": 0.2591900691390038,
+        "psnr_tissue_db": 16.84053782095089,
+        "ssim_tissue": 0.7329312205314636,
+        "psnr_tissue_layer_db": 16.366955106834535,
+        "ssim_tissue_layer": 0.8123771379391352,
+        "lpips_tissue_layer_alex_v0.1": 0.4632951776186625
+      },
+      "stereo_right": {
+        "psnr_full_db": 9.373237032959771,
+        "ssim_full": 0.25185058613618216,
+        "psnr_tissue_db": 16.941414384130844,
+        "ssim_tissue": 0.7314267148574193,
+        "psnr_tissue_layer_db": 16.545845693460514,
+        "ssim_tissue_layer": 0.819649875164032,
+        "lpips_tissue_layer_alex_v0.1": 0.439109368622303
+      },
+      "all": {
+        "psnr_full_db": 9.295889981371193,
+        "ssim_full": 0.25552032763759297,
+        "psnr_tissue_db": 16.89097610254087,
+        "ssim_tissue": 0.7321789676944415,
+        "psnr_tissue_layer_db": 16.456400400147523,
+        "ssim_tissue_layer": 0.8160135065515836,
+        "lpips_tissue_layer_alex_v0.1": 0.4512022731204828
+      }
+    }
+  },
+  "per_frame_csv": "render_metrics.csv"
+}
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/numcodecs/__init__.py:106: DeprecationWarning: crc32c usage is deprecated since numcodecs v0.16.4. It is recommended to install google_crc32c instead.
+  from numcodecs.checksum32 import CRC32, Adler32, JenkinsLookup3
+Warp CUDA error: Failed to get driver entry point 'cuDeviceGetUuid' (CUDA error 1)
+Warp CUDA error: Function cuDeviceGetUuid_f: a suitable driver entry point was not found
+Warp CUDA error 36: API call is not supported in the installed CUDA driver (in function cuda_init, /builds/omniverse/warp/warp/native/warp.cu:268)
+[AVHWDeviceContext @ 0x55c9fbaa1440] Using current CUDA context.
+[AVHWDeviceContext @ 0x55ca09d0ba80] Using current CUDA context.
+[example_embodied_super_offline] 使用数据集目录: /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2
+[super_embodied] paper_pbd asset=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/gui_assets/tissue_fixedsuperbest.npz; particles=2658, tetrahedra=7602, skin_triangles=5312, depth_residual=OFF, stiffness_optimization=OFF
+Warp DeprecationWarning: Support for built-in functions called with non-Warp array types, such as lists, tuples, NumPy arrays, and others, will be dropped in the future. Use a Warp type such as `wp.vec`, `wp.mat`, `wp.quat`, or `wp.transform`.
+[super_embodied] PSM collisions disabled: shape_shape=0/29, shape_ground=0/29
+[super_embodied] paper_pbd triangle-skin contact configured: faces=5312, tool_samples=7579, jaw_only=ON, shaft_contact=OFF, jaw_top_plane=ON
+[super_embodied] paper_pbd fixed constraint baseline: k_dist=0.31, k_vol=1e+10, k_shape=0.0058, gravity=0.0m/s^2, damping=10.0/s, constraints=distance+volume+shape_matching, stiffness_optimization=OFF, depth_residual=OFF
+[example_embodied_super_offline] uniform initial material hypothesis: distance=0.2, shape=0.004; regional GT=UNUSED
+[example_embodied_super_offline] 仿真重建模式=ON；组织资产=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/gui_assets/tissue_fixedsuperbest.npz；旧 SUPER 背景/PSM 高斯=OFF；旧 PSM 几何接触=OFF（避免混用不一致的 link 坐标）；material_min_J=0.15
+[example_embodied_super_offline] psm_pose_driver=raw_paper_lnd_sam2_dense_contact_unbounded_xyz: /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/super/psm_visual_calibration/raw_paper_lnd_stereo_dense_contact_v4/surgicalsam2_multianchor_parts_dense_contact_v6/online_stereo_cma_se3_unbounded_dense_contact_v4/gui_unbounded_xyz_v1/psm_paper_lnd_gui_pose_driver.npz; visual_mode=full; tissue_mode=paper_pbd
+[example_embodied_super_offline] frozen manual correction=roll=+0.000 deg, camera_translation_mm=[0.0, 0.0, 0.0], world_translation_mm=[0.0, 0.0, 0.0], jaw_mode=raw_q7_full_closure_with_3_to_5_particle_gate
+[example_embodied_super_offline] embodied_gaussians_source=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/src/embodied_gaussians
+[example_embodied_super_offline] visual_feedback_mode=trajectory; force_iterations=1; residual_iterations=8; update_interval=2; PSM feedback disabled
+[example_embodied_super_offline] tissue_visual_force_limits=lr_means=0.0002, kp=0.05, normalized=True, rigid_max_force=0.005N, soft_max_total_force=0.02N, soft_max_particle_acceleration=1.0m/s^2, soft_spread_layers=0, max_moment=5e-05Nm
+Physics file not found at /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/physics.zarr
+[example_embodied_super_offline] visual residual mask=exact full visible-tissue semantic mask; erosion=7px; legacy tool-local/posterior falloff=OFF
+[example_embodied_super_offline] enabled_cameras=['stereo_left', 'stereo_right']
+[example_embodied_super_offline] sim flow-depth trajectory: ON; pairs=299, tracks=188/188, depth=sim01_foundation_stereo_rgb_rig_aware_v1, position_gain=0.7, velocity_gain=0.2, absolute_weight=0.85, Gaussian=existing_triangle_binding
+[example_embodied_super_offline] realtime visual residual mapper: particles=2658, tets=7602, soft_gaussians=36300, iterations=8, lr=4e-05m, image_scale=0.25, max_step=0.600mm
+[sim grasp boundary] ON; source=task_inputs prescribed trajectory + PSM grasp phase; mode=known_grasp_region; schema=fixedsuperbest.known_grasp_region_boundary.v1; first_grasp_frame=102; direct_particles=8; local_ids=[965, 966, 1002, 1003, 2294, 2295, 2331, 2332]; natural_pbd_neighbor_particles=60; diagnostic_neighbor_rings=2; grasp_center_mm=[23.945999145507812, 0.5419999957084656, 51.553001403808594]; boundary=prescribed_trajectory_while_closed; controlled patch is kinematic only while grasped and excluded from visual residual/stiffness
+[trajectory evaluation] headless schedule: frames=0..299, physics_steps_per_frame=2, mode=trajectory, online_stiffness=False, open_loop_start=240, holdout_stride=None, holdout_offset=7, render_frame_mode=future, artifacts=outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd_cotracker_foundation_depth/artifacts
+[sim flow-depth trajectory] frame=102->103, accepted=True, tracks=180, particles=2471, max=2.000mm, stiffness=off
+[sim flow-depth trajectory] frame=103->104, accepted=True, tracks=180, particles=2442, max=2.000mm, stiffness=off
+[sim flow-depth trajectory] frame=104->105, accepted=True, tracks=180, particles=2455, max=2.000mm, stiffness=off
+[sim flow-depth trajectory] frame=132->133, accepted=True, tracks=179, particles=2477, max=2.000mm, stiffness=off
+[sim flow-depth trajectory] frame=162->163, accepted=True, tracks=176, particles=2450, max=0.534mm, stiffness=off
+[sim flow-depth trajectory] frame=192->193, accepted=True, tracks=175, particles=2451, max=2.000mm, stiffness=off
+[sim flow-depth trajectory] frame=222->223, accepted=True, tracks=174, particles=2432, max=2.000mm, stiffness=off
+[trajectory evaluation] future open loop entered at frame 240; RGB feedback=OFF; stiffness proposals=FROZEN; committed material=HELD
+[trajectory evaluation] complete: observed_frames=0..299, physics_iterations=600, flow_depth_updates=137
+{
+  "schema": "fixedsuperbest.trajectory_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd_cotracker_foundation_depth/artifacts/predicted_trajectories.npz",
+  "frames": 60,
+  "frame_start": 240,
+  "frame_end_inclusive": 299,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 240,
+    "end_exclusive": null,
+    "stride": 1,
+    "offset": 0,
+    "selected_frame_indices": [
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ]
+  },
+  "fixed_evaluation_nodes_before_control_exclusion": 240,
+  "evaluated_nodes": 30,
+  "evaluation_node_ids": [
+    386,
+    898,
+    868,
+    0,
+    30,
+    462,
+    434,
+    14,
+    692,
+    764,
+    208,
+    192,
+    516,
+    622,
+    504,
+    646,
+    278,
+    22,
+    200,
+    248,
+    8,
+    572,
+    874,
+    892,
+    318,
+    748,
+    334,
+    588,
+    150,
+    266
+  ],
+  "evaluation_node_manifest": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/evaluation/evaluation_points_30_non_grasp.json",
+  "controlled_boundary_evaluation_nodes_excluded": 2,
+  "allowed_nodes_not_selected_by_fixed_manifest": 208,
+  "controlled_boundary_source": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/task_inputs/known_grasp_region_boundary.npz",
+  "alignment": "按 tissue_node_ids 精确匹配；不做 SE(3)、尺度或时间对齐",
+  "3d": {
+    "count": 1800,
+    "mean": 1.6501340695180664,
+    "rmse": 2.4961390250930497,
+    "median": 0.8238930313382298,
+    "p95": 6.028621946461498,
+    "max": 8.582367561757565,
+    "fraction_le_1": 0.5422222222222223,
+    "fraction_le_2": 0.7461111111111111,
+    "fraction_le_5": 0.9283333333333333,
+    "fraction_le_10": 1.0,
+    "unit": "mm",
+    "valid_fraction": 1.0
+  },
+  "2d": {
+    "stereo_left": {
+      "count": 1733,
+      "mean": 15.975127010187592,
+      "rmse": 26.570840366272304,
+      "median": 6.798790454864502,
+      "p95": 68.4173950195312,
+      "max": 95.20199584960938,
+      "fraction_le_1": 0.0738603577611079,
+      "fraction_le_3": 0.25389497980380843,
+      "fraction_le_5": 0.4039238315060589,
+      "fraction_le_10": 0.6289671090594345,
+      "unit": "pixel",
+      "reference_visible_count": 1733,
+      "evaluated_fraction_of_visible": 1.0
+    },
+    "stereo_right": {
+      "count": 1780,
+      "mean": 16.20353963191757,
+      "rmse": 26.58824311414723,
+      "median": 6.907110691070557,
+      "p95": 67.92919120788571,
+      "max": 93.5994644165039,
+      "fraction_le_1": 0.07078651685393259,
+      "fraction_le_3": 0.24943820224719102,
+      "fraction_le_5": 0.40561797752808987,
+      "fraction_le_10": 0.6219101123595505,
+      "unit": "pixel",
+      "reference_visible_count": 1780,
+      "evaluated_fraction_of_visible": 1.0
+    }
+  },
+  "segments": {
+    "all": {
+      "frame_count": 60,
+      "3d": {
+        "count": 1800,
+        "mean": 1.6501340695180664,
+        "rmse": 2.4961390250930497,
+        "median": 0.8238930313382298,
+        "p95": 6.028621946461498,
+        "max": 8.582367561757565,
+        "fraction_le_1": 0.5422222222222223,
+        "fraction_le_2": 0.7461111111111111,
+        "fraction_le_5": 0.9283333333333333,
+        "fraction_le_10": 1.0,
+        "unit": "mm",
+        "valid_fraction": 1.0
+      },
+      "2d": {
+        "stereo_left": {
+          "count": 1733,
+          "mean": 15.975127010187592,
+          "rmse": 26.570840366272304,
+          "median": 6.798790454864502,
+          "p95": 68.4173950195312,
+          "max": 95.20199584960938,
+          "fraction_le_1": 0.0738603577611079,
+          "fraction_le_3": 0.25389497980380843,
+          "fraction_le_5": 0.4039238315060589,
+          "fraction_le_10": 0.6289671090594345,
+          "unit": "pixel",
+          "reference_visible_count": 1733,
+          "evaluated_fraction_of_visible": 1.0
+        },
+        "stereo_right": {
+          "count": 1780,
+          "mean": 16.20353963191757,
+          "rmse": 26.58824311414723,
+          "median": 6.907110691070557,
+          "p95": 67.92919120788571,
+          "max": 93.5994644165039,
+          "fraction_le_1": 0.07078651685393259,
+          "fraction_le_3": 0.24943820224719102,
+          "fraction_le_5": 0.40561797752808987,
+          "fraction_le_10": 0.6219101123595505,
+          "unit": "pixel",
+          "reference_visible_count": 1780,
+          "evaluated_fraction_of_visible": 1.0
+        }
+      }
+    }
+  },
+  "per_frame_csv": "trajectory_metrics.csv"
+}
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+[渲染评估] stereo_left 0001/0060 (frame=240)
+[渲染评估] stereo_left 0002/0060 (frame=241)
+[渲染评估] stereo_left 0003/0060 (frame=242)
+[渲染评估] stereo_left 0004/0060 (frame=243)
+[渲染评估] stereo_left 0005/0060 (frame=244)
+[渲染评估] stereo_left 0006/0060 (frame=245)
+[渲染评估] stereo_left 0007/0060 (frame=246)
+[渲染评估] stereo_left 0008/0060 (frame=247)
+[渲染评估] stereo_left 0009/0060 (frame=248)
+[渲染评估] stereo_left 0010/0060 (frame=249)
+[渲染评估] stereo_left 0011/0060 (frame=250)
+[渲染评估] stereo_left 0012/0060 (frame=251)
+[渲染评估] stereo_left 0013/0060 (frame=252)
+[渲染评估] stereo_left 0014/0060 (frame=253)
+[渲染评估] stereo_left 0015/0060 (frame=254)
+[渲染评估] stereo_left 0016/0060 (frame=255)
+[渲染评估] stereo_left 0017/0060 (frame=256)
+[渲染评估] stereo_left 0018/0060 (frame=257)
+[渲染评估] stereo_left 0019/0060 (frame=258)
+[渲染评估] stereo_left 0020/0060 (frame=259)
+[渲染评估] stereo_left 0021/0060 (frame=260)
+[渲染评估] stereo_left 0022/0060 (frame=261)
+[渲染评估] stereo_left 0023/0060 (frame=262)
+[渲染评估] stereo_left 0024/0060 (frame=263)
+[渲染评估] stereo_left 0025/0060 (frame=264)
+[渲染评估] stereo_left 0026/0060 (frame=265)
+[渲染评估] stereo_left 0027/0060 (frame=266)
+[渲染评估] stereo_left 0028/0060 (frame=267)
+[渲染评估] stereo_left 0029/0060 (frame=268)
+[渲染评估] stereo_left 0030/0060 (frame=269)
+[渲染评估] stereo_left 0031/0060 (frame=270)
+[渲染评估] stereo_left 0032/0060 (frame=271)
+[渲染评估] stereo_left 0033/0060 (frame=272)
+[渲染评估] stereo_left 0034/0060 (frame=273)
+[渲染评估] stereo_left 0035/0060 (frame=274)
+[渲染评估] stereo_left 0036/0060 (frame=275)
+[渲染评估] stereo_left 0037/0060 (frame=276)
+[渲染评估] stereo_left 0038/0060 (frame=277)
+[渲染评估] stereo_left 0039/0060 (frame=278)
+[渲染评估] stereo_left 0040/0060 (frame=279)
+[渲染评估] stereo_left 0041/0060 (frame=280)
+[渲染评估] stereo_left 0042/0060 (frame=281)
+[渲染评估] stereo_left 0043/0060 (frame=282)
+[渲染评估] stereo_left 0044/0060 (frame=283)
+[渲染评估] stereo_left 0045/0060 (frame=284)
+[渲染评估] stereo_left 0046/0060 (frame=285)
+[渲染评估] stereo_left 0047/0060 (frame=286)
+[渲染评估] stereo_left 0048/0060 (frame=287)
+[渲染评估] stereo_left 0049/0060 (frame=288)
+[渲染评估] stereo_left 0050/0060 (frame=289)
+[渲染评估] stereo_left 0051/0060 (frame=290)
+[渲染评估] stereo_left 0052/0060 (frame=291)
+[渲染评估] stereo_left 0053/0060 (frame=292)
+[渲染评估] stereo_left 0054/0060 (frame=293)
+[渲染评估] stereo_left 0055/0060 (frame=294)
+[渲染评估] stereo_left 0056/0060 (frame=295)
+[渲染评估] stereo_left 0057/0060 (frame=296)
+[渲染评估] stereo_left 0058/0060 (frame=297)
+[渲染评估] stereo_left 0059/0060 (frame=298)
+[渲染评估] stereo_left 0060/0060 (frame=299)
+[渲染评估] stereo_right 0001/0060 (frame=240)
+[渲染评估] stereo_right 0002/0060 (frame=241)
+[渲染评估] stereo_right 0003/0060 (frame=242)
+[渲染评估] stereo_right 0004/0060 (frame=243)
+[渲染评估] stereo_right 0005/0060 (frame=244)
+[渲染评估] stereo_right 0006/0060 (frame=245)
+[渲染评估] stereo_right 0007/0060 (frame=246)
+[渲染评估] stereo_right 0008/0060 (frame=247)
+[渲染评估] stereo_right 0009/0060 (frame=248)
+[渲染评估] stereo_right 0010/0060 (frame=249)
+[渲染评估] stereo_right 0011/0060 (frame=250)
+[渲染评估] stereo_right 0012/0060 (frame=251)
+[渲染评估] stereo_right 0013/0060 (frame=252)
+[渲染评估] stereo_right 0014/0060 (frame=253)
+[渲染评估] stereo_right 0015/0060 (frame=254)
+[渲染评估] stereo_right 0016/0060 (frame=255)
+[渲染评估] stereo_right 0017/0060 (frame=256)
+[渲染评估] stereo_right 0018/0060 (frame=257)
+[渲染评估] stereo_right 0019/0060 (frame=258)
+[渲染评估] stereo_right 0020/0060 (frame=259)
+[渲染评估] stereo_right 0021/0060 (frame=260)
+[渲染评估] stereo_right 0022/0060 (frame=261)
+[渲染评估] stereo_right 0023/0060 (frame=262)
+[渲染评估] stereo_right 0024/0060 (frame=263)
+[渲染评估] stereo_right 0025/0060 (frame=264)
+[渲染评估] stereo_right 0026/0060 (frame=265)
+[渲染评估] stereo_right 0027/0060 (frame=266)
+[渲染评估] stereo_right 0028/0060 (frame=267)
+[渲染评估] stereo_right 0029/0060 (frame=268)
+[渲染评估] stereo_right 0030/0060 (frame=269)
+[渲染评估] stereo_right 0031/0060 (frame=270)
+[渲染评估] stereo_right 0032/0060 (frame=271)
+[渲染评估] stereo_right 0033/0060 (frame=272)
+[渲染评估] stereo_right 0034/0060 (frame=273)
+[渲染评估] stereo_right 0035/0060 (frame=274)
+[渲染评估] stereo_right 0036/0060 (frame=275)
+[渲染评估] stereo_right 0037/0060 (frame=276)
+[渲染评估] stereo_right 0038/0060 (frame=277)
+[渲染评估] stereo_right 0039/0060 (frame=278)
+[渲染评估] stereo_right 0040/0060 (frame=279)
+[渲染评估] stereo_right 0041/0060 (frame=280)
+[渲染评估] stereo_right 0042/0060 (frame=281)
+[渲染评估] stereo_right 0043/0060 (frame=282)
+[渲染评估] stereo_right 0044/0060 (frame=283)
+[渲染评估] stereo_right 0045/0060 (frame=284)
+[渲染评估] stereo_right 0046/0060 (frame=285)
+[渲染评估] stereo_right 0047/0060 (frame=286)
+[渲染评估] stereo_right 0048/0060 (frame=287)
+[渲染评估] stereo_right 0049/0060 (frame=288)
+[渲染评估] stereo_right 0050/0060 (frame=289)
+[渲染评估] stereo_right 0051/0060 (frame=290)
+[渲染评估] stereo_right 0052/0060 (frame=291)
+[渲染评估] stereo_right 0053/0060 (frame=292)
+[渲染评估] stereo_right 0054/0060 (frame=293)
+[渲染评估] stereo_right 0055/0060 (frame=294)
+[渲染评估] stereo_right 0056/0060 (frame=295)
+[渲染评估] stereo_right 0057/0060 (frame=296)
+[渲染评估] stereo_right 0058/0060 (frame=297)
+[渲染评估] stereo_right 0059/0060 (frame=298)
+[渲染评估] stereo_right 0060/0060 (frame=299)
+{
+  "schema": "fixedsuperbest.render_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction_dir": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd_cotracker_foundation_depth/artifacts/renders",
+  "frames_per_camera": 60,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 240,
+    "end_exclusive": null,
+    "stride": 1,
+    "offset": 0,
+    "selected_frame_indices": [
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ]
+  },
+  "cameras": [
+    "stereo_left",
+    "stereo_right"
+  ],
+  "color_space": "sRGB PNG 数值直接归一化到 [0,1]",
+  "psnr": "RGB 通道 MSE，峰值 1.0，单位 dB",
+  "ssim": "RGB 通道平均；11×11 Gaussian window，sigma=1.5，K1=0.01，K2=0.03",
+  "lpips": "官方 LPIPS 0.1，AlexNet/ImageNet，输入缩放到 [-1,1]",
+  "primary_render_region": "tissue_layer_union_crop",
+  "tissue_layer": "真值 RGB 乘真值 tissue mask 后置黑，与黑背景组织 Gaussian 预测整图比较；每帧裁到真值 mask 与预测 alpha 并集外扩 16 px；预测组织落在真值轮廓外也会被惩罚且不被大面积背景稀释",
+  "summary": {
+    "stereo_left": {
+      "psnr_full_db": 9.40611293120991,
+      "ssim_full": 0.2676899900039037,
+      "psnr_tissue_db": 19.7661162794261,
+      "ssim_tissue": 0.7597901225090027,
+      "psnr_tissue_layer_db": 18.420048435422363,
+      "ssim_tissue_layer": 0.8323760141928991,
+      "lpips_tissue_layer_alex_v0.1": 0.4317697410782178
+    },
+    "stereo_right": {
+      "psnr_full_db": 9.55298024051264,
+      "ssim_full": 0.2595721567670504,
+      "psnr_tissue_db": 19.61682298379731,
+      "ssim_tissue": 0.7561092019081116,
+      "psnr_tissue_layer_db": 18.40378731508771,
+      "ssim_tissue_layer": 0.8374925762414932,
+      "lpips_tissue_layer_alex_v0.1": 0.4102730542421341
+    },
+    "all": {
+      "psnr_full_db": 9.479546585861275,
+      "ssim_full": 0.2636310733854771,
+      "psnr_tissue_db": 19.691469631611703,
+      "ssim_tissue": 0.7579496622085571,
+      "psnr_tissue_layer_db": 18.411917875255032,
+      "ssim_tissue_layer": 0.8349342952171962,
+      "lpips_tissue_layer_alex_v0.1": 0.42102139766017593
+    }
+  },
+  "segments": {
+    "all": {
+      "stereo_left": {
+        "psnr_full_db": 9.40611293120991,
+        "ssim_full": 0.2676899900039037,
+        "psnr_tissue_db": 19.7661162794261,
+        "ssim_tissue": 0.7597901225090027,
+        "psnr_tissue_layer_db": 18.420048435422363,
+        "ssim_tissue_layer": 0.8323760141928991,
+        "lpips_tissue_layer_alex_v0.1": 0.4317697410782178
+      },
+      "stereo_right": {
+        "psnr_full_db": 9.55298024051264,
+        "ssim_full": 0.2595721567670504,
+        "psnr_tissue_db": 19.61682298379731,
+        "ssim_tissue": 0.7561092019081116,
+        "psnr_tissue_layer_db": 18.40378731508771,
+        "ssim_tissue_layer": 0.8374925762414932,
+        "lpips_tissue_layer_alex_v0.1": 0.4102730542421341
+      },
+      "all": {
+        "psnr_full_db": 9.479546585861275,
+        "ssim_full": 0.2636310733854771,
+        "psnr_tissue_db": 19.691469631611703,
+        "ssim_tissue": 0.7579496622085571,
+        "psnr_tissue_layer_db": 18.411917875255032,
+        "ssim_tissue_layer": 0.8349342952171962,
+        "lpips_tissue_layer_alex_v0.1": 0.42102139766017593
+      }
+    }
+  },
+  "per_frame_csv": "render_metrics.csv"
+}
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/numcodecs/__init__.py:106: DeprecationWarning: crc32c usage is deprecated since numcodecs v0.16.4. It is recommended to install google_crc32c instead.
+  from numcodecs.checksum32 import CRC32, Adler32, JenkinsLookup3
+Warp CUDA error: Failed to get driver entry point 'cuDeviceGetUuid' (CUDA error 1)
+Warp CUDA error: Function cuDeviceGetUuid_f: a suitable driver entry point was not found
+Warp CUDA error 36: API call is not supported in the installed CUDA driver (in function cuda_init, /builds/omniverse/warp/warp/native/warp.cu:268)
+[AVHWDeviceContext @ 0x55e7caa64880] Using current CUDA context.
+[AVHWDeviceContext @ 0x55e7d7a2a840] Using current CUDA context.
+[example_embodied_super_offline] 使用数据集目录: /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2
+[super_embodied] paper_pbd asset=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/gui_assets/tissue_fixedsuperbest.npz; particles=2658, tetrahedra=7602, skin_triangles=5312, depth_residual=OFF, stiffness_optimization=OFF
+Warp DeprecationWarning: Support for built-in functions called with non-Warp array types, such as lists, tuples, NumPy arrays, and others, will be dropped in the future. Use a Warp type such as `wp.vec`, `wp.mat`, `wp.quat`, or `wp.transform`.
+[super_embodied] PSM collisions disabled: shape_shape=0/29, shape_ground=0/29
+[super_embodied] paper_pbd triangle-skin contact configured: faces=5312, tool_samples=7579, jaw_only=ON, shaft_contact=OFF, jaw_top_plane=ON
+[super_embodied] paper_pbd fixed constraint baseline: k_dist=0.31, k_vol=1e+10, k_shape=0.0058, gravity=0.0m/s^2, damping=10.0/s, constraints=distance+volume+shape_matching, stiffness_optimization=OFF, depth_residual=OFF
+[example_embodied_super_offline] uniform initial material hypothesis: distance=0.2, shape=0.004; regional GT=UNUSED
+[example_embodied_super_offline] 仿真重建模式=ON；组织资产=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/gui_assets/tissue_fixedsuperbest.npz；旧 SUPER 背景/PSM 高斯=OFF；旧 PSM 几何接触=OFF（避免混用不一致的 link 坐标）；material_min_J=0.15
+[example_embodied_super_offline] psm_pose_driver=raw_paper_lnd_sam2_dense_contact_unbounded_xyz: /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/super/psm_visual_calibration/raw_paper_lnd_stereo_dense_contact_v4/surgicalsam2_multianchor_parts_dense_contact_v6/online_stereo_cma_se3_unbounded_dense_contact_v4/gui_unbounded_xyz_v1/psm_paper_lnd_gui_pose_driver.npz; visual_mode=full; tissue_mode=paper_pbd
+[example_embodied_super_offline] frozen manual correction=roll=+0.000 deg, camera_translation_mm=[0.0, 0.0, 0.0], world_translation_mm=[0.0, 0.0, 0.0], jaw_mode=raw_q7_full_closure_with_3_to_5_particle_gate
+[example_embodied_super_offline] embodied_gaussians_source=/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/src/embodied_gaussians
+[example_embodied_super_offline] visual_feedback_mode=trajectory; force_iterations=1; residual_iterations=8; update_interval=2; PSM feedback disabled
+[example_embodied_super_offline] tissue_visual_force_limits=lr_means=0.0002, kp=0.05, normalized=True, rigid_max_force=0.005N, soft_max_total_force=0.02N, soft_max_particle_acceleration=1.0m/s^2, soft_spread_layers=0, max_moment=5e-05Nm
+Physics file not found at /Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/physics.zarr
+[example_embodied_super_offline] visual residual mask=exact full visible-tissue semantic mask; erosion=7px; legacy tool-local/posterior falloff=OFF
+[example_embodied_super_offline] enabled_cameras=['stereo_left', 'stereo_right']
+[example_embodied_super_offline] sim flow-depth trajectory: ON; pairs=299, tracks=188/188, depth=sim01_foundation_stereo_rgb_rig_aware_v1, position_gain=0.7, velocity_gain=0.2, absolute_weight=0.85, Gaussian=existing_triangle_binding
+[example_embodied_super_offline] realtime visual residual mapper: particles=2658, tets=7602, soft_gaussians=36300, iterations=8, lr=4e-05m, image_scale=0.25, max_step=0.600mm
+[example_embodied_super_offline] online paper stiffness: ON; log_lr=0.03, max_log_step=0.02, distance_bounds=0.10..2.00, shape_bounds=0.003..0.020, ema_history=0.9, flow-depth edge-strain signal=0.2, volume=FIXED, spatial_smoothing=3, update_mode=differentiable_global, autograd=4frame-causal/24substep/global_paper_distance+damping;grasp_coupling_fixed_1;track_mean+warp_adam, edge_loss=0.2, Young_modulus=UNUSED, policy=delayed-causal/no-branch, local_tet_quality_gate=0.03
+[sim grasp boundary] ON; source=task_inputs prescribed trajectory + PSM grasp phase; mode=known_grasp_region; schema=fixedsuperbest.known_grasp_region_boundary.v1; first_grasp_frame=102; direct_particles=8; local_ids=[965, 966, 1002, 1003, 2294, 2295, 2331, 2332]; natural_pbd_neighbor_particles=60; diagnostic_neighbor_rings=2; grasp_center_mm=[23.945999145507812, 0.5419999957084656, 51.553001403808594]; boundary=prescribed_trajectory_while_closed; controlled patch is kinematic only while grasped and excluded from visual residual/stiffness
+[trajectory evaluation] headless schedule: frames=0..299, physics_steps_per_frame=2, mode=trajectory, online_stiffness=True, open_loop_start=240, holdout_stride=None, holdout_offset=7, render_frame_mode=future, artifacts=outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd_cotracker_foundation_depth_global_only/artifacts
+[sim flow-depth trajectory] frame=102->103, accepted=True, tracks=180, particles=2471, max=2.000mm, stiffness=paused
+[sim flow-depth trajectory] frame=103->104, accepted=True, tracks=180, particles=2442, max=2.000mm, stiffness=rejected
+[sim flow-depth trajectory] frame=104->105, accepted=True, tracks=180, particles=2455, max=2.000mm, stiffness=rejected
+[sim flow-depth trajectory] frame=132->133, accepted=True, tracks=179, particles=2484, max=2.000mm, stiffness=rejected
+[sim flow-depth trajectory] frame=162->163, accepted=True, tracks=176, particles=2447, max=0.536mm, stiffness=committed
+[sim flow-depth trajectory] frame=192->193, accepted=True, tracks=175, particles=2456, max=2.000mm, stiffness=rejected
+[sim flow-depth trajectory] frame=222->223, accepted=True, tracks=174, particles=2431, max=1.845mm, stiffness=rejected
+[trajectory evaluation] future open loop entered at frame 240; RGB feedback=OFF; stiffness proposals=FROZEN; committed material=HELD
+[trajectory evaluation] complete: observed_frames=0..299, physics_iterations=600, flow_depth_updates=137
+{
+  "schema": "fixedsuperbest.trajectory_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd_cotracker_foundation_depth_global_only/artifacts/predicted_trajectories.npz",
+  "frames": 60,
+  "frame_start": 240,
+  "frame_end_inclusive": 299,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 240,
+    "end_exclusive": null,
+    "stride": 1,
+    "offset": 0,
+    "selected_frame_indices": [
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ]
+  },
+  "fixed_evaluation_nodes_before_control_exclusion": 240,
+  "evaluated_nodes": 30,
+  "evaluation_node_ids": [
+    386,
+    898,
+    868,
+    0,
+    30,
+    462,
+    434,
+    14,
+    692,
+    764,
+    208,
+    192,
+    516,
+    622,
+    504,
+    646,
+    278,
+    22,
+    200,
+    248,
+    8,
+    572,
+    874,
+    892,
+    318,
+    748,
+    334,
+    588,
+    150,
+    266
+  ],
+  "evaluation_node_manifest": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/evaluation/evaluation_points_30_non_grasp.json",
+  "controlled_boundary_evaluation_nodes_excluded": 2,
+  "allowed_nodes_not_selected_by_fixed_manifest": 208,
+  "controlled_boundary_source": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2/task_inputs/known_grasp_region_boundary.npz",
+  "alignment": "按 tissue_node_ids 精确匹配；不做 SE(3)、尺度或时间对齐",
+  "3d": {
+    "count": 1800,
+    "mean": 1.4864960539347924,
+    "rmse": 2.2287699838817474,
+    "median": 0.818621861981228,
+    "p95": 5.393329611979425,
+    "max": 7.674571126699448,
+    "fraction_le_1": 0.5655555555555556,
+    "fraction_le_2": 0.7794444444444445,
+    "fraction_le_5": 0.9427777777777778,
+    "fraction_le_10": 1.0,
+    "unit": "mm",
+    "valid_fraction": 1.0
+  },
+  "2d": {
+    "stereo_left": {
+      "count": 1733,
+      "mean": 14.456342236566117,
+      "rmse": 23.931574237009468,
+      "median": 6.60902738571167,
+      "p95": 61.55267486572261,
+      "max": 84.25505065917969,
+      "fraction_le_1": 0.06405077899596076,
+      "fraction_le_3": 0.2590882862088863,
+      "fraction_le_5": 0.39469128678592036,
+      "fraction_le_10": 0.6330063473744951,
+      "unit": "pixel",
+      "reference_visible_count": 1733,
+      "evaluated_fraction_of_visible": 1.0
+    },
+    "stereo_right": {
+      "count": 1780,
+      "mean": 14.505706832833127,
+      "rmse": 23.845967734381016,
+      "median": 6.521884918212891,
+      "p95": 61.187226295471184,
+      "max": 85.08589172363281,
+      "fraction_le_1": 0.06292134831460675,
+      "fraction_le_3": 0.25617977528089886,
+      "fraction_le_5": 0.38932584269662923,
+      "fraction_le_10": 0.6196629213483146,
+      "unit": "pixel",
+      "reference_visible_count": 1780,
+      "evaluated_fraction_of_visible": 1.0
+    }
+  },
+  "segments": {
+    "all": {
+      "frame_count": 60,
+      "3d": {
+        "count": 1800,
+        "mean": 1.4864960539347924,
+        "rmse": 2.2287699838817474,
+        "median": 0.818621861981228,
+        "p95": 5.393329611979425,
+        "max": 7.674571126699448,
+        "fraction_le_1": 0.5655555555555556,
+        "fraction_le_2": 0.7794444444444445,
+        "fraction_le_5": 0.9427777777777778,
+        "fraction_le_10": 1.0,
+        "unit": "mm",
+        "valid_fraction": 1.0
+      },
+      "2d": {
+        "stereo_left": {
+          "count": 1733,
+          "mean": 14.456342236566117,
+          "rmse": 23.931574237009468,
+          "median": 6.60902738571167,
+          "p95": 61.55267486572261,
+          "max": 84.25505065917969,
+          "fraction_le_1": 0.06405077899596076,
+          "fraction_le_3": 0.2590882862088863,
+          "fraction_le_5": 0.39469128678592036,
+          "fraction_le_10": 0.6330063473744951,
+          "unit": "pixel",
+          "reference_visible_count": 1733,
+          "evaluated_fraction_of_visible": 1.0
+        },
+        "stereo_right": {
+          "count": 1780,
+          "mean": 14.505706832833127,
+          "rmse": 23.845967734381016,
+          "median": 6.521884918212891,
+          "p95": 61.187226295471184,
+          "max": 85.08589172363281,
+          "fraction_le_1": 0.06292134831460675,
+          "fraction_le_3": 0.25617977528089886,
+          "fraction_le_5": 0.38932584269662923,
+          "fraction_le_10": 0.6196629213483146,
+          "unit": "pixel",
+          "reference_visible_count": 1780,
+          "evaluated_fraction_of_visible": 1.0
+        }
+      }
+    }
+  },
+  "per_frame_csv": "trajectory_metrics.csv"
+}
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/Media_HDD/jwshan/conda_envs/eg_codex/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+[渲染评估] stereo_left 0001/0060 (frame=240)
+[渲染评估] stereo_left 0002/0060 (frame=241)
+[渲染评估] stereo_left 0003/0060 (frame=242)
+[渲染评估] stereo_left 0004/0060 (frame=243)
+[渲染评估] stereo_left 0005/0060 (frame=244)
+[渲染评估] stereo_left 0006/0060 (frame=245)
+[渲染评估] stereo_left 0007/0060 (frame=246)
+[渲染评估] stereo_left 0008/0060 (frame=247)
+[渲染评估] stereo_left 0009/0060 (frame=248)
+[渲染评估] stereo_left 0010/0060 (frame=249)
+[渲染评估] stereo_left 0011/0060 (frame=250)
+[渲染评估] stereo_left 0012/0060 (frame=251)
+[渲染评估] stereo_left 0013/0060 (frame=252)
+[渲染评估] stereo_left 0014/0060 (frame=253)
+[渲染评估] stereo_left 0015/0060 (frame=254)
+[渲染评估] stereo_left 0016/0060 (frame=255)
+[渲染评估] stereo_left 0017/0060 (frame=256)
+[渲染评估] stereo_left 0018/0060 (frame=257)
+[渲染评估] stereo_left 0019/0060 (frame=258)
+[渲染评估] stereo_left 0020/0060 (frame=259)
+[渲染评估] stereo_left 0021/0060 (frame=260)
+[渲染评估] stereo_left 0022/0060 (frame=261)
+[渲染评估] stereo_left 0023/0060 (frame=262)
+[渲染评估] stereo_left 0024/0060 (frame=263)
+[渲染评估] stereo_left 0025/0060 (frame=264)
+[渲染评估] stereo_left 0026/0060 (frame=265)
+[渲染评估] stereo_left 0027/0060 (frame=266)
+[渲染评估] stereo_left 0028/0060 (frame=267)
+[渲染评估] stereo_left 0029/0060 (frame=268)
+[渲染评估] stereo_left 0030/0060 (frame=269)
+[渲染评估] stereo_left 0031/0060 (frame=270)
+[渲染评估] stereo_left 0032/0060 (frame=271)
+[渲染评估] stereo_left 0033/0060 (frame=272)
+[渲染评估] stereo_left 0034/0060 (frame=273)
+[渲染评估] stereo_left 0035/0060 (frame=274)
+[渲染评估] stereo_left 0036/0060 (frame=275)
+[渲染评估] stereo_left 0037/0060 (frame=276)
+[渲染评估] stereo_left 0038/0060 (frame=277)
+[渲染评估] stereo_left 0039/0060 (frame=278)
+[渲染评估] stereo_left 0040/0060 (frame=279)
+[渲染评估] stereo_left 0041/0060 (frame=280)
+[渲染评估] stereo_left 0042/0060 (frame=281)
+[渲染评估] stereo_left 0043/0060 (frame=282)
+[渲染评估] stereo_left 0044/0060 (frame=283)
+[渲染评估] stereo_left 0045/0060 (frame=284)
+[渲染评估] stereo_left 0046/0060 (frame=285)
+[渲染评估] stereo_left 0047/0060 (frame=286)
+[渲染评估] stereo_left 0048/0060 (frame=287)
+[渲染评估] stereo_left 0049/0060 (frame=288)
+[渲染评估] stereo_left 0050/0060 (frame=289)
+[渲染评估] stereo_left 0051/0060 (frame=290)
+[渲染评估] stereo_left 0052/0060 (frame=291)
+[渲染评估] stereo_left 0053/0060 (frame=292)
+[渲染评估] stereo_left 0054/0060 (frame=293)
+[渲染评估] stereo_left 0055/0060 (frame=294)
+[渲染评估] stereo_left 0056/0060 (frame=295)
+[渲染评估] stereo_left 0057/0060 (frame=296)
+[渲染评估] stereo_left 0058/0060 (frame=297)
+[渲染评估] stereo_left 0059/0060 (frame=298)
+[渲染评估] stereo_left 0060/0060 (frame=299)
+[渲染评估] stereo_right 0001/0060 (frame=240)
+[渲染评估] stereo_right 0002/0060 (frame=241)
+[渲染评估] stereo_right 0003/0060 (frame=242)
+[渲染评估] stereo_right 0004/0060 (frame=243)
+[渲染评估] stereo_right 0005/0060 (frame=244)
+[渲染评估] stereo_right 0006/0060 (frame=245)
+[渲染评估] stereo_right 0007/0060 (frame=246)
+[渲染评估] stereo_right 0008/0060 (frame=247)
+[渲染评估] stereo_right 0009/0060 (frame=248)
+[渲染评估] stereo_right 0010/0060 (frame=249)
+[渲染评估] stereo_right 0011/0060 (frame=250)
+[渲染评估] stereo_right 0012/0060 (frame=251)
+[渲染评估] stereo_right 0013/0060 (frame=252)
+[渲染评估] stereo_right 0014/0060 (frame=253)
+[渲染评估] stereo_right 0015/0060 (frame=254)
+[渲染评估] stereo_right 0016/0060 (frame=255)
+[渲染评估] stereo_right 0017/0060 (frame=256)
+[渲染评估] stereo_right 0018/0060 (frame=257)
+[渲染评估] stereo_right 0019/0060 (frame=258)
+[渲染评估] stereo_right 0020/0060 (frame=259)
+[渲染评估] stereo_right 0021/0060 (frame=260)
+[渲染评估] stereo_right 0022/0060 (frame=261)
+[渲染评估] stereo_right 0023/0060 (frame=262)
+[渲染评估] stereo_right 0024/0060 (frame=263)
+[渲染评估] stereo_right 0025/0060 (frame=264)
+[渲染评估] stereo_right 0026/0060 (frame=265)
+[渲染评估] stereo_right 0027/0060 (frame=266)
+[渲染评估] stereo_right 0028/0060 (frame=267)
+[渲染评估] stereo_right 0029/0060 (frame=268)
+[渲染评估] stereo_right 0030/0060 (frame=269)
+[渲染评估] stereo_right 0031/0060 (frame=270)
+[渲染评估] stereo_right 0032/0060 (frame=271)
+[渲染评估] stereo_right 0033/0060 (frame=272)
+[渲染评估] stereo_right 0034/0060 (frame=273)
+[渲染评估] stereo_right 0035/0060 (frame=274)
+[渲染评估] stereo_right 0036/0060 (frame=275)
+[渲染评估] stereo_right 0037/0060 (frame=276)
+[渲染评估] stereo_right 0038/0060 (frame=277)
+[渲染评估] stereo_right 0039/0060 (frame=278)
+[渲染评估] stereo_right 0040/0060 (frame=279)
+[渲染评估] stereo_right 0041/0060 (frame=280)
+[渲染评估] stereo_right 0042/0060 (frame=281)
+[渲染评估] stereo_right 0043/0060 (frame=282)
+[渲染评估] stereo_right 0044/0060 (frame=283)
+[渲染评估] stereo_right 0045/0060 (frame=284)
+[渲染评估] stereo_right 0046/0060 (frame=285)
+[渲染评估] stereo_right 0047/0060 (frame=286)
+[渲染评估] stereo_right 0048/0060 (frame=287)
+[渲染评估] stereo_right 0049/0060 (frame=288)
+[渲染评估] stereo_right 0050/0060 (frame=289)
+[渲染评估] stereo_right 0051/0060 (frame=290)
+[渲染评估] stereo_right 0052/0060 (frame=291)
+[渲染评估] stereo_right 0053/0060 (frame=292)
+[渲染评估] stereo_right 0054/0060 (frame=293)
+[渲染评估] stereo_right 0055/0060 (frame=294)
+[渲染评估] stereo_right 0056/0060 (frame=295)
+[渲染评估] stereo_right 0057/0060 (frame=296)
+[渲染评估] stereo_right 0058/0060 (frame=297)
+[渲染评估] stereo_right 0059/0060 (frame=298)
+[渲染评估] stereo_right 0060/0060 (frame=299)
+{
+  "schema": "fixedsuperbest.render_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction_dir": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/future_80to20/pbd_cotracker_foundation_depth_global_only/artifacts/renders",
+  "frames_per_camera": 60,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 240,
+    "end_exclusive": null,
+    "stride": 1,
+    "offset": 0,
+    "selected_frame_indices": [
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299
+    ]
+  },
+  "cameras": [
+    "stereo_left",
+    "stereo_right"
+  ],
+  "color_space": "sRGB PNG 数值直接归一化到 [0,1]",
+  "psnr": "RGB 通道 MSE，峰值 1.0，单位 dB",
+  "ssim": "RGB 通道平均；11×11 Gaussian window，sigma=1.5，K1=0.01，K2=0.03",
+  "lpips": "官方 LPIPS 0.1，AlexNet/ImageNet，输入缩放到 [-1,1]",
+  "primary_render_region": "tissue_layer_union_crop",
+  "tissue_layer": "真值 RGB 乘真值 tissue mask 后置黑，与黑背景组织 Gaussian 预测整图比较；每帧裁到真值 mask 与预测 alpha 并集外扩 16 px；预测组织落在真值轮廓外也会被惩罚且不被大面积背景稀释",
+  "summary": {
+    "stereo_left": {
+      "psnr_full_db": 9.42784697861847,
+      "ssim_full": 0.2697271580497424,
+      "psnr_tissue_db": 20.582075558151082,
+      "ssim_tissue": 0.7653695503870647,
+      "psnr_tissue_layer_db": 18.7286229808859,
+      "ssim_tissue_layer": 0.8353450288375218,
+      "lpips_tissue_layer_alex_v0.1": 0.4297919953862826
+    },
+    "stereo_right": {
+      "psnr_full_db": 9.575913346821583,
+      "ssim_full": 0.2616679196556409,
+      "psnr_tissue_db": 20.447108124364426,
+      "ssim_tissue": 0.7620044827461243,
+      "psnr_tissue_layer_db": 18.71011197526253,
+      "ssim_tissue_layer": 0.8404372642437618,
+      "lpips_tissue_layer_alex_v0.1": 0.4073361217975616
+    },
+    "all": {
+      "psnr_full_db": 9.501880162720026,
+      "ssim_full": 0.26569753885269165,
+      "psnr_tissue_db": 20.514591841257754,
+      "ssim_tissue": 0.7636870165665944,
+      "psnr_tissue_layer_db": 18.71936747807421,
+      "ssim_tissue_layer": 0.8378911465406418,
+      "lpips_tissue_layer_alex_v0.1": 0.41856405859192214
+    }
+  },
+  "segments": {
+    "all": {
+      "stereo_left": {
+        "psnr_full_db": 9.42784697861847,
+        "ssim_full": 0.2697271580497424,
+        "psnr_tissue_db": 20.582075558151082,
+        "ssim_tissue": 0.7653695503870647,
+        "psnr_tissue_layer_db": 18.7286229808859,
+        "ssim_tissue_layer": 0.8353450288375218,
+        "lpips_tissue_layer_alex_v0.1": 0.4297919953862826
+      },
+      "stereo_right": {
+        "psnr_full_db": 9.575913346821583,
+        "ssim_full": 0.2616679196556409,
+        "psnr_tissue_db": 20.447108124364426,
+        "ssim_tissue": 0.7620044827461243,
+        "psnr_tissue_layer_db": 18.71011197526253,
+        "ssim_tissue_layer": 0.8404372642437618,
+        "lpips_tissue_layer_alex_v0.1": 0.4073361217975616
+      },
+      "all": {
+        "psnr_full_db": 9.501880162720026,
+        "ssim_full": 0.26569753885269165,
+        "psnr_tissue_db": 20.514591841257754,
+        "ssim_tissue": 0.7636870165665944,
+        "psnr_tissue_layer_db": 18.71936747807421,
+        "ssim_tissue_layer": 0.8378911465406418,
+        "lpips_tissue_layer_alex_v0.1": 0.41856405859192214
+      }
+    }
+  },
+  "per_frame_csv": "render_metrics.csv"
+}

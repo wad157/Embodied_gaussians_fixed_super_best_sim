@@ -1,0 +1,3 @@
+status=complete
+algorithm=differentiable_global_distance_and_damping
+depth=foundation_stereo_per_dataset

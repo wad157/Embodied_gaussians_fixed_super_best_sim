@@ -1,0 +1,123 @@
+{
+  "schema": "fixedsuperbest.render_metrics.v2",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_retraction_free_support_front_v2",
+  "prediction_dir": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_global_only_foundation_complete_v3/sim01/reconstruction_7to1/pbd_cotracker_foundation_depth_global_only/artifacts/renders",
+  "frames_per_camera": 37,
+  "split_frame_index": null,
+  "frame_selection": {
+    "start": 0,
+    "end_exclusive": null,
+    "stride": 8,
+    "offset": 7,
+    "selected_frame_indices": [
+      7,
+      15,
+      23,
+      31,
+      39,
+      47,
+      55,
+      63,
+      71,
+      79,
+      87,
+      95,
+      103,
+      111,
+      119,
+      127,
+      135,
+      143,
+      151,
+      159,
+      167,
+      175,
+      183,
+      191,
+      199,
+      207,
+      215,
+      223,
+      231,
+      239,
+      247,
+      255,
+      263,
+      271,
+      279,
+      287,
+      295
+    ]
+  },
+  "cameras": [
+    "stereo_left",
+    "stereo_right"
+  ],
+  "color_space": "sRGB PNG 数值直接归一化到 [0,1]",
+  "psnr": "RGB 通道 MSE，峰值 1.0，单位 dB",
+  "ssim": "RGB 通道平均；11×11 Gaussian window，sigma=1.5，K1=0.01，K2=0.03",
+  "lpips": "官方 LPIPS 0.1，AlexNet/ImageNet，输入缩放到 [-1,1]",
+  "primary_render_region": "tissue_layer_union_crop",
+  "tissue_layer": "真值 RGB 乘真值 tissue mask 后置黑，与黑背景组织 Gaussian 预测整图比较；每帧裁到真值 mask 与预测 alpha 并集外扩 16 px；预测组织落在真值轮廓外也会被惩罚且不被大面积背景稀释",
+  "summary": {
+    "stereo_left": {
+      "psnr_full_db": 9.536263714363548,
+      "ssim_full": 0.28339835276474823,
+      "psnr_tissue_db": 28.032929160848166,
+      "ssim_tissue": 0.7933031932727711,
+      "psnr_tissue_layer_db": 19.974472703292573,
+      "ssim_tissue_layer": 0.8441002240052095,
+      "lpips_tissue_layer_alex_v0.1": 0.4204477708081941
+    },
+    "stereo_right": {
+      "psnr_full_db": 9.690458863588344,
+      "ssim_full": 0.2761933175293175,
+      "psnr_tissue_db": 28.04204669303013,
+      "ssim_tissue": 0.7920714391244424,
+      "psnr_tissue_layer_db": 19.965012264777283,
+      "ssim_tissue_layer": 0.8498762362712139,
+      "lpips_tissue_layer_alex_v0.1": 0.3950841716817907
+    },
+    "all": {
+      "psnr_full_db": 9.613361288975945,
+      "ssim_full": 0.2797958351470329,
+      "psnr_tissue_db": 28.03748792693915,
+      "ssim_tissue": 0.7926873161986068,
+      "psnr_tissue_layer_db": 19.969742484034928,
+      "ssim_tissue_layer": 0.8469882301382117,
+      "lpips_tissue_layer_alex_v0.1": 0.4077659712449924
+    }
+  },
+  "segments": {
+    "all": {
+      "stereo_left": {
+        "psnr_full_db": 9.536263714363548,
+        "ssim_full": 0.28339835276474823,
+        "psnr_tissue_db": 28.032929160848166,
+        "ssim_tissue": 0.7933031932727711,
+        "psnr_tissue_layer_db": 19.974472703292573,
+        "ssim_tissue_layer": 0.8441002240052095,
+        "lpips_tissue_layer_alex_v0.1": 0.4204477708081941
+      },
+      "stereo_right": {
+        "psnr_full_db": 9.690458863588344,
+        "ssim_full": 0.2761933175293175,
+        "psnr_tissue_db": 28.04204669303013,
+        "ssim_tissue": 0.7920714391244424,
+        "psnr_tissue_layer_db": 19.965012264777283,
+        "ssim_tissue_layer": 0.8498762362712139,
+        "lpips_tissue_layer_alex_v0.1": 0.3950841716817907
+      },
+      "all": {
+        "psnr_full_db": 9.613361288975945,
+        "ssim_full": 0.2797958351470329,
+        "psnr_tissue_db": 28.03748792693915,
+        "ssim_tissue": 0.7926873161986068,
+        "psnr_tissue_layer_db": 19.969742484034928,
+        "ssim_tissue_layer": 0.8469882301382117,
+        "lpips_tissue_layer_alex_v0.1": 0.4077659712449924
+      }
+    }
+  },
+  "per_frame_csv": "render_metrics.csv"
+}

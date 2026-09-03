@@ -56,7 +56,14 @@ class EmbodiedGaussiansEnvironment(Environment):
         self.control = self.sim.model.control()
         self.virtual_cameras: VirtualCameras | None = None
         super().__init__()
-        self.streams = [torch.cuda.Stream() for _ in range(self.num_envs())]
+        # Physics-only CPU diagnostics do not have a CUDA context.  These
+        # streams are currently unused by the environment itself, so only
+        # allocate them when the simulator actually lives on CUDA.
+        self.streams = (
+            [torch.cuda.Stream() for _ in range(self.num_envs())]
+            if str(self.sim.model.device).startswith("cuda")
+            else []
+        )
         self.stash_state()
     
     def stash_state(self):

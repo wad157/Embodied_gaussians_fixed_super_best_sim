@@ -15,7 +15,10 @@ export CPATH="$ENV_PREFIX/targets/x86_64-linux/include:$ENV_PREFIX/include:${CPA
 export CPLUS_INCLUDE_PATH="$ENV_PREFIX/targets/x86_64-linux/include:$ENV_PREFIX/include:${CPLUS_INCLUDE_PATH:-}"
 export LIBRARY_PATH="$ENV_PREFIX/targets/x86_64-linux/lib:$ENV_PREFIX/lib:${LIBRARY_PATH:-}"
 exec bash scripts/run_demo_on_display.sh \
-    --visual-force-iterations 0 \
-    --cameras stereo_left \
+    --visual-force-iterations 1 \
+    --cameras stereo_left,stereo_right \
     --camera-go-zoom 0.9 \
+    --psm-pose-driver depth_then_visual \
+    --tissue-mode paper_pbd \
+    --psm-tissue-contact \
     "$@"

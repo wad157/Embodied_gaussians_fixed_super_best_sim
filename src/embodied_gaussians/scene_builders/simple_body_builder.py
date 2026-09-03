@@ -373,7 +373,13 @@ class SimpleBodyBuilder:
                 backgrounds=background.reshape(1, 3).repeat(num_images, 1),
             )
 
-            loss = torch.nn.functional.mse_loss(render_colors[..., :3], gt_data.images)
+            # Mask value 2 is the documented occlusion state.  It must not be
+            # optimized as either object color or random background.  Existing
+            # 0/1 masks keep the original full-image MSE exactly unchanged.
+            loss_pixels = torch.nn.functional.mse_loss(
+                render_colors[..., :3], gt_data.images, reduction="none"
+            )
+            loss = loss_pixels[gt_data.masks != 2].mean()
             # for j in range(len(gt_data.depth_masks)):
             #     depth_mask = gt_data.depth_masks[j]
             #     depth_loss = torch.nn.functional.mse_loss(render_colors[j, ..., -1][depth_mask], gt_data.depths[j][depth_mask])
@@ -472,7 +478,13 @@ class SimpleBodyBuilder:
                 backgrounds=background.reshape(1, 3).repeat(num_images, 1),
             )
 
-            loss = torch.nn.functional.mse_loss(render_colors[..., :3], gt_data.images)
+            # Mask value 2 is the documented occlusion state.  It must not be
+            # optimized as either object color or random background.  Existing
+            # 0/1 masks keep the original full-image MSE exactly unchanged.
+            loss_pixels = torch.nn.functional.mse_loss(
+                render_colors[..., :3], gt_data.images, reduction="none"
+            )
+            loss = loss_pixels[gt_data.masks != 2].mean()
             params.zero_grad()
             loss.backward()
 

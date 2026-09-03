@@ -169,3 +169,14 @@ cython_debug/
 # pixi environments
 .pixi
 *.egg-info
+
+# Host-local VirtualGL and matching NVIDIA userspace runtime.
+tools/virtualgl/cache/
+tools/virtualgl/vendor/
+
+# Local simulation/evaluation products. Selected compact benchmark artifacts
+# are force-added explicitly; generated PNG renders remain reproducible output.
+outputs/
+.tmp/
+_skipped.face
+_skipped.node

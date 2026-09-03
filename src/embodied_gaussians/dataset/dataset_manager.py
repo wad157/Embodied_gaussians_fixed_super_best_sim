@@ -44,6 +44,7 @@ class DatasetManager:
         self.physics_loader: EmbodiedGaussiansLoader | None = None
         self.load_frames = load_frames
         self.cameras: list[CameraData] = []
+        self.visual_force_weight_provider = None
         self.real_robot_data_found = False
         self.camera_data_found = False
         self.initialize()
@@ -157,7 +158,16 @@ class DatasetManager:
         # timestamp = ind * 1 / 60.0
         images = cameras.images(timestamp)
         for serial in cameras.keys():
-            self.frames.update_colors(serial, timestamp, images[serial])
+            camera = cameras.cameras[serial]
+            if camera.last_index is None:
+                raise RuntimeError(f"Camera {serial} did not decode a frame")
+            decoded_timestamp = float(camera.timestamps[camera.last_index])
+            self.frames.update_colors(serial, decoded_timestamp, images[serial])
+        if self.visual_force_weight_provider is not None:
+            self.visual_force_weight_provider.update_frames(self.frames, timestamp)
+
+    def set_visual_force_weight_provider(self, provider) -> None:
+        self.visual_force_weight_provider = provider
 
     def keep_only_cameras(self, names: list[str]) -> None:
         if self.offline_cameras is None:

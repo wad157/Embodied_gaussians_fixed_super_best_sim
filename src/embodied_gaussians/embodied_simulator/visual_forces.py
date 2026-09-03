@@ -37,6 +37,17 @@ class VisualForcesSettings:
     max_moment: float = 0.0
     # Positive values use Smooth L1 instead of unbounded pixel MSE.
     robust_loss_beta: float = 0.0
+    # Soft Gaussian residuals can be scattered to tetrahedral particles only
+    # after a tissue/tool/visibility pixel weighting map is available.
+    enable_soft_particle_forces: bool = False
+    require_loss_weights_for_soft: bool = True
+    soft_max_gaussian_force: float = 0.0
+    soft_max_particle_force: float = 0.0
+    soft_max_total_force: float = 0.0
+    # A uniform force cap can violently accelerate tiny tetrahedral nodes.
+    # Positive values additionally enforce |f_i| / m_i <= this limit.
+    soft_max_particle_acceleration: float = 0.0
+    soft_force_spread_layers: int = 0
 
 
 class VisualForces:
@@ -106,6 +117,20 @@ class VisualForces:
         for body_id in physics_force_body_ids:
             physics_mask |= self._body_ids == int(body_id)
         self._apply_physics_forces = physics_mask.to(dtype=torch.int32)
+
+    def configure_gaussian_participation(
+        self, gradient_gaussian_ids: torch.Tensor
+    ) -> None:
+        """Allow pose gradients only for explicitly listed Gaussian indices."""
+        ids = gradient_gaussian_ids.to(device=self.device, dtype=torch.long)
+        if ids.ndim != 1:
+            raise ValueError("gradient_gaussian_ids must be one-dimensional")
+        if len(ids) > 0 and (
+            int(ids.min().item()) < 0 or int(ids.max().item()) >= len(self.means)
+        ):
+            raise ValueError("gradient Gaussian id is outside the model")
+        self._gaussians_not_involved_in_visual_forces.fill_(True)
+        self._gaussians_not_involved_in_visual_forces[ids] = False
 
     def set_learnings_rates(self, lrs):
         # 每个 step 前根据 VisualForcesSettings 动态更新学习率。

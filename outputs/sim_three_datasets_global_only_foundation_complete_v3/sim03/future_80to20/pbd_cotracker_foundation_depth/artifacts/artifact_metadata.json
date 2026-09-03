@@ -1,0 +1,92 @@
+{
+  "schema": "fixedsuperbest.sim_ablation_artifacts.v1",
+  "label": "future_80to20_pbd_cotracker_foundation_depth",
+  "reference_dataset": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_long_edge_lift_return_sufia_v2_lift30mm",
+  "frames": 360,
+  "frame_start": 0,
+  "frame_end_inclusive": 359,
+  "physics_steps_per_frame": 2,
+  "open_loop_start_frame": 288,
+  "holdout_stride": null,
+  "holdout_offset": null,
+  "holdout_frame_indices": [],
+  "render_frame_mode": "future",
+  "visual_feedback_mode": "trajectory",
+  "flow_depth_initial_alignment": null,
+  "online_stiffness_update": false,
+  "visual_residual_settings": {
+    "iterations": 8,
+    "learning_rate_m": 4e-05,
+    "maximum_residual_m": 0.0006,
+    "robust_loss_beta": 0.05,
+    "data_weight": 1.0,
+    "distance_weight": 0.4,
+    "volume_weight": 1.0,
+    "shape_weight": 0.008,
+    "spatial_weight": 0.05,
+    "temporal_weight": 0.1,
+    "magnitude_weight": 0.01,
+    "reference_delta_calibration": false,
+    "minimum_actionable_visual_loss": 0.0,
+    "task_gate": "frame_0_initialization_then_recorded_grasp_frames_only; disabled_at_open_loop_split"
+  },
+  "online_stiffness_settings": null,
+  "stiffness_signal_diagnostic": {
+    "path": "stiffness_signal_diagnostics.npz",
+    "schema": "fixedsuperbest.stiffness_signal_diagnostics.v1",
+    "float_fields": [
+      "residual_norm_m",
+      "deformation_norm_m",
+      "vector_signal",
+      "strain_signal",
+      "strain_confidence",
+      "blended_signal_before_smoothing",
+      "smoothed_signal",
+      "candidate_ema",
+      "log_step"
+    ],
+    "mask_fields": [
+      "quality_valid_mask",
+      "supervision_valid_mask",
+      "control_exclusion_mask",
+      "control_frozen_mask",
+      "eligible_mask",
+      "vector_active_mask",
+      "strain_active_mask",
+      "material_active_mask"
+    ],
+    "semantics": "每个新刚度候选保存RGB残差幅值、物理形变幅值、向量信号、边应变信号及置信度、平滑前后信号、EMA、log步长和全部门禁掩码"
+  },
+  "known_grasp_boundary": {
+    "mode": "known_grasp_region",
+    "schema": "fixedsuperbest.known_grasp_region_boundary.v1",
+    "path": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/data/sim/tissue_long_edge_lift_return_sufia_v2_lift30mm/task_inputs/known_grasp_region_boundary.npz",
+    "controlled_particle_count": 12
+  },
+  "future_feedback_policy": "进入 open_loop_start_frame 前取消尚未完成验证的刚度候选；从该帧起关闭视觉残差、禁止新刚度候选并保持已提交材料场；PSM 条件和所选已知夹持区域位移边界继续输入",
+  "reconstruction_holdout_policy": "未启用周期重建留出",
+  "trajectory_mapping": "首帧真值评估点到重建顶面三角形的一次性重心坐标映射；后续不读取真值运动且不做逐帧配准",
+  "evaluation_nodes": 240,
+  "initial_embedding_error_mm": {
+    "mean": 0.15299590840337865,
+    "median": 0.02208689784310991,
+    "p95": 0.9248082613339647,
+    "maximum": 1.4227185165509582
+  },
+  "render_images": true,
+  "rgb_alignment_diagnostic": {
+    "path": "rgb_alignment_diagnostics.npz",
+    "input": "RGB only before open_loop_start_frame; no future RGB, depth, trajectory GT, or material GT",
+    "resolution_scale": 0.25,
+    "loss": "equal-camera masked robust RGB loss"
+  },
+  "render_layer": "仅组织 Gaussian、黑色背景，并同时保存 alpha；用于与真值组织层比较",
+  "cameras": [
+    "stereo_left",
+    "stereo_right"
+  ],
+  "resolution": [
+    1536,
+    1536
+  ]
+}

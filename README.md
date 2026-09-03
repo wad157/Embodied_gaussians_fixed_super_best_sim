@@ -1,3 +1,74 @@
+# Embodied Gaussians 手术软组织仿真扩展
+
+本仓库在 Physically Embodied Gaussian Splatting 基础上，面向手术软组织牵拉任务实现了可变形 PBD 仿真、视觉轨迹校正、在线材料参数更新和完整评估流程。当前工作目录为 `embodied_gaussians_fixed_super_best_sim`，不修改原始 `embodied_gaussians_fixed_super_best`。
+
+## 当前方法
+
+- 四面体 PBD 组织：distance、volume、shape-matching 约束；
+- 表面 Gaussian 与物理三角面绑定，随组织形变更新位置和尺度；
+- CoTracker 从 RGB 提供二维材料点轨迹；
+- FoundationStereo 仅由双目 RGB 估计深度并反投影三维轨迹；
+- 已知夹持区域轨迹作为三种方法统一的运动边界；
+- 在线全局 distance stiffness 与全局阻尼辨识，夹持耦合固定为 1；
+- 7:1 因果重建和前 80% 更新、后 20% 开环未来预测；
+- 评估 30 个固定非夹持点的 3D/2D Tracking Error，以及 PSNR、SSIM、LPIPS。
+
+正式对比包含：
+
+- A：纯 PBD；
+- B：PBD + CoTracker 轨迹校正 + FoundationStereo RGB 深度；
+- C：B + 全局 distance stiffness 与全局阻尼在线更新。
+
+## 正式测评结果
+
+SIM-01、SIM-02、SIM-03 的完整结果、逐帧指标、轨迹、材料诊断和刚度更新信号位于：
+
+[三数据集全局刚度完整测评](outputs/sim_three_datasets_global_only_foundation_complete_v3/README.md)
+
+逐帧渲染 PNG 约 900 MB，属于可重新生成的缓存，因此未纳入 Git；PSNR、SSIM、LPIPS 的逐帧 CSV 和最终 JSON 均已保留。
+
+## 环境与依赖
+
+项目使用两个独立 Conda 环境：
+
+- `eg_codex`：运行 Embodied Gaussians、PBD、重建与测评；
+- `eg_sim`：生成或检查 SuFIA/Orbit Surgical 仿真资产。
+
+FoundationStereo 以子模块固定到实验使用的提交。克隆时使用：
+
+```bash
+git clone --recurse-submodules https://github.com/wad157/Embodied_gaussians_fixed_super_best_sim.git
+```
+
+已有克隆可运行：
+
+```bash
+git submodule update --init --recursive
+```
+
+原始数据集、RGB、深度图和模型权重体积较大，不随 Git 仓库分发，分别放在 `data/` 与 `weights/`。实验所需目录及生成流程见 [PROGRESS.md](PROGRESS.md)。
+
+## ThinLinc GUI
+
+在 ThinLinc 桌面中启动仿真 GUI：
+
+```bash
+bash scripts/run_sim_reconstruction_thinlinc.sh
+```
+
+无界面的正式三数据集全局刚度测评：
+
+```bash
+bash scripts/run_sim_three_datasets_global_only_complete.sh \
+  outputs/sim_three_datasets_global_only_foundation_complete_v3
+```
+
+脚本拒绝覆盖已有输出，请为复测指定新的输出目录。
+
+## 上游项目
+
+以下为原始 Physically Embodied Gaussian Splatting 项目信息。
+
 # Physically Embodied Gaussian Splatting
 
 <div align="left" style="display: left; align-items: center; justify-content: center; gap: 20px;">
