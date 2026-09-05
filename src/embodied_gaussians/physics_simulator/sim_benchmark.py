@@ -844,6 +844,13 @@ class SimBenchmarkArtifactWriter:
                     "autograd_maximum_log_offset": (
                         stiffness_settings.autograd_maximum_log_offset
                     ),
+                    "distance_bounds": [
+                        stiffness_settings.distance_minimum,
+                        stiffness_settings.distance_maximum,
+                    ],
+                    "global_horizon_weights_h1_h2_h3": list(
+                        stiffness_settings.global_horizon_weights
+                    ),
                     "local_horizon_weights_h1_h3_h5": list(
                         stiffness_settings.local_horizon_weights
                     ),

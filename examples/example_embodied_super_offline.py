@@ -819,6 +819,32 @@ def parse_args() -> argparse.Namespace:
         help="低维平滑log-distance刚度系数数量，默认12。",
     )
     parser.add_argument(
+        "--stiffness-distance-minimum",
+        type=float,
+        default=0.10,
+        help="在线distance stiffness绝对下限，默认0.10。",
+    )
+    parser.add_argument(
+        "--stiffness-distance-maximum",
+        type=float,
+        default=2.00,
+        help="在线distance stiffness绝对上限，默认2.00。",
+    )
+    parser.add_argument(
+        "--stiffness-autograd-maximum-log-offset",
+        type=float,
+        default=0.35,
+        help="相对初值的累计绝对log偏移上限，默认0.35。",
+    )
+    parser.add_argument(
+        "--stiffness-global-horizon-weights",
+        type=float,
+        nargs=3,
+        metavar=("H1", "H2", "H3"),
+        default=(1.5, 2.0, 3.0),
+        help="全局刚度因果H1/H2/H3损失权重，默认1.5 2 3。",
+    )
+    parser.add_argument(
         "--stiffness-maximum-log-step",
         type=float,
         default=None,
@@ -7199,6 +7225,10 @@ async def main(
     stiffness_strain_signal_weight: float,
     stiffness_autograd_unroll_steps: int,
     stiffness_autograd_region_count: int,
+    stiffness_distance_minimum: float,
+    stiffness_distance_maximum: float,
+    stiffness_autograd_maximum_log_offset: float,
+    stiffness_global_horizon_weights: tuple[float, float, float],
     stiffness_maximum_log_step: float | None,
     stiffness_signal_ema_decay: float | None,
     stiffness_spatial_smoothing_iterations: int | None,
@@ -7558,10 +7588,16 @@ async def main(
                 ),
                 hardening_bias=0.0,
                 strain_signal_weight=stiffness_strain_signal_weight,
+                distance_minimum=stiffness_distance_minimum,
+                distance_maximum=stiffness_distance_maximum,
                 shape_maximum=0.020,
                 update_mode=stiffness_update_mode,
                 autograd_unroll_steps=stiffness_autograd_unroll_steps,
                 autograd_region_count=stiffness_autograd_region_count,
+                autograd_maximum_log_offset=(
+                    stiffness_autograd_maximum_log_offset
+                ),
+                global_horizon_weights=stiffness_global_horizon_weights,
                 autograd_frame_dt=stiffness_frame_dt,
                 # Match the authoritative Warp projector exactly for gradient
                 # direction checks.  The former 6x2 Torch surrogate represented
@@ -7710,7 +7746,13 @@ async def main(
                 "[example_embodied_super_offline] online paper stiffness: ON; "
                 f"log_lr={online_settings.log_learning_rate:g}, "
                 f"max_log_step={online_settings.maximum_log_step:g}, "
-                "distance_bounds=0.10..2.00, shape_bounds=0.003..0.020, "
+                f"distance_bounds={online_settings.distance_minimum:g}.."
+                f"{online_settings.distance_maximum:g}, "
+                "shape_bounds=0.003..0.020, "
+                "global_horizon_weights="
+                f"{online_settings.global_horizon_weights}, "
+                "max_log_offset="
+                f"{online_settings.autograd_maximum_log_offset:g}, "
                 f"ema_history={online_settings.signal_ema_decay:g}, "
                 f"{'flow-depth' if visual_feedback_mode == 'trajectory' else 'RGB'} "
                 "edge-strain signal="
@@ -7903,6 +7945,10 @@ if __name__ == "__main__":
         args.stiffness_strain_signal_weight,
         args.stiffness_autograd_unroll_steps,
         args.stiffness_autograd_region_count,
+        args.stiffness_distance_minimum,
+        args.stiffness_distance_maximum,
+        args.stiffness_autograd_maximum_log_offset,
+        tuple(args.stiffness_global_horizon_weights),
         args.stiffness_maximum_log_step,
         args.stiffness_signal_ema_decay,
         args.stiffness_spatial_smoothing_iterations,

@@ -18,6 +18,14 @@ STIFFNESS_UPDATE_MODE="${SIM_STIFFNESS_UPDATE_MODE:-differentiable_hierarchical_
 STIFFNESS_AUTOGRAD_UNROLL_STEPS="${SIM_STIFFNESS_AUTOGRAD_UNROLL_STEPS:-5}"
 STIFFNESS_AUTOGRAD_REGION_COUNT="${SIM_STIFFNESS_AUTOGRAD_REGION_COUNT:-6}"
 C_LABEL="${SIM_C_LABEL:-C-H1：B + H1短期约束的H3/H5全局/区域刚度更新}"
+INITIAL_DISTANCE="${SIM_INITIAL_PAPER_DISTANCE_STIFFNESS:-0.20}"
+INITIAL_SHAPE="${SIM_INITIAL_PAPER_SHAPE_STIFFNESS:-0.004}"
+STIFFNESS_DISTANCE_MINIMUM="${SIM_STIFFNESS_DISTANCE_MINIMUM:-0.10}"
+STIFFNESS_DISTANCE_MAXIMUM="${SIM_STIFFNESS_DISTANCE_MAXIMUM:-2.00}"
+STIFFNESS_MAXIMUM_LOG_OFFSET="${SIM_STIFFNESS_MAXIMUM_LOG_OFFSET:-0.35}"
+STIFFNESS_H1_WEIGHT="${SIM_STIFFNESS_H1_WEIGHT:-1.5}"
+STIFFNESS_H2_WEIGHT="${SIM_STIFFNESS_H2_WEIGHT:-2.0}"
+STIFFNESS_H3_WEIGHT="${SIM_STIFFNESS_H3_WEIGHT:-3.0}"
 
 if [[ $# -gt 1 ]]; then
     echo "用法：SIM_DATASET=<数据集> FLOW_DEPTH_ASSET_ROOT=<资产> bash scripts/run_sim_foundation_h1_safe_dataset_complete.sh [新输出目录]" >&2
@@ -94,6 +102,11 @@ run_method() {
             --stiffness-strain-signal-weight 0.20
             --stiffness-autograd-unroll-steps "$STIFFNESS_AUTOGRAD_UNROLL_STEPS"
             --stiffness-autograd-region-count "$STIFFNESS_AUTOGRAD_REGION_COUNT"
+            --stiffness-distance-minimum "$STIFFNESS_DISTANCE_MINIMUM"
+            --stiffness-distance-maximum "$STIFFNESS_DISTANCE_MAXIMUM"
+            --stiffness-autograd-maximum-log-offset "$STIFFNESS_MAXIMUM_LOG_OFFSET"
+            --stiffness-global-horizon-weights \
+                "$STIFFNESS_H1_WEIGHT" "$STIFFNESS_H2_WEIGHT" "$STIFFNESS_H3_WEIGHT"
         )
     fi
 
@@ -112,8 +125,8 @@ run_method() {
             "${observation_args[@]}" \
             --sim-grasp-boundary-mode known_grasp_region \
             "${stiffness_args[@]}" \
-            --initial-paper-distance-stiffness 0.20 \
-            --initial-paper-shape-stiffness 0.004
+            --initial-paper-distance-stiffness "$INITIAL_DISTANCE" \
+            --initial-paper-shape-stiffness "$INITIAL_SHAPE"
 
     "$PYTHON" "$ROOT_DIR/scripts/evaluate_sim_trajectory_metrics.py" \
         --reference-dataset "$DATASET" \
