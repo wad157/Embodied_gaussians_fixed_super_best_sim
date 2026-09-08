@@ -4,7 +4,7 @@
 
 本仓库是独立副本 `embodied_gaussians_fixed_super_best_sim`，不会修改原始的 `embodied_gaussians_fixed_super_best`。
 
-> 当前正式结论来自 CoTracker 配置的三次独立复测：RGB 轨迹校正是误差下降的主要来源；在线刚度更新进一步降低了三个数据集的未来 3D/2D 跟踪均值，但在部分重建和渲染指标上尚未全面超过仅轨迹校正。完整均值、样本标准差及54条原始结果见[正式测评结果](#正式测评结果)。
+> 当前结论来自 CoTracker 与 AllTracker 两套配置各三次独立复测：RGB 轨迹校正是误差下降的主要来源；CoTracker 下在线刚度更新降低了三个数据集的未来 3D/2D 均值，AllTracker 下则在 SIM-01/02 改善、在 SIM-03 抬升任务中出现明显退化和较大方差。完整均值、样本标准差及原始结果见[正式测评结果](#正式测评结果)。
 
 ## 1. 项目要解决的问题
 
@@ -21,7 +21,7 @@
 
 ```mermaid
 flowchart LR
-    RGB[双目 RGB] --> TRACK[CoTracker 2D 材料点轨迹]
+    RGB[双目 RGB] --> TRACK[CoTracker / AllTracker 2D 材料点轨迹]
     RGB --> DEPTH[FoundationStereo 深度]
     TRACK --> OBS[固定材料绑定的 3D 观测]
     DEPTH --> OBS
@@ -55,7 +55,7 @@ $$
 
 ### 3.1 从 RGB 得到固定材料点观测
 
-CoTracker 在 RGB 上给出二维轨迹 \((u_m^t,v_m^t)\)，FoundationStereo 给出对应深度 \(D_m^t\)。相机内外参将其反投影为世界坐标：
+CoTracker 或 AllTracker 在 RGB 上给出二维轨迹 \((u_m^t,v_m^t)\)，FoundationStereo 给出对应深度 \(D_m^t\)。相机内外参将其反投影为世界坐标：
 
 $$
 \mathbf{y}_m^t = \mathbf{T}_{wc}
@@ -169,7 +169,7 @@ $$
 
 ### 6.4 重复实验与统计
 
-每个数据集均使用自身的 RGB、FoundationStereo 深度、CoTracker 轨迹、夹持边界和 30 个固定非夹持评估点，数据集之间不共享缓存。三次运行不做最优结果挑选，也不使用离线参数分支；表中报告算术均值与样本标准差：
+每个数据集均使用自身的 RGB、FoundationStereo 深度、对应跟踪器轨迹、夹持边界和 30 个固定非夹持评估点，数据集之间不共享缓存。CoTracker 与 AllTracker 分别统计，三次运行不做最优结果挑选，也不使用离线参数分支；表中报告算术均值与样本标准差：
 
 $$
 \bar{x}=\frac{1}{3}\sum_{i=1}^{3}x_i,
@@ -222,6 +222,50 @@ Git 中保留了完整聚合结果，不上传体积较大的逐帧图像、深�
 - [三次均值、样本标准差及54条原始结果](outputs/sim_three_datasets_medium_h3w4_three_repeats_v1/comparison_mean_std.md)
 - [机器可读 JSON](outputs/sim_three_datasets_medium_h3w4_three_repeats_v1/comparison_mean_std.json)
 
+### 7.4 AllTracker 三次复测
+
+AllTracker 使用与 CoTracker 相同的首帧查询点、FoundationStereo 深度、PBD 参数、夹持边界和 30 个非夹持评估点。SIM-01/02 分别使用 188/175 条有效绑定轨迹；SIM-03 请求 203 条、有效绑定 200 条。第1次来自此前已完成的正式运行，第2、3次在 GPU0 上连续串行执行；三次全部进入统计，不选择最佳结果。
+
+#### 7:1 当前状态重建
+
+| 数据集 | 方法 | n | 3D mm ↓ | 2D px ↓ | PSNR dB ↑ | SSIM ↑ | LPIPS ↓ |
+|---|---|---:|---:|---:|---:|---:|---:|
+| SIM-01 | A：纯 PBD | 3 | 1.558 ± 0.000 | 15.543 ± 0.000 | 19.056 ± 0.000 | 0.8381 ± 0.0000 | 0.4217 ± 0.0000 |
+| SIM-01 | B：AllTracker 轨迹校正 | 3 | 0.509 ± 0.000 | 4.995 ± 0.000 | **19.936 ± 0.000** | **0.8463 ± 0.0000** | **0.4079 ± 0.0000** |
+| SIM-01 | C：B + 刚度更新 | 3 | **0.504 ± 0.002** | **4.964 ± 0.029** | 19.906 ± 0.007 | 0.8460 ± 0.0001 | 0.4081 ± 0.0001 |
+| SIM-02 | A：纯 PBD | 3 | 1.433 ± 0.000 | 13.424 ± 0.000 | 16.425 ± 0.000 | 0.8171 ± 0.0000 | 0.4295 ± 0.0000 |
+| SIM-02 | B：AllTracker 轨迹校正 | 3 | 0.377 ± 0.000 | **3.689 ± 0.000** | 16.981 ± 0.000 | 0.8261 ± 0.0000 | **0.4175 ± 0.0000** |
+| SIM-02 | C：B + 刚度更新 | 3 | **0.377 ± 0.001** | 3.691 ± 0.008 | **16.999 ± 0.004** | **0.8262 ± 0.0001** | 0.4177 ± 0.0001 |
+| SIM-03 | A：纯 PBD | 3 | 2.260 ± 0.000 | 19.890 ± 0.000 | 19.079 ± 0.000 | 0.7767 ± 0.0000 | 0.5488 ± 0.0000 |
+| SIM-03 | B：AllTracker 轨迹校正 | 3 | 0.448 ± 0.000 | 4.493 ± 0.000 | 21.727 ± 0.000 | 0.7921 ± 0.0000 | 0.5395 ± 0.0000 |
+| SIM-03 | C：B + 刚度更新 | 3 | **0.443 ± 0.004** | **4.359 ± 0.070** | **21.829 ± 0.010** | **0.7933 ± 0.0006** | **0.5366 ± 0.0015** |
+
+#### 后 20% 开环未来预测
+
+| 数据集 | 方法 | n | 3D mm ↓ | 2D px ↓ | PSNR dB ↑ | SSIM ↑ | LPIPS ↓ |
+|---|---|---:|---:|---:|---:|---:|---:|
+| SIM-01 | A：纯 PBD | 3 | 4.281 ± 0.000 | 42.833 ± 0.000 | 16.456 ± 0.000 | 0.8160 ± 0.0000 | 0.4512 ± 0.0000 |
+| SIM-01 | B：AllTracker 轨迹校正 | 3 | 1.416 ± 0.005 | 13.696 ± 0.046 | 18.902 ± 0.006 | 0.8386 ± 0.0001 | 0.4193 ± 0.0001 |
+| SIM-01 | C：B + 刚度更新 | 3 | **1.325 ± 0.008** | **12.596 ± 0.109** | **19.058 ± 0.048** | **0.8403 ± 0.0003** | **0.4166 ± 0.0004** |
+| SIM-02 | A：纯 PBD | 3 | 4.115 ± 0.000 | 37.595 ± 0.000 | 15.476 ± 0.000 | 0.7996 ± 0.0000 | 0.4537 ± 0.0000 |
+| SIM-02 | B：AllTracker 轨迹校正 | 3 | 1.082 ± 0.000 | 11.072 ± 0.000 | **17.015 ± 0.000** | **0.8266 ± 0.0000** | **0.4199 ± 0.0000** |
+| SIM-02 | C：B + 刚度更新 | 3 | **1.075 ± 0.011** | **10.679 ± 0.035** | 17.002 ± 0.014 | 0.8265 ± 0.0003 | 0.4202 ± 0.0003 |
+| SIM-03 | A：纯 PBD | 3 | 5.956 ± 0.000 | 53.957 ± 0.000 | 14.343 ± 0.000 | 0.7462 ± 0.0000 | 0.5653 ± 0.0000 |
+| SIM-03 | B：AllTracker 轨迹校正 | 3 | **0.716 ± 0.000** | **6.264 ± 0.000** | **22.172 ± 0.000** | 0.7927 ± 0.0000 | 0.5385 ± 0.0000 |
+| SIM-03 | C：B + 刚度更新 | 3 | 1.038 ± 0.260 | 7.844 ± 1.277 | 21.201 ± 1.209 | **0.7972 ± 0.0050** | **0.5256 ± 0.0084** |
+
+### 7.5 AllTracker 结果解释
+
+- SIM-01 未来预测中，C 相对 B 的 3D/2D 误差分别降低 **6.42%/8.03%**，PSNR、SSIM、LPIPS 也均改善。
+- SIM-02 未来预测中，C 的 3D/2D 分别降低 **0.70%/3.54%**，但三项渲染指标轻微退化。
+- SIM-03 重建中，C 的 3D/2D 分别降低 **1.13%/2.99%**，渲染指标同时改善；但未来预测 3D 从 **0.716 mm** 增至 **1.038 mm**，2D 从 **6.264 px** 增至 **7.844 px**。
+- SIM-03 未来 C 的三次 3D 结果为 **1.0091、1.3115、0.7942 mm**，标准差为 **0.260 mm**。因此 AllTracker 在抬升任务上的刚度更新不能称为稳定提升，后续需要检查轨迹误差如何改变刚度提交方向。
+
+完整 AllTracker 聚合结果：
+
+- [三次均值、样本标准差及54条原始结果](outputs/sim_three_datasets_alltracker_medium_h3w4_three_repeats_v3/comparison_mean_std.md)
+- [机器可读 JSON](outputs/sim_three_datasets_alltracker_medium_h3w4_three_repeats_v3/comparison_mean_std.json)
+
 ## 8. 运行方法
 
 ### 8.1 克隆
@@ -267,6 +311,19 @@ bash scripts/run_sim_three_datasets_medium_h3w4_three_repeats.sh \
 
 脚本对 SIM-01/02/03 各独立运行三次完整 A/B/C 重建与未来预测，并为每套数据独立读取对应的 FoundationStereo 深度和 CoTracker 缓存。汇总脚本自动生成均值、样本标准差和54条原始结果。为保护正式结果，脚本拒绝覆盖已有输出目录；复测时应使用新的目录名。
 
+### 8.4 AllTracker 追加两次并汇总三次
+
+在已有一次完整 AllTracker 测评及其观测资产的前提下，连续运行第2、3次并与第1次汇总：
+
+```bash
+SIM_GPU_ID=0 \
+SIM_ALLTRACKER_BASELINE_ROOT="$PWD/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1" \
+  bash scripts/run_sim_three_datasets_alltracker_three_repeats.sh \
+  outputs/sim_three_datasets_alltracker_medium_h3w4_three_repeats_v4
+```
+
+脚本只复用固定的 AllTracker/FoundationStereo 观测资产，不重复提取轨迹；第2、3次在指定 GPU 上串行执行，完成后自动计算三次均值与样本标准差。
+
 ## 9. 目录结构
 
 ```text
@@ -276,9 +333,12 @@ embodied_gaussians_fixed_super_best_sim/
 ├── FoundationStereo/            # 固定版本的双目深度子模块
 ├── data/sim/                    # 本地三套原始仿真数据（Git 忽略）
 ├── outputs/
-│   └── sim_three_datasets_medium_h3w4_three_repeats_v1/
-│       ├── comparison_mean_std.md    # 均值、标准差和54条原始结果
-│       └── comparison_mean_std.json  # 机器可读聚合数据
+│   ├── sim_three_datasets_medium_h3w4_three_repeats_v1/
+│   │   ├── comparison_mean_std.md    # 均值、标准差和54条原始结果
+│   │   └── comparison_mean_std.json  # 机器可读聚合数据
+│   └── sim_three_datasets_alltracker_medium_h3w4_three_repeats_v3/
+│       ├── comparison_mean_std.md    # AllTracker三次聚合结果
+│       └── comparison_mean_std.json
 ├── 刚度优化方案.md
 ├── 当前刚度优化方法与运行流程_小白公式版.md
 └── PROGRESS.md                  # 数据、实现与实验演进记录
@@ -291,6 +351,7 @@ embodied_gaussians_fixed_super_best_sim/
 - 当前已知夹持区域轨迹作为三组方法共同边界条件，实验评估的是夹持之外的组织传播和预测能力，不包含器械—组织接触反演。
 - 三套数据都是可控仿真数据。后续迁移到真实 `super` 数据时，2D GT 需要人工标注，3D GT 则由双目深度反投影获得。
 - 外观属性在线学习与物理优化已解耦；本次 CoTracker 三次复测未让外观优化污染物理 rollout 快照。更复杂的外观自适应仍需单独验证其可重复性。
+- AllTracker 在 SIM-03 未来预测中使刚度更新出现较大方差和几何退化，说明在线材料梯度仍对跟踪器的时序误差结构敏感。
 
 ## 11. 参考项目与论文
 

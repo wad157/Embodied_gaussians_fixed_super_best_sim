@@ -1,0 +1,1023 @@
+{
+  "schema": "fixedsuperbest.sim_three_datasets_alltracker_three_repeats.v1",
+  "protocol": {
+    "tracker": "AllTracker official dense RGB flow",
+    "repeat_count": 3,
+    "repeat_sources": {
+      "repeat_01": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1",
+      "repeat_02": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_three_repeats_v3/repeat_02",
+      "repeat_03": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_three_repeats_v3/repeat_03"
+    },
+    "execution": "existing repeat plus two new continuous serial repeats on GPU0 by default",
+    "initial_distance_stiffness": 0.2,
+    "initial_shape_stiffness": 0.004,
+    "stiffness_update_mode": "differentiable_global",
+    "global_horizon_weights_h1_h2_h3": [
+      1.5,
+      2.0,
+      4.0
+    ],
+    "distance_bounds": [
+      0.01,
+      2.0
+    ],
+    "maximum_log_offset": 2.302585093,
+    "depth": "FoundationStereo estimated independently from each dataset RGB stereo pair",
+    "evaluation_points": "30 fixed non-grasp nodes per dataset",
+    "no_best_run_selection": true
+  },
+  "assets": {
+    "sim01": {
+      "report": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1/assets/sim01/flow_depth_assets/report.json",
+      "requested_track_count": 188,
+      "bound_track_count": 188,
+      "valid_observations": 53854
+    },
+    "sim02": {
+      "report": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1/assets/sim02/flow_depth_assets/report.json",
+      "requested_track_count": 175,
+      "bound_track_count": 175,
+      "valid_observations": 49802
+    },
+    "sim03": {
+      "report": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1/assets/sim03/flow_depth_assets/report.json",
+      "requested_track_count": 203,
+      "bound_track_count": 200,
+      "valid_observations": 71489
+    }
+  },
+  "aggregate": {
+    "sim01": {
+      "reconstruction_7to1": {
+        "pbd": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "7:1 重建",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.5584562763005787,
+              "sample_std": 0.0,
+              "values": [
+                1.5584562763005787,
+                1.5584562763005787,
+                1.5584562763005787
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 15.542923994214632,
+              "sample_std": 0.0,
+              "values": [
+                15.542923994214632,
+                15.542923994214632,
+                15.542923994214632
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.055532493449896,
+              "sample_std": 0.0,
+              "values": [
+                19.055532493449896,
+                19.055532493449896,
+                19.055532493449896
+              ]
+            },
+            "ssim": {
+              "mean": 0.8380526481447993,
+              "sample_std": 0.0,
+              "values": [
+                0.8380526481447993,
+                0.8380526481447993,
+                0.8380526481447993
+              ]
+            },
+            "lpips": {
+              "mean": 0.4216800094456286,
+              "sample_std": 0.0,
+              "values": [
+                0.4216800094456286,
+                0.4216800094456286,
+                0.4216800094456286
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "7:1 重建",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.5088368120608278,
+              "sample_std": 0.0,
+              "values": [
+                0.5088368120608278,
+                0.5088368120608278,
+                0.5088368120608278
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.994703001344412,
+              "sample_std": 0.0,
+              "values": [
+                4.994703001344412,
+                4.994703001344412,
+                4.994703001344412
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.93615192674962,
+              "sample_std": 0.0,
+              "values": [
+                19.93615192674962,
+                19.93615192674962,
+                19.93615192674962
+              ]
+            },
+            "ssim": {
+              "mean": 0.8463208610947067,
+              "sample_std": 0.0,
+              "values": [
+                0.8463208610947067,
+                0.8463208610947067,
+                0.8463208610947067
+              ]
+            },
+            "lpips": {
+              "mean": 0.40792649501078837,
+              "sample_std": 0.0,
+              "values": [
+                0.40792649501078837,
+                0.40792649501078837,
+                0.40792649501078837
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "7:1 重建",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.5044069621809277,
+              "sample_std": 0.0022231427229952895,
+              "values": [
+                0.5020622386513555,
+                0.5046743006066724,
+                0.5064843472847552
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.964267236250219,
+              "sample_std": 0.028556272018360897,
+              "values": [
+                4.931302001706597,
+                4.981406096769319,
+                4.980093610274742
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.906413641019892,
+              "sample_std": 0.006787444800711455,
+              "values": [
+                19.914216806673668,
+                19.90187773866982,
+                19.903146377716183
+              ]
+            },
+            "ssim": {
+              "mean": 0.84600957905924,
+              "sample_std": 5.1487887376076106e-05,
+              "values": [
+                0.8460668301260149,
+                0.8459670704764288,
+                0.8459948365752762
+              ]
+            },
+            "lpips": {
+              "mean": 0.40806107652616935,
+              "sample_std": 9.4629174583898e-05,
+              "values": [
+                0.4081697721739073,
+                0.40799705281450943,
+                0.4080164045900912
+              ]
+            }
+          }
+        }
+      },
+      "future_80to20": {
+        "pbd": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "80/20 未来预测",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 4.281365833982515,
+              "sample_std": 0.0,
+              "values": [
+                4.281365833982515,
+                4.281365833982515,
+                4.281365833982515
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 42.83254477979788,
+              "sample_std": 0.0,
+              "values": [
+                42.832544779797885,
+                42.832544779797885,
+                42.832544779797885
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.456400400147523,
+              "sample_std": 0.0,
+              "values": [
+                16.456400400147523,
+                16.456400400147523,
+                16.456400400147523
+              ]
+            },
+            "ssim": {
+              "mean": 0.8160135065515836,
+              "sample_std": 0.0,
+              "values": [
+                0.8160135065515836,
+                0.8160135065515836,
+                0.8160135065515836
+              ]
+            },
+            "lpips": {
+              "mean": 0.4512022731204828,
+              "sample_std": 0.0,
+              "values": [
+                0.4512022731204828,
+                0.4512022731204828,
+                0.4512022731204828
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "80/20 未来预测",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.4162709674039637,
+              "sample_std": 0.004759011900400947,
+              "values": [
+                1.4217662010075098,
+                1.4135233506021905,
+                1.4135233506021905
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 13.695675763739773,
+              "sample_std": 0.04565174458372861,
+              "values": [
+                13.748389857788558,
+                13.669318716715383,
+                13.669318716715383
+              ]
+            },
+            "psnr_db": {
+              "mean": 18.901666005594535,
+              "sample_std": 0.006205839344096857,
+              "values": [
+                18.89450011956281,
+                18.905248948610396,
+                18.905248948610396
+              ]
+            },
+            "ssim": {
+              "mean": 0.838626124130355,
+              "sample_std": 6.829527217039822e-05,
+              "values": [
+                0.8385472635428111,
+                0.8386655544241269,
+                0.8386655544241269
+              ]
+            },
+            "lpips": {
+              "mean": 0.4193133477535513,
+              "sample_std": 5.328657805641291e-05,
+              "values": [
+                0.41925181771318115,
+                0.41934411277373634,
+                0.41934411277373634
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "80/20 未来预测",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.3253091354231907,
+              "sample_std": 0.00820778977989862,
+              "values": [
+                1.3163002276552207,
+                1.3323626084699451,
+                1.3272645701444061
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 12.595751520322265,
+              "sample_std": 0.1089559745523932,
+              "values": [
+                12.479090674494259,
+                12.694875198544988,
+                12.613288687927547
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.058075790099256,
+              "sample_std": 0.04842473255308263,
+              "values": [
+                19.109327060694383,
+                19.013086912056057,
+                19.051813397547335
+              ]
+            },
+            "ssim": {
+              "mean": 0.8402600505285793,
+              "sample_std": 0.00027077204872657097,
+              "values": [
+                0.8405049781004588,
+                0.8399692853291829,
+                0.8403058881560962
+              ]
+            },
+            "lpips": {
+              "mean": 0.4165868525703748,
+              "sample_std": 0.0003949210068827567,
+              "values": [
+                0.4161595155795415,
+                0.4169383612771829,
+                0.4166626808544
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sim02": {
+      "reconstruction_7to1": {
+        "pbd": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "7:1 重建",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.4334982525273976,
+              "sample_std": 0.0,
+              "values": [
+                1.4334982525273976,
+                1.4334982525273976,
+                1.4334982525273976
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 13.424078520466745,
+              "sample_std": 0.0,
+              "values": [
+                13.424078520466745,
+                13.424078520466745,
+                13.424078520466745
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.42542728320156,
+              "sample_std": 0.0,
+              "values": [
+                16.42542728320156,
+                16.42542728320156,
+                16.42542728320156
+              ]
+            },
+            "ssim": {
+              "mean": 0.8170522105049441,
+              "sample_std": 0.0,
+              "values": [
+                0.8170522105049443,
+                0.8170522105049443,
+                0.8170522105049443
+              ]
+            },
+            "lpips": {
+              "mean": 0.4294873033020947,
+              "sample_std": 0.0,
+              "values": [
+                0.4294873033020947,
+                0.4294873033020947,
+                0.4294873033020947
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "7:1 重建",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.3774042137805949,
+              "sample_std": 0.0,
+              "values": [
+                0.3774042137805949,
+                0.3774042137805949,
+                0.3774042137805949
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 3.6888421037228887,
+              "sample_std": 0.0,
+              "values": [
+                3.6888421037228882,
+                3.6888421037228882,
+                3.6888421037228882
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.980698829263485,
+              "sample_std": 0.0,
+              "values": [
+                16.980698829263485,
+                16.980698829263485,
+                16.980698829263485
+              ]
+            },
+            "ssim": {
+              "mean": 0.8260722434198534,
+              "sample_std": 0.0,
+              "values": [
+                0.8260722434198534,
+                0.8260722434198534,
+                0.8260722434198534
+              ]
+            },
+            "lpips": {
+              "mean": 0.41747888600504074,
+              "sample_std": 0.0,
+              "values": [
+                0.41747888600504074,
+                0.41747888600504074,
+                0.41747888600504074
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "7:1 重建",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.37703998075911027,
+              "sample_std": 0.0010358601272945716,
+              "values": [
+                0.37758315053603536,
+                0.37584550305542214,
+                0.3776912886858734
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 3.690974951711354,
+              "sample_std": 0.007877051909328829,
+              "values": [
+                3.692159668909045,
+                3.6981925406573635,
+                3.682572645567654
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.99917371161844,
+              "sample_std": 0.0039017309762748973,
+              "values": [
+                16.999290727101442,
+                16.99521478913697,
+                17.00301561861691
+              ]
+            },
+            "ssim": {
+              "mean": 0.8261722141021007,
+              "sample_std": 6.424721585412542e-05,
+              "values": [
+                0.8261742761006227,
+                0.8261069607090306,
+                0.8262354054966489
+              ]
+            },
+            "lpips": {
+              "mean": 0.41766825653948225,
+              "sample_std": 7.945457670329642e-05,
+              "values": [
+                0.41775961220264435,
+                0.41761525498854146,
+                0.41762990242726095
+              ]
+            }
+          }
+        }
+      },
+      "future_80to20": {
+        "pbd": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "80/20 未来预测",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 4.115153457969427,
+              "sample_std": 0.0,
+              "values": [
+                4.115153457969427,
+                4.115153457969427,
+                4.115153457969427
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 37.594972475654004,
+              "sample_std": 0.0,
+              "values": [
+                37.594972475654004,
+                37.594972475654004,
+                37.594972475654004
+              ]
+            },
+            "psnr_db": {
+              "mean": 15.475863402813586,
+              "sample_std": 0.0,
+              "values": [
+                15.475863402813586,
+                15.475863402813586,
+                15.475863402813586
+              ]
+            },
+            "ssim": {
+              "mean": 0.7996148606141408,
+              "sample_std": 0.0,
+              "values": [
+                0.7996148606141408,
+                0.7996148606141408,
+                0.7996148606141408
+              ]
+            },
+            "lpips": {
+              "mean": 0.4536762326955796,
+              "sample_std": 0.0,
+              "values": [
+                0.45367623269557955,
+                0.45367623269557955,
+                0.45367623269557955
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "80/20 未来预测",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.0824869750366715,
+              "sample_std": 0.0,
+              "values": [
+                1.0824869750366715,
+                1.0824869750366715,
+                1.0824869750366715
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 11.071754805848604,
+              "sample_std": 0.0,
+              "values": [
+                11.071754805848602,
+                11.071754805848602,
+                11.071754805848602
+              ]
+            },
+            "psnr_db": {
+              "mean": 17.01547929493257,
+              "sample_std": 0.0,
+              "values": [
+                17.01547929493257,
+                17.01547929493257,
+                17.01547929493257
+              ]
+            },
+            "ssim": {
+              "mean": 0.8266377280155818,
+              "sample_std": 0.0,
+              "values": [
+                0.8266377280155818,
+                0.8266377280155818,
+                0.8266377280155818
+              ]
+            },
+            "lpips": {
+              "mean": 0.41994159817695625,
+              "sample_std": 0.0,
+              "values": [
+                0.4199415981769562,
+                0.4199415981769562,
+                0.4199415981769562
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "80/20 未来预测",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.0749631955722752,
+              "sample_std": 0.010842011434771669,
+              "values": [
+                1.0731308642748951,
+                1.065154104419182,
+                1.0866046180227487
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 10.679418894790038,
+              "sample_std": 0.03534727140063915,
+              "values": [
+                10.681610969188213,
+                10.64302660137524,
+                10.713619113806661
+              ]
+            },
+            "psnr_db": {
+              "mean": 17.001789332960048,
+              "sample_std": 0.014370482768885409,
+              "values": [
+                16.989973576344987,
+                17.017786893954415,
+                16.99760752858074
+              ]
+            },
+            "ssim": {
+              "mean": 0.826500452723768,
+              "sample_std": 0.00033037810064776333,
+              "values": [
+                0.8265211164951325,
+                0.8268200139204661,
+                0.8261602277557055
+              ]
+            },
+            "lpips": {
+              "mean": 0.42024451080295777,
+              "sample_std": 0.00029822979859581573,
+              "values": [
+                0.4201794654130936,
+                0.41998417203625044,
+                0.42056989495952923
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sim03": {
+      "reconstruction_7to1": {
+        "pbd": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "7:1 重建",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 2.259609019561645,
+              "sample_std": 0.0,
+              "values": [
+                2.259609019561645,
+                2.259609019561645,
+                2.259609019561645
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 19.89038110184501,
+              "sample_std": 0.0,
+              "values": [
+                19.89038110184501,
+                19.89038110184501,
+                19.89038110184501
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.07863740637902,
+              "sample_std": 0.0,
+              "values": [
+                19.07863740637902,
+                19.07863740637902,
+                19.07863740637902
+              ]
+            },
+            "ssim": {
+              "mean": 0.7766549011071523,
+              "sample_std": 0.0,
+              "values": [
+                0.7766549011071523,
+                0.7766549011071523,
+                0.7766549011071523
+              ]
+            },
+            "lpips": {
+              "mean": 0.5487541476885478,
+              "sample_std": 0.0,
+              "values": [
+                0.5487541476885478,
+                0.5487541476885478,
+                0.5487541476885478
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "7:1 重建",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.44781566396219813,
+              "sample_std": 0.0,
+              "values": [
+                0.44781566396219813,
+                0.44781566396219813,
+                0.44781566396219813
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.492845898121596,
+              "sample_std": 0.0,
+              "values": [
+                4.492845898121596,
+                4.492845898121596,
+                4.492845898121596
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.72671789253938,
+              "sample_std": 0.0,
+              "values": [
+                21.72671789253938,
+                21.72671789253938,
+                21.72671789253938
+              ]
+            },
+            "ssim": {
+              "mean": 0.7920626646942562,
+              "sample_std": 0.0,
+              "values": [
+                0.7920626646942562,
+                0.7920626646942562,
+                0.7920626646942562
+              ]
+            },
+            "lpips": {
+              "mean": 0.539495645960172,
+              "sample_std": 0.0,
+              "values": [
+                0.539495645960172,
+                0.539495645960172,
+                0.539495645960172
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "7:1 重建",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.44273632860169504,
+              "sample_std": 0.0043371096637569734,
+              "values": [
+                0.44385468698911373,
+                0.43794956426710185,
+                0.44640473454886953
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.358618577320433,
+              "sample_std": 0.07014945892251964,
+              "values": [
+                4.425155219199523,
+                4.285342718932145,
+                4.365357793829632
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.828588917029048,
+              "sample_std": 0.010450057717222627,
+              "values": [
+                21.83175795919381,
+                21.837087628816725,
+                21.816921163076614
+              ]
+            },
+            "ssim": {
+              "mean": 0.7933116762726394,
+              "sample_std": 0.000626526187381455,
+              "values": [
+                0.7939631627665625,
+                0.7927135195997026,
+                0.7932583464516534
+              ]
+            },
+            "lpips": {
+              "mean": 0.5365751839346355,
+              "sample_std": 0.0014545774427698601,
+              "values": [
+                0.5351873152785831,
+                0.5380883624156316,
+                0.536449874109692
+              ]
+            }
+          }
+        }
+      },
+      "future_80to20": {
+        "pbd": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "80/20 未来预测",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 5.955646796630592,
+              "sample_std": 0.0,
+              "values": [
+                5.955646796630592,
+                5.955646796630592,
+                5.955646796630592
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 53.95728588546583,
+              "sample_std": 0.0,
+              "values": [
+                53.95728588546583,
+                53.95728588546583,
+                53.95728588546583
+              ]
+            },
+            "psnr_db": {
+              "mean": 14.343093307075703,
+              "sample_std": 0.0,
+              "values": [
+                14.343093307075703,
+                14.343093307075703,
+                14.343093307075703
+              ]
+            },
+            "ssim": {
+              "mean": 0.7461872986621327,
+              "sample_std": 0.0,
+              "values": [
+                0.7461872986621327,
+                0.7461872986621327,
+                0.7461872986621327
+              ]
+            },
+            "lpips": {
+              "mean": 0.5653235560490025,
+              "sample_std": 0.0,
+              "values": [
+                0.5653235560490025,
+                0.5653235560490025,
+                0.5653235560490025
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "80/20 未来预测",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.7162020874274176,
+              "sample_std": 0.0,
+              "values": [
+                0.7162020874274175,
+                0.7162020874274175,
+                0.7162020874274175
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 6.263795760505986,
+              "sample_std": 0.0,
+              "values": [
+                6.263795760505986,
+                6.263795760505986,
+                6.263795760505986
+              ]
+            },
+            "psnr_db": {
+              "mean": 22.172148894360166,
+              "sample_std": 0.0,
+              "values": [
+                22.172148894360166,
+                22.172148894360166,
+                22.172148894360166
+              ]
+            },
+            "ssim": {
+              "mean": 0.7927013097537888,
+              "sample_std": 0.0,
+              "values": [
+                0.7927013097537888,
+                0.7927013097537888,
+                0.7927013097537888
+              ]
+            },
+            "lpips": {
+              "mean": 0.5385169064005216,
+              "sample_std": 0.0,
+              "values": [
+                0.5385169064005216,
+                0.5385169064005216,
+                0.5385169064005216
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "80/20 未来预测",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.0382577794941572,
+              "sample_std": 0.25986997899676206,
+              "values": [
+                1.0090562778225798,
+                1.3114950710755862,
+                0.7942219895843058
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 7.844114490336035,
+              "sample_std": 1.2769511408216165,
+              "values": [
+                7.442463433639542,
+                9.273602518126895,
+                6.816277519241667
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.200765413467735,
+              "sample_std": 1.2093668276355263,
+              "values": [
+                20.62370912974955,
+                20.38801127641227,
+                22.59057583424138
+              ]
+            },
+            "ssim": {
+              "mean": 0.797198396038126,
+              "sample_std": 0.004988421203902057,
+              "values": [
+                0.791561065448655,
+                0.7989925009508928,
+                0.8010416217148304
+              ]
+            },
+            "lpips": {
+              "mean": 0.5255714465898497,
+              "sample_std": 0.008395934213038407,
+              "values": [
+                0.5343029548724493,
+                0.5175570922179354,
+                0.5248542926791642
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

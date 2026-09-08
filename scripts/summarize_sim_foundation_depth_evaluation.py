@@ -41,6 +41,11 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--tracker-name",
+        default="CoTracker",
+        help="写入协议说明的RGB跟踪器名称。",
+    )
+    parser.add_argument(
         "--method-c",
         default="pbd_cotracker_foundation_depth_global_distribution",
     )
@@ -112,7 +117,8 @@ def main() -> None:
                 "fixed non-grasp nodes; never optimizer inputs"
             ),
             "optimizer_tracks": (
-                f"{observation_report['requested_track_count']} fixed CoTracker "
+                f"{observation_report['requested_track_count']} fixed "
+                f"{args.tracker_name} "
                 "RGB material tracks"
             ),
             "depth": "FoundationStereo estimated from stereo RGB; simulator GT depth forbidden",
@@ -152,7 +158,8 @@ def main() -> None:
         "",
         "- 深度由左右RGB经FoundationStereo估计，仿真GT深度不进入观测或优化。",
         (
-            f"- 优化使用{observation_report['requested_track_count']}条CoTracker轨迹"
+            f"- 优化使用{observation_report['requested_track_count']}条"
+            f"{args.tracker_name}轨迹"
             f"（有效绑定{observation_report['bound_track_count']}条）；最终指标只使用"
             f"{results['reconstruction_7to1'][methods[0]]['evaluation_points']}个固定非夹持点。"
         ),

@@ -12,8 +12,10 @@ BOUNDARY="${SIM_GRASP_BOUNDARY:-$DATASET/task_inputs/known_grasp_region_boundary
 FRAME_COUNT="$($PYTHON -c 'import json,sys; print(int(json.load(open(sys.argv[1]))["frames"]))' "$DATASET/episode.json")"
 FUTURE_START=$((FRAME_COUNT * 4 / 5))
 METHOD_A="pbd"
-METHOD_B="pbd_cotracker_foundation_depth"
+METHOD_B="${SIM_METHOD_B:-pbd_cotracker_foundation_depth}"
 METHOD_C="${SIM_METHOD_C:-pbd_cotracker_foundation_depth_hierarchical_stiffness_h1_safe}"
+B_LABEL="${SIM_B_LABEL:-B：PBD + CoTracker轨迹校正 + FoundationStereo RGB深度}"
+TRACKER_NAME="${SIM_TRACKER_NAME:-CoTracker}"
 STIFFNESS_UPDATE_MODE="${SIM_STIFFNESS_UPDATE_MODE:-differentiable_hierarchical_relative}"
 STIFFNESS_AUTOGRAD_UNROLL_STEPS="${SIM_STIFFNESS_AUTOGRAD_UNROLL_STEPS:-5}"
 STIFFNESS_AUTOGRAD_REGION_COUNT="${SIM_STIFFNESS_AUTOGRAD_REGION_COUNT:-6}"
@@ -152,16 +154,32 @@ run_capability() {
     run_method "$gpu_id" "$capability" "$METHOD_C"
 }
 
-set +e
-run_capability 0 reconstruction_7to1 >"$OUTPUT_ROOT/logs/reconstruction_gpu0.log" 2>&1 &
-reconstruction_pid=$!
-run_capability 1 future_80to20 >"$OUTPUT_ROOT/logs/future_gpu1.log" 2>&1 &
-future_pid=$!
-wait "$reconstruction_pid"
-reconstruction_status=$?
-wait "$future_pid"
-future_status=$?
-set -e
+if [[ "${SIM_RUN_CAPABILITIES_SERIAL:-0}" == "1" ]]; then
+    gpu_id="${SIM_GPU_ID:-0}"
+    set +e
+    run_capability "$gpu_id" reconstruction_7to1 \
+        >"$OUTPUT_ROOT/logs/reconstruction_gpu${gpu_id}.log" 2>&1
+    reconstruction_status=$?
+    if [[ "$reconstruction_status" -eq 0 ]]; then
+        run_capability "$gpu_id" future_80to20 \
+            >"$OUTPUT_ROOT/logs/future_gpu${gpu_id}.log" 2>&1
+        future_status=$?
+    else
+        future_status=125
+    fi
+    set -e
+else
+    set +e
+    run_capability 0 reconstruction_7to1 >"$OUTPUT_ROOT/logs/reconstruction_gpu0.log" 2>&1 &
+    reconstruction_pid=$!
+    run_capability 1 future_80to20 >"$OUTPUT_ROOT/logs/future_gpu1.log" 2>&1 &
+    future_pid=$!
+    wait "$reconstruction_pid"
+    reconstruction_status=$?
+    wait "$future_pid"
+    future_status=$?
+    set -e
+fi
 printf 'reconstruction_status=%s\nfuture_status=%s\n' \
     "$reconstruction_status" "$future_status" >"$OUTPUT_ROOT/status.txt"
 if [[ "$reconstruction_status" -ne 0 || "$future_status" -ne 0 ]]; then
@@ -178,7 +196,8 @@ fi
     --depth-summary "$DEPTH_ROOT/depth_generation_summary.json" \
     --observation-report "$ASSET_ROOT/report.json" \
     --method-b "$METHOD_B" \
-    --label-b "B：PBD + CoTracker轨迹校正 + FoundationStereo RGB深度" \
+    --label-b "$B_LABEL" \
+    --tracker-name "$TRACKER_NAME" \
     --method-c "$METHOD_C" \
     --label-c "$C_LABEL"
 find "$OUTPUT_ROOT" -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum \
