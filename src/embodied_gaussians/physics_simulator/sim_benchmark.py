@@ -457,10 +457,14 @@ class SimBenchmarkArtifactWriter:
                 )
 
     def _is_holdout_frame(self, frame_index: int) -> bool:
-        return bool(
-            self.holdout_stride is not None
-            and int(frame_index) % self.holdout_stride == self.holdout_offset
-        )
+        frame = int(frame_index)
+        if self.holdout_stride is None:
+            return False
+        if self.open_loop_start_frame is not None and frame >= int(
+            self.open_loop_start_frame
+        ):
+            return False
+        return frame % self.holdout_stride == self.holdout_offset
 
     def _should_render_frame(self, frame_index: int) -> bool:
         if not self.render_images:
@@ -472,6 +476,11 @@ class SimBenchmarkArtifactWriter:
         if self.render_frame_mode == "future":
             assert self.open_loop_start_frame is not None
             return int(frame_index) >= int(self.open_loop_start_frame)
+        if self.render_frame_mode == "holdout_future":
+            assert self.open_loop_start_frame is not None
+            return self._is_holdout_frame(frame_index) or int(
+                frame_index
+            ) >= int(self.open_loop_start_frame)
         raise ValueError(f"未知渲染帧模式：{self.render_frame_mode}")
 
     @staticmethod

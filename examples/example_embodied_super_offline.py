@@ -981,11 +981,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--evaluation-render-frame-mode",
-        choices=("all", "holdout", "future"),
+        choices=("all", "holdout", "future", "holdout_future"),
         default="all",
         help=(
             "保存组织渲染的帧集合：all 全部、holdout 仅 7:1 测试帧、"
-            "future 仅开放环分界及之后。轨迹状态仍逐帧完整导出。"
+            "future 仅开放环分界及之后、holdout_future 保存开放环前的"
+            "7:1测试帧与开放环后的全部帧。轨迹状态仍逐帧完整导出。"
         ),
     )
     parser.add_argument(
@@ -1986,6 +1987,11 @@ class SuperPlaybackControls:
             if frame_index is None
             else int(frame_index)
         )
+        cutoff = self._evaluation_open_loop_start_frame
+        if cutoff is not None and frame >= cutoff:
+            # 联合协议中，7:1 留出只属于前80%的重建阶段；后20%的
+            # 每一帧都是开放环未来预测帧，不能再被标成重建留出帧。
+            return False
         return frame % stride == self._evaluation_holdout_offset
 
     def _enter_evaluation_holdout_if_needed(self) -> None:
@@ -7092,15 +7098,17 @@ async def run_headless_trajectory_evaluation(
             raise ValueError("Reconstruction holdout stride must be at least 2")
         if not 0 <= holdout_offset < holdout_stride:
             raise ValueError("Reconstruction holdout offset is outside its stride")
-        if open_loop_start_frame is not None:
-            raise ValueError(
-                "7:1 reconstruction holdout and 80/20 future split are "
-                "separate capabilities and cannot share one run"
-            )
     if render_frame_mode == "holdout" and holdout_stride is None:
         raise ValueError("Holdout-only rendering requires a holdout stride")
     if render_frame_mode == "future" and open_loop_start_frame is None:
         raise ValueError("Future-only rendering requires an open-loop split")
+    if render_frame_mode == "holdout_future" and (
+        holdout_stride is None or open_loop_start_frame is None
+    ):
+        raise ValueError(
+            "Holdout+future rendering requires both a holdout stride and "
+            "an open-loop split"
+        )
     playback_controls._evaluation_open_loop_start_frame = open_loop_start_frame
     playback_controls._evaluation_open_loop_entered = False
     playback_controls._evaluation_holdout_stride = holdout_stride

@@ -1,0 +1,1732 @@
+{
+  "schema": "fixedsuperbest.three_datasets_unified_protocol_three_repeats.v1",
+  "protocol": {
+    "tracker": "AllTracker official dense RGB flow",
+    "depth": "FoundationStereo estimated independently from each dataset stereo RGB",
+    "repeat_count_per_dataset_method": 3,
+    "single_rollout_per_repeat_and_method": true,
+    "reconstruction": "first 80%, 7:1 held-out frames (stride=8, offset=7)",
+    "future_prediction": "last 20% open loop without RGB or stiffness updates",
+    "evaluation_points": "30 fixed non-grasp nodes per dataset",
+    "no_best_run_selection": true,
+    "sim03_repeat_01_BC_reused": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2"
+  },
+  "observation_assets": {
+    "sim01": {
+      "path": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1/assets/sim01/flow_depth_assets/report.json",
+      "requested_track_count": 188,
+      "bound_track_count": 188
+    },
+    "sim02": {
+      "path": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1/assets/sim02/flow_depth_assets/report.json",
+      "requested_track_count": 175,
+      "bound_track_count": 175
+    },
+    "sim03": {
+      "path": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_medium_h3w4_complete_v1/assets/sim03/flow_depth_assets/report.json",
+      "requested_track_count": 203,
+      "bound_track_count": 200
+    }
+  },
+  "sources": {
+    "sim01": {
+      "repeat_01": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01"
+      },
+      "repeat_02": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01"
+      },
+      "repeat_03": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01"
+      }
+    },
+    "sim02": {
+      "repeat_01": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02"
+      },
+      "repeat_02": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02"
+      },
+      "repeat_03": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02"
+      }
+    },
+    "sim03": {
+      "repeat_01": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2"
+      },
+      "repeat_02": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03"
+      },
+      "repeat_03": {
+        "pbd": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03",
+        "pbd_alltracker_foundation_depth": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03",
+        "pbd_alltracker_foundation_depth_global_only_h3w4": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03"
+      }
+    }
+  },
+  "raw": {
+    "sim01": {
+      "repeat_01": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.9201387887050159,
+            "2d_mean_px": 9.292956012511176,
+            "psnr_db": 19.681305455061366,
+            "ssim": 0.8434695700804392,
+            "lpips": 0.4145703504482905,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 4.281365833982515,
+            "2d_mean_px": 42.832544779797885,
+            "psnr_db": 16.456400400147523,
+            "ssim": 0.8160135065515836,
+            "lpips": 0.4512022731204828,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.4033757227549965,
+            "2d_mean_px": 4.008482181058001,
+            "psnr_db": 20.060426978542473,
+            "ssim": 0.8466852734486262,
+            "lpips": 0.40764207144578296,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.3195871292413761,
+            "2d_mean_px": 12.551373859772545,
+            "psnr_db": 19.201193521400796,
+            "ssim": 0.8416925936937332,
+            "lpips": 0.4163882407049338,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.40237799709100525,
+            "2d_mean_px": 4.005432639773946,
+            "psnr_db": 20.041441378315128,
+            "ssim": 0.8464784473180771,
+            "lpips": 0.40779261936744055,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.334712403909685,
+            "2d_mean_px": 12.61631981240797,
+            "psnr_db": 19.05136969592298,
+            "ssim": 0.8406537875533104,
+            "lpips": 0.41631425147255263,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim01/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      },
+      "repeat_02": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.9201387887050159,
+            "2d_mean_px": 9.292956012511176,
+            "psnr_db": 19.681305455061366,
+            "ssim": 0.8434695700804392,
+            "lpips": 0.4145703504482905,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 4.281365833982515,
+            "2d_mean_px": 42.832544779797885,
+            "psnr_db": 16.456400400147523,
+            "ssim": 0.8160135065515836,
+            "lpips": 0.4512022731204828,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.4033757227549965,
+            "2d_mean_px": 4.008482181058001,
+            "psnr_db": 20.060426978542473,
+            "ssim": 0.8466852734486262,
+            "lpips": 0.40764207144578296,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.3195871292413761,
+            "2d_mean_px": 12.551373859772545,
+            "psnr_db": 19.201193521400796,
+            "ssim": 0.8416925936937332,
+            "lpips": 0.4163882407049338,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.40237799709100525,
+            "2d_mean_px": 4.005432639773946,
+            "psnr_db": 20.041441378315128,
+            "ssim": 0.8464784473180771,
+            "lpips": 0.40779261936744055,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.334712403909685,
+            "2d_mean_px": 12.61631981240797,
+            "psnr_db": 19.05136969592298,
+            "ssim": 0.8406537875533104,
+            "lpips": 0.41631425147255263,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim01/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      },
+      "repeat_03": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.9201387887050159,
+            "2d_mean_px": 9.292956012511176,
+            "psnr_db": 19.681305455061366,
+            "ssim": 0.8434695700804392,
+            "lpips": 0.4145703504482905,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 4.281365833982515,
+            "2d_mean_px": 42.832544779797885,
+            "psnr_db": 16.456400400147523,
+            "ssim": 0.8160135065515836,
+            "lpips": 0.4512022731204828,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.4033757227549965,
+            "2d_mean_px": 4.008482181058001,
+            "psnr_db": 20.060426978542473,
+            "ssim": 0.8466852734486262,
+            "lpips": 0.40764207144578296,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.3195871292413761,
+            "2d_mean_px": 12.551373859772545,
+            "psnr_db": 19.201193521400796,
+            "ssim": 0.8416925936937332,
+            "lpips": 0.4163882407049338,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.40237046188495795,
+            "2d_mean_px": 4.003681799046128,
+            "psnr_db": 20.040993105538515,
+            "ssim": 0.8464739869038264,
+            "lpips": 0.4078163410226504,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.3478877022660325,
+            "2d_mean_px": 12.682722742664247,
+            "psnr_db": 18.990996890377254,
+            "ssim": 0.8400088290373484,
+            "lpips": 0.4169636145234108,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim01/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      }
+    },
+    "sim02": {
+      "repeat_01": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.8041819249592663,
+            "2d_mean_px": 7.807961517057711,
+            "psnr_db": 16.649468101733095,
+            "ssim": 0.821166381239891,
+            "lpips": 0.4238701303799947,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 4.115153457969427,
+            "2d_mean_px": 37.594972475654004,
+            "psnr_db": 15.475863402813586,
+            "ssim": 0.7996148606141408,
+            "lpips": 0.45367623269557955,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.2654193135458627,
+            "2d_mean_px": 2.718120159005907,
+            "psnr_db": 16.937525233959953,
+            "ssim": 0.8256930708885193,
+            "lpips": 0.41792824417352675,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.2351688849189992,
+            "2d_mean_px": 12.23009083061462,
+            "psnr_db": 16.75924414820294,
+            "ssim": 0.82317759146293,
+            "lpips": 0.4241272422174613,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.2640102693900796,
+            "2d_mean_px": 2.6861643514197713,
+            "psnr_db": 16.937854019531198,
+            "ssim": 0.8256186664104461,
+            "lpips": 0.4179716532429059,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.2732134000462894,
+            "2d_mean_px": 12.537341197763268,
+            "psnr_db": 16.790105801234184,
+            "ssim": 0.823804231484731,
+            "lpips": 0.4253498556713263,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim02/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      },
+      "repeat_02": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.8041819249592663,
+            "2d_mean_px": 7.807961517057711,
+            "psnr_db": 16.649468101733095,
+            "ssim": 0.821166381239891,
+            "lpips": 0.4238701303799947,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 4.115153457969427,
+            "2d_mean_px": 37.594972475654004,
+            "psnr_db": 15.475863402813586,
+            "ssim": 0.7996148606141408,
+            "lpips": 0.45367623269557955,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.2654193135458627,
+            "2d_mean_px": 2.718120159005907,
+            "psnr_db": 16.937525233959953,
+            "ssim": 0.8256930708885193,
+            "lpips": 0.41792824417352675,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.2351688849189992,
+            "2d_mean_px": 12.23009083061462,
+            "psnr_db": 16.75924414820294,
+            "ssim": 0.82317759146293,
+            "lpips": 0.4241272422174613,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.2636070149290188,
+            "2d_mean_px": 2.688390420092799,
+            "psnr_db": 16.937031152723755,
+            "ssim": 0.8256277163823446,
+            "lpips": 0.41795431127150856,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.233109254179807,
+            "2d_mean_px": 12.168361422411994,
+            "psnr_db": 16.851056032525932,
+            "ssim": 0.8249083995819092,
+            "lpips": 0.42318473507960636,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim02/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      },
+      "repeat_03": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.8041819249592663,
+            "2d_mean_px": 7.807961517057711,
+            "psnr_db": 16.649468101733095,
+            "ssim": 0.821166381239891,
+            "lpips": 0.4238701303799947,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 4.115153457969427,
+            "2d_mean_px": 37.594972475654004,
+            "psnr_db": 15.475863402813586,
+            "ssim": 0.7996148606141408,
+            "lpips": 0.45367623269557955,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.2654193135458627,
+            "2d_mean_px": 2.718120159005907,
+            "psnr_db": 16.937525233959953,
+            "ssim": 0.8256930708885193,
+            "lpips": 0.41792824417352675,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.2351688849189992,
+            "2d_mean_px": 12.23009083061462,
+            "psnr_db": 16.75924414820294,
+            "ssim": 0.82317759146293,
+            "lpips": 0.4241272422174613,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 0.2636729710280229,
+            "2d_mean_px": 2.6889446325972415,
+            "psnr_db": 16.93685213974683,
+            "ssim": 0.8256281822919845,
+            "lpips": 0.41796182145675026,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 1.2544918502195894,
+            "2d_mean_px": 12.623103673660866,
+            "psnr_db": 16.804390491375518,
+            "ssim": 0.8243077198664347,
+            "lpips": 0.4233085229992867,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim02/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      }
+    },
+    "sim03": {
+      "repeat_01": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 1.3367760286268162,
+            "2d_mean_px": 11.202748362655807,
+            "psnr_db": 20.26599916144555,
+            "ssim": 0.7843492238057984,
+            "lpips": 0.5444438109795252,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 5.955646796630592,
+            "2d_mean_px": 53.95728588546583,
+            "psnr_db": 14.343093307075703,
+            "ssim": 0.7461872986621327,
+            "lpips": 0.5653235560490025,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_01/sim03/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 0.44907972555089753,
+            "2d_mean_px": 4.525087111474325,
+            "psnr_db": 21.615673022907302,
+            "ssim": 0.7923900841010941,
+            "lpips": 0.5380469887620873,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 0.874292903565927,
+            "2d_mean_px": 7.021571635638393,
+            "psnr_db": 21.564455046342818,
+            "ssim": 0.7919706321424909,
+            "lpips": 0.5408610386980904,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 0.44555396302796535,
+            "2d_mean_px": 4.406532316144104,
+            "psnr_db": 21.69480048346369,
+            "ssim": 0.7933288166920344,
+            "lpips": 0.5359361262785064,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 0.6893161209594231,
+            "2d_mean_px": 5.871302307960067,
+            "psnr_db": 22.065432521127793,
+            "ssim": 0.790583200338814,
+            "lpips": 0.5453833527863026,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim03_alltracker_unified_80_20_7to1_once_v2/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      },
+      "repeat_02": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 1.3367760286268162,
+            "2d_mean_px": 11.202748362655807,
+            "psnr_db": 20.26599916144555,
+            "ssim": 0.7843492238057984,
+            "lpips": 0.5444438109795252,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 5.955646796630592,
+            "2d_mean_px": 53.95728588546583,
+            "psnr_db": 14.343093307075703,
+            "ssim": 0.7461872986621327,
+            "lpips": 0.5653235560490025,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 0.44907972555089753,
+            "2d_mean_px": 4.525087111474325,
+            "psnr_db": 21.615673022907302,
+            "ssim": 0.7923900841010941,
+            "lpips": 0.5380469887620873,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 0.874292903565927,
+            "2d_mean_px": 7.021571635638393,
+            "psnr_db": 21.564455046342818,
+            "ssim": 0.7919706321424909,
+            "lpips": 0.5408610386980904,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 0.4440177721798372,
+            "2d_mean_px": 4.362732792682381,
+            "psnr_db": 21.730518390442562,
+            "ssim": 0.7935647384987937,
+            "lpips": 0.5357308743728532,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 0.8784918238798464,
+            "2d_mean_px": 6.4142579751172155,
+            "psnr_db": 21.5824523313782,
+            "ssim": 0.796152794526683,
+            "lpips": 0.5289311500059234,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_02/sim03/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      },
+      "repeat_03": {
+        "pbd": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 1.3367760286268162,
+            "2d_mean_px": 11.202748362655807,
+            "psnr_db": 20.26599916144555,
+            "ssim": 0.7843492238057984,
+            "lpips": 0.5444438109795252,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/methods/pbd/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 5.955646796630592,
+            "2d_mean_px": 53.95728588546583,
+            "psnr_db": 14.343093307075703,
+            "ssim": 0.7461872986621327,
+            "lpips": 0.5653235560490025,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/future_80to20/pbd/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/future_80to20/pbd/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/methods/pbd/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 0.44907972555089753,
+            "2d_mean_px": 4.525087111474325,
+            "psnr_db": 21.615673022907302,
+            "ssim": 0.7923900841010941,
+            "lpips": 0.5380469887620873,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 0.874292903565927,
+            "2d_mean_px": 7.021571635638393,
+            "psnr_db": 21.564455046342818,
+            "ssim": 0.7919706321424909,
+            "lpips": 0.5408610386980904,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/methods/pbd_alltracker_foundation_depth/artifacts/predicted_trajectories.npz"
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 0.43877038887819286,
+            "2d_mean_px": 4.33634737680779,
+            "psnr_db": 21.747198355181595,
+            "ssim": 0.7936031942566236,
+            "lpips": 0.5355371754202578,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 0.7441440242987314,
+            "2d_mean_px": 5.9522139339820965,
+            "psnr_db": 21.62141005435215,
+            "ssim": 0.7900921338134341,
+            "lpips": 0.5410997296373049,
+            "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/trajectory_metrics.json",
+            "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/metrics/future_80to20/pbd_alltracker_foundation_depth_global_only_h3w4/render_metrics.json",
+            "rollout": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/sim_three_datasets_alltracker_unified_protocol_three_repeats_v1/runs/repeat_03/sim03/methods/pbd_alltracker_foundation_depth_global_only_h3w4/artifacts/predicted_trajectories.npz"
+          }
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "sim01": {
+      "reconstruction_7to1": {
+        "pbd": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.920138788705016,
+              "sample_std": 0.0,
+              "values": [
+                0.9201387887050159,
+                0.9201387887050159,
+                0.9201387887050159
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 9.292956012511176,
+              "sample_std": 0.0,
+              "values": [
+                9.292956012511176,
+                9.292956012511176,
+                9.292956012511176
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.681305455061366,
+              "sample_std": 0.0,
+              "values": [
+                19.681305455061366,
+                19.681305455061366,
+                19.681305455061366
+              ]
+            },
+            "ssim": {
+              "mean": 0.8434695700804392,
+              "sample_std": 0.0,
+              "values": [
+                0.8434695700804392,
+                0.8434695700804392,
+                0.8434695700804392
+              ]
+            },
+            "lpips": {
+              "mean": 0.4145703504482905,
+              "sample_std": 0.0,
+              "values": [
+                0.4145703504482905,
+                0.4145703504482905,
+                0.4145703504482905
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.4033757227549965,
+              "sample_std": 0.0,
+              "values": [
+                0.4033757227549965,
+                0.4033757227549965,
+                0.4033757227549965
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.008482181058001,
+              "sample_std": 0.0,
+              "values": [
+                4.008482181058001,
+                4.008482181058001,
+                4.008482181058001
+              ]
+            },
+            "psnr_db": {
+              "mean": 20.060426978542473,
+              "sample_std": 0.0,
+              "values": [
+                20.060426978542473,
+                20.060426978542473,
+                20.060426978542473
+              ]
+            },
+            "ssim": {
+              "mean": 0.8466852734486262,
+              "sample_std": 0.0,
+              "values": [
+                0.8466852734486262,
+                0.8466852734486262,
+                0.8466852734486262
+              ]
+            },
+            "lpips": {
+              "mean": 0.40764207144578296,
+              "sample_std": 0.0,
+              "values": [
+                0.40764207144578296,
+                0.40764207144578296,
+                0.40764207144578296
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.4023754853556561,
+              "sample_std": 4.350453239804081e-06,
+              "values": [
+                0.40237799709100525,
+                0.40237799709100525,
+                0.40237046188495795
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.0048490261980065,
+              "sample_std": 0.0010108483655135963,
+              "values": [
+                4.005432639773946,
+                4.005432639773946,
+                4.003681799046128
+              ]
+            },
+            "psnr_db": {
+              "mean": 20.04129195405626,
+              "sample_std": 0.0002588104082475575,
+              "values": [
+                20.041441378315128,
+                20.041441378315128,
+                20.040993105538515
+              ]
+            },
+            "ssim": {
+              "mean": 0.8464769605133268,
+              "sample_std": 2.5752213683554806e-06,
+              "values": [
+                0.8464784473180771,
+                0.8464784473180771,
+                0.8464739869038264
+              ]
+            },
+            "lpips": {
+              "mean": 0.4078005265858438,
+              "sample_std": 1.3695704021037841e-05,
+              "values": [
+                0.40779261936744055,
+                0.40779261936744055,
+                0.4078163410226504
+              ]
+            }
+          }
+        }
+      },
+      "future_80to20": {
+        "pbd": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 4.281365833982515,
+              "sample_std": 0.0,
+              "values": [
+                4.281365833982515,
+                4.281365833982515,
+                4.281365833982515
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 42.83254477979788,
+              "sample_std": 0.0,
+              "values": [
+                42.832544779797885,
+                42.832544779797885,
+                42.832544779797885
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.456400400147523,
+              "sample_std": 0.0,
+              "values": [
+                16.456400400147523,
+                16.456400400147523,
+                16.456400400147523
+              ]
+            },
+            "ssim": {
+              "mean": 0.8160135065515836,
+              "sample_std": 0.0,
+              "values": [
+                0.8160135065515836,
+                0.8160135065515836,
+                0.8160135065515836
+              ]
+            },
+            "lpips": {
+              "mean": 0.4512022731204828,
+              "sample_std": 0.0,
+              "values": [
+                0.4512022731204828,
+                0.4512022731204828,
+                0.4512022731204828
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.3195871292413761,
+              "sample_std": 0.0,
+              "values": [
+                1.3195871292413761,
+                1.3195871292413761,
+                1.3195871292413761
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 12.551373859772545,
+              "sample_std": 0.0,
+              "values": [
+                12.551373859772545,
+                12.551373859772545,
+                12.551373859772545
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.201193521400796,
+              "sample_std": 0.0,
+              "values": [
+                19.201193521400796,
+                19.201193521400796,
+                19.201193521400796
+              ]
+            },
+            "ssim": {
+              "mean": 0.8416925936937331,
+              "sample_std": 0.0,
+              "values": [
+                0.8416925936937332,
+                0.8416925936937332,
+                0.8416925936937332
+              ]
+            },
+            "lpips": {
+              "mean": 0.4163882407049338,
+              "sample_std": 0.0,
+              "values": [
+                0.4163882407049338,
+                0.4163882407049338,
+                0.4163882407049338
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-01 Planar-X-Pull",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.3391041700284674,
+              "sample_std": 0.007606762052690901,
+              "values": [
+                1.334712403909685,
+                1.334712403909685,
+                1.3478877022660325
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 12.638454122493394,
+              "sample_std": 0.03833774965844171,
+              "values": [
+                12.61631981240797,
+                12.61631981240797,
+                12.682722742664247
+              ]
+            },
+            "psnr_db": {
+              "mean": 19.031245427407736,
+              "sample_std": 0.03485625553355745,
+              "values": [
+                19.05136969592298,
+                19.05136969592298,
+                18.990996890377254
+              ]
+            },
+            "ssim": {
+              "mean": 0.8404388013813232,
+              "sample_std": 0.0003723669728068162,
+              "values": [
+                0.8406537875533104,
+                0.8406537875533104,
+                0.8400088290373484
+              ]
+            },
+            "lpips": {
+              "mean": 0.4165307058228387,
+              "sample_std": 0.00037490993221475817,
+              "values": [
+                0.41631425147255263,
+                0.41631425147255263,
+                0.4169636145234108
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sim02": {
+      "reconstruction_7to1": {
+        "pbd": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.8041819249592663,
+              "sample_std": 0.0,
+              "values": [
+                0.8041819249592663,
+                0.8041819249592663,
+                0.8041819249592663
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 7.80796151705771,
+              "sample_std": 0.0,
+              "values": [
+                7.807961517057711,
+                7.807961517057711,
+                7.807961517057711
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.649468101733095,
+              "sample_std": 0.0,
+              "values": [
+                16.649468101733095,
+                16.649468101733095,
+                16.649468101733095
+              ]
+            },
+            "ssim": {
+              "mean": 0.821166381239891,
+              "sample_std": 0.0,
+              "values": [
+                0.821166381239891,
+                0.821166381239891,
+                0.821166381239891
+              ]
+            },
+            "lpips": {
+              "mean": 0.4238701303799947,
+              "sample_std": 0.0,
+              "values": [
+                0.4238701303799947,
+                0.4238701303799947,
+                0.4238701303799947
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.2654193135458627,
+              "sample_std": 0.0,
+              "values": [
+                0.2654193135458627,
+                0.2654193135458627,
+                0.2654193135458627
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 2.7181201590059074,
+              "sample_std": 0.0,
+              "values": [
+                2.718120159005907,
+                2.718120159005907,
+                2.718120159005907
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.937525233959953,
+              "sample_std": 0.0,
+              "values": [
+                16.937525233959953,
+                16.937525233959953,
+                16.937525233959953
+              ]
+            },
+            "ssim": {
+              "mean": 0.8256930708885193,
+              "sample_std": 0.0,
+              "values": [
+                0.8256930708885193,
+                0.8256930708885193,
+                0.8256930708885193
+              ]
+            },
+            "lpips": {
+              "mean": 0.41792824417352675,
+              "sample_std": 0.0,
+              "values": [
+                0.41792824417352675,
+                0.41792824417352675,
+                0.41792824417352675
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.26376341844904044,
+              "sample_std": 0.00021630786409168015,
+              "values": [
+                0.2640102693900796,
+                0.2636070149290188,
+                0.2636729710280229
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 2.6878331347032707,
+              "sample_std": 0.0014715352902615188,
+              "values": [
+                2.6861643514197713,
+                2.688390420092799,
+                2.6889446325972415
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.93724577066726,
+              "sample_std": 0.0005343092941710629,
+              "values": [
+                16.937854019531198,
+                16.937031152723755,
+                16.93685213974683
+              ]
+            },
+            "ssim": {
+              "mean": 0.8256248550282583,
+              "sample_std": 5.364560631405941e-06,
+              "values": [
+                0.8256186664104461,
+                0.8256277163823446,
+                0.8256281822919845
+              ]
+            },
+            "lpips": {
+              "mean": 0.4179625953237216,
+              "sample_std": 8.696846874221016e-06,
+              "values": [
+                0.4179716532429059,
+                0.41795431127150856,
+                0.41796182145675026
+              ]
+            }
+          }
+        }
+      },
+      "future_80to20": {
+        "pbd": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 4.115153457969427,
+              "sample_std": 0.0,
+              "values": [
+                4.115153457969427,
+                4.115153457969427,
+                4.115153457969427
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 37.594972475654004,
+              "sample_std": 0.0,
+              "values": [
+                37.594972475654004,
+                37.594972475654004,
+                37.594972475654004
+              ]
+            },
+            "psnr_db": {
+              "mean": 15.475863402813586,
+              "sample_std": 0.0,
+              "values": [
+                15.475863402813586,
+                15.475863402813586,
+                15.475863402813586
+              ]
+            },
+            "ssim": {
+              "mean": 0.7996148606141408,
+              "sample_std": 0.0,
+              "values": [
+                0.7996148606141408,
+                0.7996148606141408,
+                0.7996148606141408
+              ]
+            },
+            "lpips": {
+              "mean": 0.4536762326955796,
+              "sample_std": 0.0,
+              "values": [
+                0.45367623269557955,
+                0.45367623269557955,
+                0.45367623269557955
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.2351688849189992,
+              "sample_std": 0.0,
+              "values": [
+                1.2351688849189992,
+                1.2351688849189992,
+                1.2351688849189992
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 12.23009083061462,
+              "sample_std": 0.0,
+              "values": [
+                12.23009083061462,
+                12.23009083061462,
+                12.23009083061462
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.75924414820294,
+              "sample_std": 0.0,
+              "values": [
+                16.75924414820294,
+                16.75924414820294,
+                16.75924414820294
+              ]
+            },
+            "ssim": {
+              "mean": 0.82317759146293,
+              "sample_std": 0.0,
+              "values": [
+                0.82317759146293,
+                0.82317759146293,
+                0.82317759146293
+              ]
+            },
+            "lpips": {
+              "mean": 0.4241272422174613,
+              "sample_std": 0.0,
+              "values": [
+                0.4241272422174613,
+                0.4241272422174613,
+                0.4241272422174613
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-02 Planar-Y-Pull",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.2536048348152287,
+              "sample_std": 0.020066781659391814,
+              "values": [
+                1.2732134000462894,
+                1.233109254179807,
+                1.2544918502195894
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 12.44293543127871,
+              "sample_std": 0.24162360258649368,
+              "values": [
+                12.537341197763268,
+                12.168361422411994,
+                12.623103673660866
+              ]
+            },
+            "psnr_db": {
+              "mean": 16.815184108378546,
+              "sample_std": 0.03187646937217841,
+              "values": [
+                16.790105801234184,
+                16.851056032525932,
+                16.804390491375518
+              ]
+            },
+            "ssim": {
+              "mean": 0.8243401169776917,
+              "sample_std": 0.0005527965053433875,
+              "values": [
+                0.823804231484731,
+                0.8249083995819092,
+                0.8243077198664347
+              ]
+            },
+            "lpips": {
+              "mean": 0.4239477045834064,
+              "sample_std": 0.00121587483619033,
+              "values": [
+                0.4253498556713263,
+                0.42318473507960636,
+                0.4233085229992867
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sim03": {
+      "reconstruction_7to1": {
+        "pbd": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 1.3367760286268162,
+              "sample_std": 0.0,
+              "values": [
+                1.3367760286268162,
+                1.3367760286268162,
+                1.3367760286268162
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 11.202748362655806,
+              "sample_std": 0.0,
+              "values": [
+                11.202748362655807,
+                11.202748362655807,
+                11.202748362655807
+              ]
+            },
+            "psnr_db": {
+              "mean": 20.26599916144555,
+              "sample_std": 0.0,
+              "values": [
+                20.26599916144555,
+                20.26599916144555,
+                20.26599916144555
+              ]
+            },
+            "ssim": {
+              "mean": 0.7843492238057984,
+              "sample_std": 0.0,
+              "values": [
+                0.7843492238057984,
+                0.7843492238057984,
+                0.7843492238057984
+              ]
+            },
+            "lpips": {
+              "mean": 0.5444438109795252,
+              "sample_std": 0.0,
+              "values": [
+                0.5444438109795252,
+                0.5444438109795252,
+                0.5444438109795252
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.44907972555089753,
+              "sample_std": 0.0,
+              "values": [
+                0.44907972555089753,
+                0.44907972555089753,
+                0.44907972555089753
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.525087111474325,
+              "sample_std": 0.0,
+              "values": [
+                4.525087111474325,
+                4.525087111474325,
+                4.525087111474325
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.615673022907302,
+              "sample_std": 0.0,
+              "values": [
+                21.615673022907302,
+                21.615673022907302,
+                21.615673022907302
+              ]
+            },
+            "ssim": {
+              "mean": 0.7923900841010941,
+              "sample_std": 0.0,
+              "values": [
+                0.7923900841010941,
+                0.7923900841010941,
+                0.7923900841010941
+              ]
+            },
+            "lpips": {
+              "mean": 0.5380469887620873,
+              "sample_std": 0.0,
+              "values": [
+                0.5380469887620873,
+                0.5380469887620873,
+                0.5380469887620873
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "前80%内7:1重建",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.44278070802866515,
+              "sample_std": 0.003556960127264803,
+              "values": [
+                0.44555396302796535,
+                0.4440177721798372,
+                0.43877038887819286
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 4.368537495211425,
+              "sample_std": 0.03545070318059334,
+              "values": [
+                4.406532316144104,
+                4.362732792682381,
+                4.33634737680779
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.72417240969595,
+              "sample_std": 0.026769158445284855,
+              "values": [
+                21.69480048346369,
+                21.730518390442562,
+                21.747198355181595
+              ]
+            },
+            "ssim": {
+              "mean": 0.7934989164824838,
+              "sample_std": 0.000148560308833821,
+              "values": [
+                0.7933288166920344,
+                0.7935647384987937,
+                0.7936031942566236
+              ]
+            },
+            "lpips": {
+              "mean": 0.5357347253572058,
+              "sample_std": 0.00019950330670113022,
+              "values": [
+                0.5359361262785064,
+                0.5357308743728532,
+                0.5355371754202578
+              ]
+            }
+          }
+        }
+      },
+      "future_80to20": {
+        "pbd": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "A：纯 PBD",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 5.955646796630592,
+              "sample_std": 0.0,
+              "values": [
+                5.955646796630592,
+                5.955646796630592,
+                5.955646796630592
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 53.95728588546583,
+              "sample_std": 0.0,
+              "values": [
+                53.95728588546583,
+                53.95728588546583,
+                53.95728588546583
+              ]
+            },
+            "psnr_db": {
+              "mean": 14.343093307075703,
+              "sample_std": 0.0,
+              "values": [
+                14.343093307075703,
+                14.343093307075703,
+                14.343093307075703
+              ]
+            },
+            "ssim": {
+              "mean": 0.7461872986621327,
+              "sample_std": 0.0,
+              "values": [
+                0.7461872986621327,
+                0.7461872986621327,
+                0.7461872986621327
+              ]
+            },
+            "lpips": {
+              "mean": 0.5653235560490025,
+              "sample_std": 0.0,
+              "values": [
+                0.5653235560490025,
+                0.5653235560490025,
+                0.5653235560490025
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "B：PBD + AllTracker RGB轨迹校正",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.874292903565927,
+              "sample_std": 0.0,
+              "values": [
+                0.874292903565927,
+                0.874292903565927,
+                0.874292903565927
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 7.021571635638392,
+              "sample_std": 0.0,
+              "values": [
+                7.021571635638393,
+                7.021571635638393,
+                7.021571635638393
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.564455046342818,
+              "sample_std": 0.0,
+              "values": [
+                21.564455046342818,
+                21.564455046342818,
+                21.564455046342818
+              ]
+            },
+            "ssim": {
+              "mean": 0.7919706321424909,
+              "sample_std": 0.0,
+              "values": [
+                0.7919706321424909,
+                0.7919706321424909,
+                0.7919706321424909
+              ]
+            },
+            "lpips": {
+              "mean": 0.5408610386980904,
+              "sample_std": 0.0,
+              "values": [
+                0.5408610386980904,
+                0.5408610386980904,
+                0.5408610386980904
+              ]
+            }
+          }
+        },
+        "pbd_alltracker_foundation_depth_global_only_h3w4": {
+          "dataset_label": "SIM-03 Edge-Z-Lift",
+          "capability_label": "后20%开环未来预测",
+          "method_label": "C：B + 全局刚度/阻尼更新（H1:H2:H3=1.5:2:4）",
+          "repeat_count": 3,
+          "metrics": {
+            "3d_mean_mm": {
+              "mean": 0.7706506563793335,
+              "sample_std": 0.09733351325238071,
+              "values": [
+                0.6893161209594231,
+                0.8784918238798464,
+                0.7441440242987314
+              ]
+            },
+            "2d_mean_px": {
+              "mean": 6.079258072353126,
+              "sample_std": 0.2929255433473565,
+              "values": [
+                5.871302307960067,
+                6.4142579751172155,
+                5.9522139339820965
+              ]
+            },
+            "psnr_db": {
+              "mean": 21.75643163561938,
+              "sample_std": 0.2683106156650642,
+              "values": [
+                22.065432521127793,
+                21.5824523313782,
+                21.62141005435215
+              ]
+            },
+            "ssim": {
+              "mean": 0.792276042892977,
+              "sample_std": 0.0033663316837721714,
+              "values": [
+                0.790583200338814,
+                0.796152794526683,
+                0.7900921338134341
+              ]
+            },
+            "lpips": {
+              "mean": 0.5384714108098436,
+              "sample_std": 0.00853520878337312,
+              "values": [
+                0.5453833527863026,
+                0.5289311500059234,
+                0.5410997296373049
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
