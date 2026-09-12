@@ -6,6 +6,8 @@
 
 > 最新正式结论来自 AllTracker + FoundationStereo 的同一 rollout 联合协议三次复测：RGB 轨迹校正是误差下降的主要来源；在线刚度更新在 SIM-03 抬升任务中将未来 3D/2D 误差再降低约 11.8%/13.4%，但在 SIM-01/02 平面牵拉的未来预测中略有退化。完整均值、样本标准差及原始结果见[最新统一协议结果](#76-最新-alltracker-统一协议三次复测)。
 
+[EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [EH-SurGS 适配与复现说明](baselines/eh_surgs_sim/README.md)
+
 ## 1. 项目要解决的问题
 
 给定手术器械牵拉软组织的双目 RGB 序列，项目希望建立一个能够同时回答以下问题的模型：
@@ -350,6 +352,21 @@ bash scripts/run_sim_three_datasets_medium_h3w4_three_repeats.sh \
 
 脚本对 SIM-01/02/03 各独立运行三次完整 A/B/C 重建与未来预测，并为每套数据独立读取对应的 FoundationStereo 深度和 CoTracker 缓存。汇总脚本自动生成均值、样本标准差和54条原始结果。为保护正式结果，脚本拒绝覆盖已有输出目录；复测时应使用新的目录名。
 
+### 7.3 EH-SurGS baseline
+
+EH-SurGS 在每套数据上使用 seed 0/1/2 独立训练三次。表中为算术均值 ± 样本标准差，不挑选最优运行；2D 指标按左右相机有效样本数加权，30 个非夹持点的 3D coverage 均为 1.0。
+
+| 数据集 | 分区 | 3D mm ↓ | 2D px ↓ | PSNR dB ↑ | SSIM ↑ | LPIPS ↓ |
+|---|---|---:|---:|---:|---:|---:|
+| SIM-01 | Reconstruction 7:1 | 1.908 ± 0.300 | 8.725 ± 0.202 | 16.277 ± 1.088 | 0.4364 ± 0.0309 | 0.3319 ± 0.0440 |
+| SIM-01 | Future 80:20 | 5.259 ± 0.146 | 51.047 ± 0.693 | 15.540 ± 1.014 | 0.3836 ± 0.0190 | 0.4165 ± 0.0538 |
+| SIM-02 | Reconstruction 7:1 | 2.585 ± 0.735 | 9.209 ± 0.338 | 15.682 ± 0.401 | 0.3908 ± 0.0605 | 0.3427 ± 0.0186 |
+| SIM-02 | Future 80:20 | 5.625 ± 0.484 | 50.647 ± 0.128 | 14.722 ± 0.234 | 0.3222 ± 0.0530 | 0.4373 ± 0.0104 |
+| SIM-03 | Reconstruction 7:1 | 3.541 ± 0.572 | 13.771 ± 0.290 | 15.678 ± 0.090 | 0.4034 ± 0.0418 | 0.3423 ± 0.0118 |
+| SIM-03 | Future 80:20 | 2.775 ± 0.439 | 6.715 ± 0.535 | 15.051 ± 0.141 | 0.3464 ± 0.0481 | 0.3930 ± 0.0159 |
+
+完整逐次数据、协议元数据和聚合方式见[机器可读结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.json)。
+
 ### 8.4 AllTracker 追加两次并汇总三次
 
 在已有一次完整 AllTracker 测评及其观测资产的前提下，连续运行第2、3次并与第1次汇总：
@@ -372,6 +389,39 @@ SIM_GPU_ID=0 \
 ```
 
 该脚本为 SIM-01/02 的 A/B/C 各运行三次，为 SIM-03 的 A 运行三次，并将 SIM-03 已完成的一次 B/C 与两次新增运行合并。每个方法的一次 rollout 同时生成前 80% 内 7:1 重建与后 20% 开环预测指标，汇总器会严格校验数据集路径、总帧数、80/20 分界、留出帧序列和30点清单。
+
+### 8.6 EndoGaussian baseline
+
+EndoGaussian 使用与 8.5 相同的数据集、前 80% 内 7:1 留出帧、后 20% 时间外推帧和固定 30 个非夹持测评点。训练只读取前缀双目 RGB、当前 FoundationStereo 深度、公共组织 mask 和相机标定；checkpoint 冻结后，按 Shape of Motion 的特征栅格化方式从 frame 0 查询像素解码 EndoGaussian 的 3D Gaussian 轨迹。全流程不使用器械控制，不做位姿、尺度或时间对齐，因此后 20% 结果应标为零样本时间场外推。
+
+```bash
+bash scripts/setup_endogaussian_baseline_env.sh
+SIM_GPU_ID=0 bash scripts/run_endogaussian_sim_baseline_three_repeats.sh \
+  outputs/endogaussian_sim_unified_three_repeats_v1
+```
+
+固定版本、隔离输入、单位转换、单次运行与审计命令见 [EndoGaussian baseline 说明](baselines/endogaussian_sim/README.md)。
+
+### 8.7 EH-SurGS baseline
+
+[EH-SurGS](https://github.com/IRMVLab/EH-SurGS) 将手术场景表示为 canonical 3D Gaussians，并用时间条件形变模型预测每个 Gaussian 的位置、尺度和旋转变化。其自适应运动层级为不同位置分配不同复杂度的运动基函数，使缓慢组织区域和快速局部形变不必共享同一个时间模型；本次训练保持官方 RGB/深度损失及 3000 次迭代配置。
+
+本适配固定官方提交 `73fa04e6f5c21cc1685f728eccb1332e81ce620c`。唯一上游兼容补丁让自适应运动分块读取当前相机的真实内参，避免沿用官方 640×512 EndoNeRF 常数；没有修改形变网络、损失、优化器或 rasterizer。训练输入严格限制为前 80% 的合法双目 RGB、FoundationStereo 深度、公共组织 mask 和相机标定，7:1 留出帧及最后 20% 的全部观测均不进入训练。
+
+官方实现没有材料点轨迹接口，因此 checkpoint 冻结后采用固定 Shape of Motion 查询锚定位移解码器：在 frame 0 用 EH-SurGS 自身 alpha/depth 得到 30 个查询起点，把目标时刻相对查询时刻的 Gaussian 位移作为属性，在查询时刻几何上光栅化。GT 深度、GT 3D、尺度拟合、ICP 和刚体/时间对齐均不参与解码。Future 数值只表示 EH-SurGS 原生时间场在最后 20% 的外推能力。
+
+```bash
+bash scripts/setup_eh_surgs_baseline_env.sh
+
+SIM_GPU_ID=0 bash scripts/run_eh_surgs_sim_baseline_once.sh \
+  sim03 repeat_01 0 outputs/eh_surgs_sim03_once_v1/repeat_01/sim03
+
+bash scripts/run_eh_surgs_sim_three_repeats_two_gpus.sh \
+  outputs/eh_surgs_sim_unified_three_repeats_v1 \
+  outputs/eh_surgs_sim03_once_v1/repeat_01/sim03
+```
+
+完整环境、固定协议、轨迹解码和审计说明见 [EH-SurGS baseline 文档](baselines/eh_surgs_sim/README.md)。
 
 ## 9. 目录结构
 
@@ -411,6 +461,9 @@ embodied_gaussians_fixed_super_best_sim/
 - [SuFIA-BC / Orbit Surgical](https://orbit-surgical.github.io/sufia-bc/)
 - [Real-to-Sim Deformable Object Manipulation: Optimizing Physics Models with Residual Mappings for Robotic Surgery](https://arxiv.org/abs/2309.11656)
 - [FoundationStereo](https://github.com/NVlabs/FoundationStereo)
+- [EndoGaussian](https://github.com/CUHK-AIM-Group/EndoGaussian)
+- [EH-SurGS](https://github.com/IRMVLab/EH-SurGS)
+- [Shape of Motion](https://github.com/vye16/shape-of-motion)
 
 如果使用本仓库，请同时引用上游 Embodied Gaussians：
 

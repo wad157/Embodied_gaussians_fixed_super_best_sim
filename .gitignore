@@ -180,3 +180,8 @@ outputs/
 .tmp/
 _skipped.face
 _skipped.node
+
+# Reproducible runtime checkouts. Pinned commits and compatibility patches are
+# recorded by the adapters and are recreated by their setup scripts.
+/baselines/EndoGaussian/
+/baselines/EH-SurGS/

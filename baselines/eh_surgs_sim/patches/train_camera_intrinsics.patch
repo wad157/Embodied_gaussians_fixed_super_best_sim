@@ -1,0 +1,30 @@
+diff --git a/train.py b/train.py
+index bce4542..51cedce 100644
+--- a/train.py
++++ b/train.py
+@@ -53,9 +53,11 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
+     bg_color = [1, 1, 1] if dataset.white_background else [0, 0, 0]
+     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
+ 
++    # Defaults used by the original 640x512 EndoNeRF loader.  External dataset
++    # adapters may attach their calibrated intrinsic matrix to each camera.
+     focal_x = 569.46820041
+     focal_y = 569.46820041
+-    cx = 320 
++    cx = 320
+     cy = 256
+     iter_start = torch.cuda.Event(enable_timing=True)
+     iter_end = torch.cuda.Event(enable_timing=True)
+@@ -87,6 +89,12 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
+ 
+         idx = randint(0, len(viewpoint_stack) - 1)
+         viewpoint_cams = [viewpoint_stack[idx]]
++        if hasattr(viewpoint_cams[0], "sim_intrinsic"):
++            intrinsic = viewpoint_cams[0].sim_intrinsic
++            focal_x = float(intrinsic[0, 0])
++            focal_y = float(intrinsic[1, 1])
++            cx = float(intrinsic[0, 2])
++            cy = float(intrinsic[1, 2])
+         
+         deformation_mask = gaussians._deform_mask
+         

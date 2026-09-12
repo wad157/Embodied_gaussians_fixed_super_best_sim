@@ -1,0 +1,24 @@
+{
+  "endogaussian": {
+    "repository": "https://github.com/CUHK-AIM-Group/EndoGaussian.git",
+    "branch": "master",
+    "commit": "8d12793838a1595b299df0696c8149c07329e980"
+  },
+  "shape_of_motion": {
+    "repository": "https://github.com/vye16/shape-of-motion.git",
+    "branch": "main",
+    "commit": "579753e1c7ba96f60cd7690e5b835627bd1935e9",
+    "usage": "trajectory decoding design only; no weights, preprocessing, dataset split, or evaluator"
+  },
+  "glm": {
+    "repository": "https://github.com/g-truc/glm.git",
+    "commit": "6f14f4792a0cde5d0cf2c910506724d61cb95834"
+  },
+  "verified_default_branch_heads_at": "2026-09-11",
+  "runtime": {
+    "python": "3.7",
+    "torch": "1.13.1",
+    "cuda_compile": "11.7",
+    "gcc": "11"
+  }
+}
