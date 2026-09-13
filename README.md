@@ -6,7 +6,7 @@
 
 > 最新正式结论来自 AllTracker + FoundationStereo 的同一 rollout 联合协议三次复测：RGB 轨迹校正是误差下降的主要来源；在线刚度更新在 SIM-03 抬升任务中将未来 3D/2D 误差再降低约 11.8%/13.4%，但在 SIM-01/02 平面牵拉的未来预测中略有退化。完整均值、样本标准差及原始结果见[最新统一协议结果](#76-最新-alltracker-统一协议三次复测)。
 
-[EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [EH-SurGS 适配与复现说明](baselines/eh_surgs_sim/README.md)
+[EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [EH-SurGS 适配与复现说明](baselines/eh_surgs_sim/README.md) · [Embodied Gaussians 软体/公开刚体双轨适配说明](baselines/embodied_gaussians_sim/README.md)
 
 ## 1. 项目要解决的问题
 
@@ -178,6 +178,25 @@ $$
 \qquad
 s=\sqrt{\frac{1}{2}\sum_{i=1}^{3}(x_i-\bar{x})^2}.
 $$
+
+### 6.5 Embodied Gaussians baseline 的口径
+
+[Embodied Gaussians 官方仓库](https://github.com/rai-opensource/embodied_gaussians)公开的是
+rigid-only 参考实现，并明确说明论文中的 shape matching 没有包含在代码中；但论文公式 (4)--(5)
+及 rope 实验确实支持可变形物体。因此本仓库分开报告：
+
+| 报告名称 | 物理表示 | 表中位置 |
+|---|---|---|
+| Embodied Gaussians–Soft (paper reconstruction; collision only) | Delaunay 邻接重叠 shape matching；已知 PSM/FK 粒子碰撞驱动 | 正式软体 baseline |
+| Embodied Gaussians–Soft (shared boundary) | 同上，但使用公共 prescribed actuator boundary | 可选协议对照 |
+| Embodied Gaussians–Public (rigid-only) | 整块组织一个上游 Warp rigid body | 附录/能力边界 |
+
+Soft 版本只补论文缺失的 oriented-particle shape matching，不复用本方法的四面体、distance/volume
+约束、表面重心绑定、RGB轨迹校正和在线材料更新。正式结果使用论文语义的 PSM/FK collision-only，
+不读取组织边界轨迹；shared-boundary 只能作为显式标注的协议对照。粒子半径使用官方默认6 mm；
+论文未公布 `k_S` 与邻域规则，因此不做数据集调参，采用完整约束投影和 Delaunay 几何邻接。完整算法
+边界、输入隔离、参数和命令见
+[baseline 专用 README](baselines/embodied_gaussians_sim/README.md)。
 
 ## 7. 正式测评结果
 
@@ -423,6 +442,60 @@ bash scripts/run_eh_surgs_sim_three_repeats_two_gpus.sh \
 
 完整环境、固定协议、轨迹解码和审计说明见 [EH-SurGS baseline 文档](baselines/eh_surgs_sim/README.md)。
 
+### 8.8 Embodied Gaussians baseline
+
+环境使用已有的 `eg_codex`，直接调用其解释器以避免 Conda 尝试写只读环境目录。先执行不训练审计：
+初始化严格限制为医疗数据实际存在的 frame-0 左右双目，不使用五视角 canonical scan；深度使用与
+EndoGaussian/EH-SurGS 相同的 RGB-only FoundationStereo 缓存。普通软组织粒子质量使用论文非 rope
+物体原值 `0.1 kg`，并保留论文 PBD 的重力与地面约束。
+
+```bash
+/Media_HDD/jwshan/conda_envs/eg_codex/bin/python \
+  scripts/test_embodied_gaussians_shape_matching.py
+/Media_HDD/jwshan/conda_envs/eg_codex/bin/python \
+  scripts/audit_embodied_gaussians_sim_protocol.py \
+  --dataset-key sim01 --variant paper-soft \
+  --actuation psm-fk-collision-only
+```
+
+一次完整 soft baseline：
+
+```bash
+SIM_GPU_ID=0 \
+  bash scripts/run_embodied_gaussians_sim_baseline_once.sh \
+  sim01 repeat_01 0 outputs/embodied_gaussians_sim01_repeat_01
+```
+
+公开 rigid-only 能力审计：
+
+```bash
+SIM_GPU_ID=0 bash scripts/run_embodied_gaussians_public_rigid_sim_once.sh \
+  sim01 repeat_01 0 outputs/embodied_gaussians_public_rigid_sim01_repeat_01
+```
+
+程序在 rollout 冻结后才读取固定30点查询像素，用 EG 自己渲染的 depth 建立查询三维锚点，选最近
+Gaussian 后直接随其 parent particle 的 PBD frame 生成轨迹。EG 已有原生持久物理 frame，因此不引入
+Shape of Motion；不使用 GT depth/GT 3D，不做位姿、尺度或时间对齐。
+
+正式 collision-only 结果如下。SIM-01 使用 seeds 0/1，SIM-02/03 使用 seeds 0/1/2；数值为
+算术均值 ± 样本标准差，不挑选最佳运行：
+
+| 数据集 | 能力 | Runs | 3D mean↓ (mm) | 双目2D mean↓ (px) | 2D有效覆盖↑ | PSNR↑ | SSIM↑ | LPIPS↓ |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| SIM-01 | 前80%在线7:1重建 | 2 | 3502.309 ± 405.600 | N/A | 1.54% ± 2.18pp | 7.324 ± 0.031 | 0.4599 ± 0.0003 | 0.7266 ± 0.0015 |
+| SIM-01 | 后20%开环物理预测 | 2 | 8069.362 ± 653.143 | N/A | 0.00% ± 0.00pp | 7.305 ± 0.000 | 0.4648 ± 0.0000 | 0.7215 ± 0.0000 |
+| SIM-02 | 前80%在线7:1重建 | 3 | 911.075 ± 519.565 | N/A | 11.35% ± 16.04pp | 7.846 ± 0.583 | 0.4811 ± 0.0023 | 0.6906 ± 0.0379 |
+| SIM-02 | 后20%开环物理预测 | 3 | 1905.701 ± 925.738 | N/A | 0.00% ± 0.00pp | 7.477 ± 0.000 | 0.4788 ± 0.0000 | 0.7171 ± 0.0000 |
+| SIM-03 | 前80%在线7:1重建 | 3 | 5437.496 ± 2698.804 | N/A | 1.66% ± 1.44pp | 5.835 ± 0.062 | 0.2195 ± 0.0067 | 0.9595 ± 0.0070 |
+| SIM-03 | 后20%开环物理预测 | 3 | 12621.398 ± 6275.488 | N/A | 0.00% ± 0.00pp | 5.636 ± 0.000 | 0.1949 ± 0.0000 | 0.9845 ± 0.0000 |
+
+所有运行的 3D coverage 均为 100%。某数据集只要存在一个请求运行没有有效双目投影，聚合 2D
+mean 就记为 N/A，并另报覆盖率，避免只统计可见点造成选择偏差。模型在三个数据集的开环段均已
+离开双目视场，因此 future 2D 均为 N/A/0% coverage。评测未使用 GT depth/GT 3D，也未增加持久
+夹持或数据集专用物理参数。完整协议说明、运行命令和查询审计见
+[Embodied Gaussians baseline 文档](baselines/embodied_gaussians_sim/README.md)，聚合原始结果见
+[`requested_repeats_mean_std.md`](outputs/embodied_gaussians_sim_unified_three_repeats_v1/requested_repeats_mean_std.md)。
+
 ## 9. 目录结构
 
 ```text
@@ -463,6 +536,7 @@ embodied_gaussians_fixed_super_best_sim/
 - [FoundationStereo](https://github.com/NVlabs/FoundationStereo)
 - [EndoGaussian](https://github.com/CUHK-AIM-Group/EndoGaussian)
 - [EH-SurGS](https://github.com/IRMVLab/EH-SurGS)
+- [Embodied Gaussians 官方参考实现](https://github.com/rai-opensource/embodied_gaussians)
 - [Shape of Motion](https://github.com/vye16/shape-of-motion)
 
 如果使用本仓库，请同时引用上游 Embodied Gaussians：

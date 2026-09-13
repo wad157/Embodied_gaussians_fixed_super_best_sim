@@ -1,0 +1,746 @@
+{
+  "schema": "fixedsuperbest.embodied_gaussians_requested_repeat_summary.v1",
+  "method": "Embodied Gaussians Soft paper reconstruction; PSM/FK collision-only",
+  "upstream_commit": "c97ec671f97af25985e0af8844c0aac8d8119b97",
+  "protocol": {
+    "sim01": "seeds 0/1; two-run arithmetic mean and sample standard deviation",
+    "sim02": "seeds 0/1/2; three-run arithmetic mean and sample standard deviation",
+    "sim03": "seeds 0/1/2; three-run arithmetic mean and sample standard deviation",
+    "selection": "all requested runs included; no best-run selection",
+    "cameras": [
+      "stereo_left",
+      "stereo_right"
+    ],
+    "actuation": "psm-fk-collision-only",
+    "alignment": "none",
+    "undefined_2d": "N/A when a run has zero valid projected samples; coverage reported separately"
+  },
+  "raw": {
+    "sim01": {
+      "repeat_01": {
+        "seed": 0,
+        "particle_count": 147,
+        "gaussian_count": 147,
+        "query_raster_coverage_count": 29,
+        "query_fallback_count": 1,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 3215.5066262144182,
+            "2d_mean_px": 511.6416104403409,
+            "2d_valid_count": 55,
+            "2d_reference_visible_count": 1787,
+            "2d_valid_fraction": 0.03077783995523223,
+            "psnr_db": 7.346034283171401,
+            "ssim": 0.45971786479155224,
+            "lpips": 0.7255443801482518,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 7607.520124912262,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 3513,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.304959799394836,
+            "ssim": 0.4647871231039365,
+            "lpips": 0.7214887758096059,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      },
+      "repeat_02": {
+        "seed": 1,
+        "particle_count": 147,
+        "gaussian_count": 147,
+        "query_raster_coverage_count": 28,
+        "query_fallback_count": 2,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 3789.1122783223786,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 1787,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.302730458976956,
+            "ssim": 0.46010611156622566,
+            "lpips": 0.7275966475407283,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 8531.203695933023,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 3513,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.304959799394836,
+            "ssim": 0.4647871231039365,
+            "lpips": 0.7214887758096059,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      }
+    },
+    "sim02": {
+      "repeat_01": {
+        "seed": 0,
+        "particle_count": 196,
+        "gaussian_count": 193,
+        "query_raster_coverage_count": 28,
+        "query_fallback_count": 2,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 1320.328043061826,
+            "2d_mean_px": 557.7337720822065,
+            "2d_valid_count": 78,
+            "2d_reference_visible_count": 1795,
+            "2d_valid_fraction": 0.043454038997214485,
+            "psnr_db": 7.537136335777735,
+            "ssim": 0.47937381863594053,
+            "lpips": 0.7073597063620886,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 2759.0860656897225,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 3551,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.477220476227573,
+            "ssim": 0.47876184731721877,
+            "lpips": 0.7171316807468732,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      },
+      "repeat_02": {
+        "seed": 1,
+        "particle_count": 196,
+        "gaussian_count": 191,
+        "query_raster_coverage_count": 29,
+        "query_fallback_count": 1,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 1086.3599651389652,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 1795,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.483808830913324,
+            "ssim": 0.4803412273526192,
+            "lpips": 0.717131977279981,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 2036.4962327480316,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 3551,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.477220476227573,
+            "ssim": 0.47876184731721877,
+            "lpips": 0.7171316807468732,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      },
+      "repeat_03": {
+        "seed": 2,
+        "particle_count": 196,
+        "gaussian_count": 193,
+        "query_raster_coverage_count": 29,
+        "query_fallback_count": 1,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 30,
+            "3d_mean_mm": 326.5383604665597,
+            "2d_mean_px": 407.94012523457883,
+            "2d_valid_count": 533,
+            "2d_reference_visible_count": 1795,
+            "2d_valid_fraction": 0.29693593314763234,
+            "psnr_db": 8.518394930073795,
+            "ssim": 0.48371189683675764,
+            "lpips": 0.6472178816795349,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 60,
+            "3d_mean_mm": 921.5220890773667,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 3551,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 7.477220476227573,
+            "ssim": 0.47876184731721877,
+            "lpips": 0.7171316807468732,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      }
+    },
+    "sim03": {
+      "repeat_01": {
+        "seed": 0,
+        "particle_count": 90,
+        "gaussian_count": 90,
+        "query_raster_coverage_count": 30,
+        "query_fallback_count": 0,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 2324.5653714674213,
+            "2d_mean_px": 442.6007422622369,
+            "2d_valid_count": 49,
+            "2d_reference_visible_count": 2112,
+            "2d_valid_fraction": 0.023200757575757576,
+            "psnr_db": 5.905308626223353,
+            "ssim": 0.22711768394543064,
+            "lpips": 0.9522405829694536,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 5376.774434690123,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 4312,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 5.6360113312253,
+            "ssim": 0.19487723811633056,
+            "lpips": 0.9845218741231494,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      },
+      "repeat_02": {
+        "seed": 1,
+        "particle_count": 90,
+        "gaussian_count": 90,
+        "query_raster_coverage_count": 24,
+        "query_fallback_count": 6,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 6868.300283286307,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 2112,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 5.7888197585950385,
+            "ssim": 0.21514737171431383,
+            "lpips": 0.9662477796276411,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 16379.048849476709,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 4312,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 5.6360113312253,
+            "ssim": 0.19487723811633056,
+            "lpips": 0.9845218741231494,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      },
+      "repeat_03": {
+        "seed": 2,
+        "particle_count": 90,
+        "gaussian_count": 90,
+        "query_raster_coverage_count": 30,
+        "query_fallback_count": 0,
+        "capabilities": {
+          "reconstruction_7to1": {
+            "frames": 36,
+            "3d_mean_mm": 7119.623384804086,
+            "2d_mean_px": 641.3463429042271,
+            "2d_valid_count": 56,
+            "2d_reference_visible_count": 2112,
+            "2d_valid_fraction": 0.026515151515151516,
+            "psnr_db": 5.812311398959766,
+            "ssim": 0.21608588306440246,
+            "lpips": 0.959864966571331,
+            "3d_valid_fraction": 1.0
+          },
+          "future_80to20": {
+            "frames": 72,
+            "3d_mean_mm": 16108.371146961495,
+            "2d_mean_px": null,
+            "2d_valid_count": 0,
+            "2d_reference_visible_count": 4312,
+            "2d_valid_fraction": 0.0,
+            "psnr_db": 5.6360113312253,
+            "ssim": 0.19487723811633056,
+            "lpips": 0.9845218741231494,
+            "3d_valid_fraction": 1.0
+          }
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "sim01": {
+      "reconstruction_7to1": {
+        "dataset_label": "SIM-01 Planar-X-Pull",
+        "capability_label": "前80%在线7:1重建",
+        "repeat_count": 2,
+        "metrics": {
+          "3d_mean_mm": {
+            "count": 2,
+            "mean": 3502.3094522683987,
+            "sample_std": 405.6004463324704,
+            "values": [
+              3215.5066262144182,
+              3789.1122783223786
+            ]
+          },
+          "2d_mean_px": {
+            "count": 1,
+            "mean": null,
+            "sample_std": null,
+            "values": [
+              511.6416104403409,
+              null
+            ]
+          },
+          "2d_valid_fraction": {
+            "count": 2,
+            "mean": 0.015388919977616116,
+            "sample_std": 0.02176321934261898,
+            "values": [
+              0.03077783995523223,
+              0.0
+            ]
+          },
+          "psnr_db": {
+            "count": 2,
+            "mean": 7.324382371074179,
+            "sample_std": 0.030620427739202146,
+            "values": [
+              7.346034283171401,
+              7.302730458976956
+            ]
+          },
+          "ssim": {
+            "count": 2,
+            "mean": 0.45991198817888895,
+            "sample_std": 0.00027453192714537903,
+            "values": [
+              0.45971786479155224,
+              0.46010611156622566
+            ]
+          },
+          "lpips": {
+            "count": 2,
+            "mean": 0.72657051384449,
+            "sample_std": 0.0014511721900281223,
+            "values": [
+              0.7255443801482518,
+              0.7275966475407283
+            ]
+          },
+          "3d_valid_fraction": {
+            "count": 2,
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0
+            ]
+          }
+        }
+      },
+      "future_80to20": {
+        "dataset_label": "SIM-01 Planar-X-Pull",
+        "capability_label": "后20%开环物理预测",
+        "repeat_count": 2,
+        "metrics": {
+          "3d_mean_mm": {
+            "count": 2,
+            "mean": 8069.361910422643,
+            "sample_std": 653.1429167393865,
+            "values": [
+              7607.520124912262,
+              8531.203695933023
+            ]
+          },
+          "2d_mean_px": {
+            "count": 0,
+            "mean": null,
+            "sample_std": null,
+            "values": [
+              null,
+              null
+            ]
+          },
+          "2d_valid_fraction": {
+            "count": 2,
+            "mean": 0.0,
+            "sample_std": 0.0,
+            "values": [
+              0.0,
+              0.0
+            ]
+          },
+          "psnr_db": {
+            "count": 2,
+            "mean": 7.304959799394836,
+            "sample_std": 0.0,
+            "values": [
+              7.304959799394836,
+              7.304959799394836
+            ]
+          },
+          "ssim": {
+            "count": 2,
+            "mean": 0.4647871231039365,
+            "sample_std": 0.0,
+            "values": [
+              0.4647871231039365,
+              0.4647871231039365
+            ]
+          },
+          "lpips": {
+            "count": 2,
+            "mean": 0.7214887758096059,
+            "sample_std": 0.0,
+            "values": [
+              0.7214887758096059,
+              0.7214887758096059
+            ]
+          },
+          "3d_valid_fraction": {
+            "count": 2,
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    },
+    "sim02": {
+      "reconstruction_7to1": {
+        "dataset_label": "SIM-02 Planar-Y-Pull",
+        "capability_label": "前80%在线7:1重建",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "count": 3,
+            "mean": 911.0754562224503,
+            "sample_std": 519.56518128891,
+            "values": [
+              1320.328043061826,
+              1086.3599651389652,
+              326.5383604665597
+            ]
+          },
+          "2d_mean_px": {
+            "count": 2,
+            "mean": null,
+            "sample_std": null,
+            "values": [
+              557.7337720822065,
+              null,
+              407.94012523457883
+            ]
+          },
+          "2d_valid_fraction": {
+            "count": 3,
+            "mean": 0.11346332404828229,
+            "sample_std": 0.16037054621589664,
+            "values": [
+              0.043454038997214485,
+              0.0,
+              0.29693593314763234
+            ]
+          },
+          "psnr_db": {
+            "count": 3,
+            "mean": 7.846446698921618,
+            "sample_std": 0.5825347841160822,
+            "values": [
+              7.537136335777735,
+              7.483808830913324,
+              8.518394930073795
+            ]
+          },
+          "ssim": {
+            "count": 3,
+            "mean": 0.48114231427510584,
+            "sample_std": 0.00227728694110677,
+            "values": [
+              0.47937381863594053,
+              0.4803412273526192,
+              0.48371189683675764
+            ]
+          },
+          "lpips": {
+            "count": 3,
+            "mean": 0.6905698551072015,
+            "sample_std": 0.03786052719889153,
+            "values": [
+              0.7073597063620886,
+              0.717131977279981,
+              0.6472178816795349
+            ]
+          },
+          "3d_valid_fraction": {
+            "count": 3,
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      },
+      "future_80to20": {
+        "dataset_label": "SIM-02 Planar-Y-Pull",
+        "capability_label": "后20%开环物理预测",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "count": 3,
+            "mean": 1905.7014625050404,
+            "sample_std": 925.7379737150471,
+            "values": [
+              2759.0860656897225,
+              2036.4962327480316,
+              921.5220890773667
+            ]
+          },
+          "2d_mean_px": {
+            "count": 0,
+            "mean": null,
+            "sample_std": null,
+            "values": [
+              null,
+              null,
+              null
+            ]
+          },
+          "2d_valid_fraction": {
+            "count": 3,
+            "mean": 0.0,
+            "sample_std": 0.0,
+            "values": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "psnr_db": {
+            "count": 3,
+            "mean": 7.477220476227573,
+            "sample_std": 0.0,
+            "values": [
+              7.477220476227573,
+              7.477220476227573,
+              7.477220476227573
+            ]
+          },
+          "ssim": {
+            "count": 3,
+            "mean": 0.47876184731721877,
+            "sample_std": 0.0,
+            "values": [
+              0.47876184731721877,
+              0.47876184731721877,
+              0.47876184731721877
+            ]
+          },
+          "lpips": {
+            "count": 3,
+            "mean": 0.7171316807468732,
+            "sample_std": 0.0,
+            "values": [
+              0.7171316807468732,
+              0.7171316807468732,
+              0.7171316807468732
+            ]
+          },
+          "3d_valid_fraction": {
+            "count": 3,
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    },
+    "sim03": {
+      "reconstruction_7to1": {
+        "dataset_label": "SIM-03 Edge-Z-Lift",
+        "capability_label": "前80%在线7:1重建",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "count": 3,
+            "mean": 5437.496346519271,
+            "sample_std": 2698.8044143503757,
+            "values": [
+              2324.5653714674213,
+              6868.300283286307,
+              7119.623384804086
+            ]
+          },
+          "2d_mean_px": {
+            "count": 2,
+            "mean": null,
+            "sample_std": null,
+            "values": [
+              442.6007422622369,
+              null,
+              641.3463429042271
+            ]
+          },
+          "2d_valid_fraction": {
+            "count": 3,
+            "mean": 0.016571969696969696,
+            "sample_std": 0.014447108240901854,
+            "values": [
+              0.023200757575757576,
+              0.0,
+              0.026515151515151516
+            ]
+          },
+          "psnr_db": {
+            "count": 3,
+            "mean": 5.835479927926052,
+            "sample_std": 0.06160356825036993,
+            "values": [
+              5.905308626223353,
+              5.7888197585950385,
+              5.812311398959766
+            ]
+          },
+          "ssim": {
+            "count": 3,
+            "mean": 0.21945031290804898,
+            "sample_std": 0.006656698495291838,
+            "values": [
+              0.22711768394543064,
+              0.21514737171431383,
+              0.21608588306440246
+            ]
+          },
+          "lpips": {
+            "count": 3,
+            "mean": 0.9594511097228086,
+            "sample_std": 0.0070127631981685016,
+            "values": [
+              0.9522405829694536,
+              0.9662477796276411,
+              0.959864966571331
+            ]
+          },
+          "3d_valid_fraction": {
+            "count": 3,
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      },
+      "future_80to20": {
+        "dataset_label": "SIM-03 Edge-Z-Lift",
+        "capability_label": "后20%开环物理预测",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "count": 3,
+            "mean": 12621.398143709443,
+            "sample_std": 6275.48771958191,
+            "values": [
+              5376.774434690123,
+              16379.048849476709,
+              16108.371146961495
+            ]
+          },
+          "2d_mean_px": {
+            "count": 0,
+            "mean": null,
+            "sample_std": null,
+            "values": [
+              null,
+              null,
+              null
+            ]
+          },
+          "2d_valid_fraction": {
+            "count": 3,
+            "mean": 0.0,
+            "sample_std": 0.0,
+            "values": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "psnr_db": {
+            "count": 3,
+            "mean": 5.6360113312253,
+            "sample_std": 0.0,
+            "values": [
+              5.6360113312253,
+              5.6360113312253,
+              5.6360113312253
+            ]
+          },
+          "ssim": {
+            "count": 3,
+            "mean": 0.19487723811633054,
+            "sample_std": 0.0,
+            "values": [
+              0.19487723811633056,
+              0.19487723811633056,
+              0.19487723811633056
+            ]
+          },
+          "lpips": {
+            "count": 3,
+            "mean": 0.9845218741231494,
+            "sample_std": 0.0,
+            "values": [
+              0.9845218741231494,
+              0.9845218741231494,
+              0.9845218741231494
+            ]
+          },
+          "3d_valid_fraction": {
+            "count": 3,
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    }
+  }
+}
