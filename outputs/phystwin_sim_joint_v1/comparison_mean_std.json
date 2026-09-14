@@ -1,0 +1,613 @@
+{
+  "schema": "fixedsuperbest.phystwin_three_dataset_three_repeat.v1",
+  "method": "PhysTwin pinned upstream native spring-mass particles + upstream Gaussian LBS",
+  "phystwin_commit": "81c718790a37e5e0102eb77af2c6edd34a9db25f",
+  "shape_of_motion_used": false,
+  "protocol": {
+    "training": "only first 80% non-holdout RGB/depth/masks; calibrated stereo views; known PSM control",
+    "reconstruction": "offline interpolation on stride=8 offset=7 holdouts",
+    "future": "frozen PhysTwin rolled out with protocol-provided known PSM controls; no future observations",
+    "evaluation_points": "30 immutable non-grasp nodes queried at stereo_left frame 0 after physics and appearance freeze",
+    "alignment": "none",
+    "repeat_count": 3,
+    "aggregation": "arithmetic mean and sample standard deviation; no best-run selection"
+  },
+  "raw": {
+    "sim01": {
+      "repeat_01": {
+        "reconstruction_7to1": {
+          "frames": 30,
+          "3d_mean_mm": 33.95834660641008,
+          "2d_mean_px": 220.45595035168733,
+          "psnr_db": 9.735221664107977,
+          "ssim": 0.5938579320907593,
+          "lpips": 0.526816941301028,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_01/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_01/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 60,
+          "3d_mean_mm": 37.31931308659518,
+          "2d_mean_px": 287.38272014534306,
+          "psnr_db": 9.563820583060696,
+          "ssim": 0.5737620284159978,
+          "lpips": 0.5657609870036443,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_01/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_01/metrics_formal/future_80to20/render_metrics.json"
+        }
+      },
+      "repeat_02": {
+        "reconstruction_7to1": {
+          "frames": 30,
+          "3d_mean_mm": 33.56071049797012,
+          "2d_mean_px": 162.72594577814522,
+          "psnr_db": 10.184519653249493,
+          "ssim": 0.6169263948996861,
+          "lpips": 0.4932035813728968,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_02/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_02/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 60,
+          "3d_mean_mm": 36.82068491435429,
+          "2d_mean_px": 218.03265823246983,
+          "psnr_db": 9.83431060034987,
+          "ssim": 0.5989041914542516,
+          "lpips": 0.5238707415759564,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_02/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_02/metrics_formal/future_80to20/render_metrics.json"
+        }
+      },
+      "repeat_03": {
+        "reconstruction_7to1": {
+          "frames": 30,
+          "3d_mean_mm": 34.88537502664258,
+          "2d_mean_px": 208.10731269952032,
+          "psnr_db": 9.703368763045214,
+          "ssim": 0.594037581483523,
+          "lpips": 0.5282150010267893,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_03/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_03/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 60,
+          "3d_mean_mm": 37.374884284023814,
+          "2d_mean_px": 256.59316537131144,
+          "psnr_db": 9.473207832882013,
+          "ssim": 0.5748449062307676,
+          "lpips": 0.5628958093623321,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_03/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim01/repeat_03/metrics_formal/future_80to20/render_metrics.json"
+        }
+      }
+    },
+    "sim02": {
+      "repeat_01": {
+        "reconstruction_7to1": {
+          "frames": 30,
+          "3d_mean_mm": 33.41338913402675,
+          "2d_mean_px": 150.5079016065199,
+          "psnr_db": 10.262366948677219,
+          "ssim": 0.6098647385835647,
+          "lpips": 0.49868245323499044,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_01/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_01/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 60,
+          "3d_mean_mm": 35.73290186106331,
+          "2d_mean_px": 175.0110296549379,
+          "psnr_db": 9.951730824658773,
+          "ssim": 0.6095680996775628,
+          "lpips": 0.5109821985165278,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_01/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_01/metrics_formal/future_80to20/render_metrics.json"
+        }
+      },
+      "repeat_02": {
+        "reconstruction_7to1": {
+          "frames": 30,
+          "3d_mean_mm": 33.721867952068955,
+          "2d_mean_px": 157.97422693008167,
+          "psnr_db": 10.20535657128919,
+          "ssim": 0.6123589158058167,
+          "lpips": 0.5012718637784322,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_02/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_02/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 60,
+          "3d_mean_mm": 35.49018186976254,
+          "2d_mean_px": 174.20319094508676,
+          "psnr_db": 10.077108619272998,
+          "ssim": 0.6141220857699712,
+          "lpips": 0.5120128398140271,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_02/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_02/metrics_formal/future_80to20/render_metrics.json"
+        }
+      },
+      "repeat_03": {
+        "reconstruction_7to1": {
+          "frames": 30,
+          "3d_mean_mm": 32.083260257430894,
+          "2d_mean_px": 146.9148644645234,
+          "psnr_db": 10.027826570166866,
+          "ssim": 0.6005665749311447,
+          "lpips": 0.5213347951571147,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_03/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_03/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 60,
+          "3d_mean_mm": 35.01646237418754,
+          "2d_mean_px": 184.67343920091187,
+          "psnr_db": 9.81207209934642,
+          "ssim": 0.6032022093733151,
+          "lpips": 0.5250482832392057,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_03/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim02/repeat_03/metrics_formal/future_80to20/render_metrics.json"
+        }
+      }
+    },
+    "sim03": {
+      "repeat_01": {
+        "reconstruction_7to1": {
+          "frames": 36,
+          "3d_mean_mm": 19.96041101032865,
+          "2d_mean_px": 120.04340399647582,
+          "psnr_db": 10.079854501163132,
+          "ssim": 0.5057573293646177,
+          "lpips": 0.5953927942448192,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_01/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_01/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 72,
+          "3d_mean_mm": 19.165802226439997,
+          "2d_mean_px": 134.82046775113972,
+          "psnr_db": 10.322934962785528,
+          "ssim": 0.5074628477709161,
+          "lpips": 0.5820445579787096,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_01/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_01/metrics_formal/future_80to20/render_metrics.json"
+        }
+      },
+      "repeat_02": {
+        "reconstruction_7to1": {
+          "frames": 36,
+          "3d_mean_mm": 19.63827183202132,
+          "2d_mean_px": 123.22911182618866,
+          "psnr_db": 9.716854562909655,
+          "ssim": 0.5044989494813813,
+          "lpips": 0.6053826245996687,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_02/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_02/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 72,
+          "3d_mean_mm": 19.172391824503798,
+          "2d_mean_px": 140.27731693955744,
+          "psnr_db": 9.629910461758524,
+          "ssim": 0.48935628806551296,
+          "lpips": 0.6168192252516747,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_02/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_02/metrics_formal/future_80to20/render_metrics.json"
+        }
+      },
+      "repeat_03": {
+        "reconstruction_7to1": {
+          "frames": 36,
+          "3d_mean_mm": 19.859437811397516,
+          "2d_mean_px": 148.94645897065632,
+          "psnr_db": 9.671180960096255,
+          "ssim": 0.4966448363330629,
+          "lpips": 0.6185530026753744,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_03/metrics_formal/reconstruction_7to1/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_03/metrics_formal/reconstruction_7to1/render_metrics.json"
+        },
+        "future_80to20": {
+          "frames": 72,
+          "3d_mean_mm": 18.987668168877764,
+          "2d_mean_px": 138.50998177731165,
+          "psnr_db": 10.189965652708459,
+          "ssim": 0.5087173022329807,
+          "lpips": 0.5849904894000955,
+          "coverage": 1.0,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_03/metrics_formal/future_80to20/trajectory_metrics.json",
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/phystwin_sim_joint_v1/sim03/repeat_03/metrics_formal/future_80to20/render_metrics.json"
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "sim01": {
+      "reconstruction_7to1": {
+        "dataset_label": "SIM-01 Planar-X-Pull",
+        "capability_label": "前80%离线7:1重建",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "mean": 34.13481071034093,
+            "sample_std": 0.6797342961502257,
+            "values": [
+              33.95834660641008,
+              33.56071049797012,
+              34.88537502664258
+            ]
+          },
+          "2d_mean_px": {
+            "mean": 197.09640294311762,
+            "sample_std": 30.399316723621133,
+            "values": [
+              220.45595035168733,
+              162.72594577814522,
+              208.10731269952032
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.874370026800895,
+            "sample_std": 0.2690692195628897,
+            "values": [
+              9.735221664107977,
+              10.184519653249493,
+              9.703368763045214
+            ]
+          },
+          "ssim": {
+            "mean": 0.6016073028246561,
+            "sample_std": 0.013267026983409464,
+            "values": [
+              0.5938579320907593,
+              0.6169263948996861,
+              0.594037581483523
+            ]
+          },
+          "lpips": {
+            "mean": 0.516078507900238,
+            "sample_std": 0.019822596713666017,
+            "values": [
+              0.526816941301028,
+              0.4932035813728968,
+              0.5282150010267893
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      },
+      "future_80to20": {
+        "dataset_label": "SIM-01 Planar-X-Pull",
+        "capability_label": "后20%已知工具控制开环预测",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "mean": 37.17162742832443,
+            "sample_std": 0.3051926040710588,
+            "values": [
+              37.31931308659518,
+              36.82068491435429,
+              37.374884284023814
+            ]
+          },
+          "2d_mean_px": {
+            "mean": 254.00284791637478,
+            "sample_std": 34.74751905126249,
+            "values": [
+              287.38272014534306,
+              218.03265823246983,
+              256.59316537131144
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.623779672097527,
+            "sample_std": 0.187869958846089,
+            "values": [
+              9.563820583060696,
+              9.83431060034987,
+              9.473207832882013
+            ]
+          },
+          "ssim": {
+            "mean": 0.582503708700339,
+            "sample_std": 0.014213550999362138,
+            "values": [
+              0.5737620284159978,
+              0.5989041914542516,
+              0.5748449062307676
+            ]
+          },
+          "lpips": {
+            "mean": 0.550842512647311,
+            "sample_std": 0.02340212889403948,
+            "values": [
+              0.5657609870036443,
+              0.5238707415759564,
+              0.5628958093623321
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    },
+    "sim02": {
+      "reconstruction_7to1": {
+        "dataset_label": "SIM-02 Planar-Y-Pull",
+        "capability_label": "前80%离线7:1重建",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "mean": 33.07283911450887,
+            "sample_std": 0.8707695051372603,
+            "values": [
+              33.41338913402675,
+              33.721867952068955,
+              32.083260257430894
+            ]
+          },
+          "2d_mean_px": {
+            "mean": 151.79899766704168,
+            "sample_std": 5.6415929766574715,
+            "values": [
+              150.5079016065199,
+              157.97422693008167,
+              146.9148644645234
+            ]
+          },
+          "psnr_db": {
+            "mean": 10.165183363377759,
+            "sample_std": 0.1223221658709747,
+            "values": [
+              10.262366948677219,
+              10.20535657128919,
+              10.027826570166866
+            ]
+          },
+          "ssim": {
+            "mean": 0.607596743106842,
+            "sample_std": 0.00621471467067802,
+            "values": [
+              0.6098647385835647,
+              0.6123589158058167,
+              0.6005665749311447
+            ]
+          },
+          "lpips": {
+            "mean": 0.5070963707235124,
+            "sample_std": 0.012398621274326125,
+            "values": [
+              0.49868245323499044,
+              0.5012718637784322,
+              0.5213347951571147
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      },
+      "future_80to20": {
+        "dataset_label": "SIM-02 Planar-Y-Pull",
+        "capability_label": "后20%已知工具控制开环预测",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "mean": 35.41318203500446,
+            "sample_std": 0.3643735933122523,
+            "values": [
+              35.73290186106331,
+              35.49018186976254,
+              35.01646237418754
+            ]
+          },
+          "2d_mean_px": {
+            "mean": 177.96255326697883,
+            "sample_std": 5.825816969230895,
+            "values": [
+              175.0110296549379,
+              174.20319094508676,
+              184.67343920091187
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.946970514426063,
+            "sample_std": 0.13258236926089245,
+            "values": [
+              9.951730824658773,
+              10.077108619272998,
+              9.81207209934642
+            ]
+          },
+          "ssim": {
+            "mean": 0.6089641316069497,
+            "sample_std": 0.0054849346579792044,
+            "values": [
+              0.6095680996775628,
+              0.6141220857699712,
+              0.6032022093733151
+            ]
+          },
+          "lpips": {
+            "mean": 0.5160144405232535,
+            "sample_std": 0.007840490484239442,
+            "values": [
+              0.5109821985165278,
+              0.5120128398140271,
+              0.5250482832392057
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    },
+    "sim03": {
+      "reconstruction_7to1": {
+        "dataset_label": "SIM-03 Edge-Z-Lift",
+        "capability_label": "前80%离线7:1重建",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "mean": 19.81937355124916,
+            "sample_std": 0.16476428999044776,
+            "values": [
+              19.96041101032865,
+              19.63827183202132,
+              19.859437811397516
+            ]
+          },
+          "2d_mean_px": {
+            "mean": 130.73965826444027,
+            "sample_std": 15.847803556359965,
+            "values": [
+              120.04340399647582,
+              123.22911182618866,
+              148.94645897065632
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.822630008056347,
+            "sample_std": 0.22393045659092642,
+            "values": [
+              10.079854501163132,
+              9.716854562909655,
+              9.671180960096255
+            ]
+          },
+          "ssim": {
+            "mean": 0.502300371726354,
+            "sample_std": 0.004938085704117491,
+            "values": [
+              0.5057573293646177,
+              0.5044989494813813,
+              0.4966448363330629
+            ]
+          },
+          "lpips": {
+            "mean": 0.6064428071732874,
+            "sample_std": 0.011616445409579637,
+            "values": [
+              0.5953927942448192,
+              0.6053826245996687,
+              0.6185530026753744
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      },
+      "future_80to20": {
+        "dataset_label": "SIM-03 Edge-Z-Lift",
+        "capability_label": "后20%已知工具控制开环预测",
+        "repeat_count": 3,
+        "metrics": {
+          "3d_mean_mm": {
+            "mean": 19.10862073994052,
+            "sample_std": 0.10479980455935382,
+            "values": [
+              19.165802226439997,
+              19.172391824503798,
+              18.987668168877764
+            ]
+          },
+          "2d_mean_px": {
+            "mean": 137.86925548933627,
+            "sample_std": 2.7842769974197643,
+            "values": [
+              134.82046775113972,
+              140.27731693955744,
+              138.50998177731165
+            ]
+          },
+          "psnr_db": {
+            "mean": 10.047603692417503,
+            "sample_std": 0.3677919732122286,
+            "values": [
+              10.322934962785528,
+              9.629910461758524,
+              10.189965652708459
+            ]
+          },
+          "ssim": {
+            "mean": 0.50184547935647,
+            "sample_std": 0.010834128406380233,
+            "values": [
+              0.5074628477709161,
+              0.48935628806551296,
+              0.5087173022329807
+            ]
+          },
+          "lpips": {
+            "mean": 0.5946180908768266,
+            "sample_std": 0.019283085946819385,
+            "values": [
+              0.5820445579787096,
+              0.6168192252516747,
+              0.5849904894000955
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      }
+    }
+  }
+}

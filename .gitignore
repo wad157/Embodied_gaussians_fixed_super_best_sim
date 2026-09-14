@@ -185,3 +185,5 @@ _skipped.node
 # recorded by the adapters and are recreated by their setup scripts.
 /baselines/EndoGaussian/
 /baselines/EH-SurGS/
+/baselines/PhysTwin/
+/baselines/phystwin_sim/_vendor/

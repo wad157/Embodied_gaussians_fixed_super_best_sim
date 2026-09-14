@@ -1,0 +1,45 @@
+diff --git a/qqtt/__init__.py b/qqtt/__init__.py
+index e19dd87..15970f5 100644
+--- a/qqtt/__init__.py
++++ b/qqtt/__init__.py
+@@ -1,2 +1,24 @@
++"""PhysTwin package exports.
++
++The original module eagerly imported the interactive training stack, including
++X11 keyboard and off-screen visualization dependencies.  Keep the simulation
++core importable on a headless evaluation node and load those optional exports
++only when requested.  This does not change the simulator or optimizer.
++"""
++
+ from .model import SpringMassSystemWarp
+-from .engine import InvPhyTrainerWarp, OptimizerCMA
++
++
++def __getattr__(name):
++    if name == "InvPhyTrainerWarp":
++        from .engine.trainer_warp import InvPhyTrainerWarp
++
++        return InvPhyTrainerWarp
++    if name == "OptimizerCMA":
++        from .engine.cma_optimize_warp import OptimizerCMA
++
++        return OptimizerCMA
++    raise AttributeError(name)
++
++
++__all__ = ("SpringMassSystemWarp", "InvPhyTrainerWarp", "OptimizerCMA")
+diff --git a/qqtt/utils/__init__.py b/qqtt/utils/__init__.py
+index b9ac4ef..7229a0b 100644
+--- a/qqtt/utils/__init__.py
++++ b/qqtt/utils/__init__.py
+@@ -1,3 +1,9 @@
+ from .logger import logger
+-from .visualize import visualize_pc
+ from .config import cfg
++
++
++def visualize_pc(*args, **kwargs):
++    """Load the optional OpenGL visualization stack only when requested."""
++    from .visualize import visualize_pc as implementation
++
++    return implementation(*args, **kwargs)

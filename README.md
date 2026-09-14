@@ -6,7 +6,7 @@
 
 > 最新正式结论来自 AllTracker + FoundationStereo 的同一 rollout 联合协议三次复测：RGB 轨迹校正是误差下降的主要来源；在线刚度更新在 SIM-03 抬升任务中将未来 3D/2D 误差再降低约 11.8%/13.4%，但在 SIM-01/02 平面牵拉的未来预测中略有退化。完整均值、样本标准差及原始结果见[最新统一协议结果](#76-最新-alltracker-统一协议三次复测)。
 
-[EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [EH-SurGS 适配与复现说明](baselines/eh_surgs_sim/README.md) · [Embodied Gaussians 软体/公开刚体双轨适配说明](baselines/embodied_gaussians_sim/README.md)
+[PhysTwin baseline 三次结果](outputs/phystwin_sim_joint_v1/comparison_mean_std.md) · [PhysTwin 适配与复现说明](baselines/phystwin_sim/README.md) · [EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [Embodied Gaussians 软体/公开刚体双轨适配说明](baselines/embodied_gaussians_sim/README.md)
 
 ## 1. 项目要解决的问题
 
@@ -495,6 +495,28 @@ mean 就记为 N/A，并另报覆盖率，避免只统计可见点造成选择�
 夹持或数据集专用物理参数。完整协议说明、运行命令和查询审计见
 [Embodied Gaussians baseline 文档](baselines/embodied_gaussians_sim/README.md)，聚合原始结果见
 [`requested_repeats_mean_std.md`](outputs/embodied_gaussians_sim_unified_three_repeats_v1/requested_repeats_mean_std.md)。
+
+### 8.9 PhysTwin baseline
+
+[PhysTwin](https://github.com/jianghanxiao/phystwin) 固定到官方提交
+`81c718790a37e5e0102eb77af2c6edd34a9db25f`。轨迹直接来自 PhysTwin 的持久
+spring-mass 粒子，并使用其上游 KNN-LBS（K=16）传播到 Gaussian 和固定查询点；不训练或使用
+Shape of Motion。唯一上游补丁只把交互式 X11/OpenGL 模块改为延迟导入，不修改模拟器、损失或优化器。
+
+正式运行采用 20 轮 CMA-ES（220 次函数评估）、200 轮 Adam、每视频帧 667 个物理子步、
+50,000 个 Gaussian 和 1,000 次外观更新。每个数据集独立运行 seeds 0/1/2；训练阶段不读取
+7:1 留出观测、未来观测或评估真值，最终按固定 30 个非夹持节点精确匹配且不做对齐。
+
+```bash
+bash scripts/setup_phystwin_baseline_env.sh
+bash scripts/run_phystwin_sim_all_auto.sh
+```
+
+三次运行的最终结果见
+[`comparison_mean_std.md`](outputs/phystwin_sim_joint_v1/comparison_mean_std.md)，机器可读逐次结果及
+算术均值、样本标准差见
+[`comparison_mean_std.json`](outputs/phystwin_sim_joint_v1/comparison_mean_std.json)。完整输入隔离、
+轨迹生成选择和单次复现命令见 [PhysTwin baseline 文档](baselines/phystwin_sim/README.md)。
 
 ## 9. 目录结构
 
