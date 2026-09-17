@@ -1,0 +1,774 @@
+{
+  "aggregate": {
+    "sim01": {
+      "future_80to20": {
+        "capability_label": "\u540e20%\u96f6\u6837\u672c\u52a8\u529b\u5b66\u5916\u63a8",
+        "dataset_label": "SIM-01 Planar-X-Pull",
+        "full_scene_rendering": {
+          "psnr_full_db": {
+            "mean": 20.353557123244606,
+            "sample_std": 0.5271771082636522,
+            "values": [
+              20.91442571959272,
+              19.86821914843175,
+              20.27802650170935
+            ]
+          },
+          "ssim_full": {
+            "mean": 0.8401112323005995,
+            "sample_std": 0.0030859539824775414,
+            "values": [
+              0.843543192744255,
+              0.8375649824738503,
+              0.8392255216836929
+            ]
+          }
+        },
+        "metrics": {
+          "2d_mean_px": {
+            "mean": 23.329877812578314,
+            "sample_std": 2.86104594344147,
+            "values": [
+              20.47918553968508,
+              23.309281673402214,
+              26.201166224647647
+            ]
+          },
+          "3d_mean_mm": {
+            "mean": 8.924358684927467,
+            "sample_std": 1.4875852291266893,
+            "values": [
+              8.2914588331025,
+              7.85788122768281,
+              10.62373599399709
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "lpips": {
+            "mean": 0.47302748858928684,
+            "sample_std": 0.0033902902671825723,
+            "values": [
+              0.46914580663045247,
+              0.47540818974375726,
+              0.4745284693936507
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.332530211308965,
+            "sample_std": 0.04229401953247122,
+            "values": [
+              9.375771026229542,
+              9.291251267993573,
+              9.330568339703783
+            ]
+          },
+          "ssim": {
+            "mean": 0.22358760535717012,
+            "sample_std": 0.0008264346427314259,
+            "values": [
+              0.22443088392416635,
+              0.2235528189688921,
+              0.22277911317845187
+            ]
+          }
+        },
+        "repeat_count": 3
+      },
+      "reconstruction_7to1": {
+        "capability_label": "\u524d80%\u79bb\u7ebf7:1\u91cd\u5efa",
+        "dataset_label": "SIM-01 Planar-X-Pull",
+        "full_scene_rendering": {
+          "psnr_full_db": {
+            "mean": 32.2805527572117,
+            "sample_std": 0.16241327822946233,
+            "values": [
+              32.318301628580826,
+              32.10258922706115,
+              32.42076741599313
+            ]
+          },
+          "ssim_full": {
+            "mean": 0.9563093268209033,
+            "sample_std": 0.0013051820245772224,
+            "values": [
+              0.9573949545621872,
+              0.9548612177371979,
+              0.956671808163325
+            ]
+          }
+        },
+        "metrics": {
+          "2d_mean_px": {
+            "mean": 3.4706711588596577,
+            "sample_std": 0.3769819611227889,
+            "values": [
+              3.569403235908185,
+              3.054147958164687,
+              3.7884622825061007
+            ]
+          },
+          "3d_mean_mm": {
+            "mean": 8.034174021696446,
+            "sample_std": 1.3030385939993003,
+            "values": [
+              7.525649896225433,
+              7.062074804950195,
+              9.514797363913708
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "lpips": {
+            "mean": 0.38217477103074393,
+            "sample_std": 0.0006576147018233106,
+            "values": [
+              0.3816482797265053,
+              0.38196413666009904,
+              0.3829118967056274
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.685114945336633,
+            "sample_std": 0.013902651588100678,
+            "values": [
+              9.669452149167288,
+              9.689898174577836,
+              9.695994512264773
+            ]
+          },
+          "ssim": {
+            "mean": 0.32089849677350785,
+            "sample_std": 0.00019470450076779862,
+            "values": [
+              0.3211194614569346,
+              0.3208239421248436,
+              0.3207520867387454
+            ]
+          }
+        },
+        "repeat_count": 3
+      }
+    },
+    "sim02": {
+      "future_80to20": {
+        "capability_label": "\u540e20%\u96f6\u6837\u672c\u52a8\u529b\u5b66\u5916\u63a8",
+        "dataset_label": "SIM-02 Planar-Y-Pull",
+        "full_scene_rendering": {
+          "psnr_full_db": {
+            "mean": 21.675586171524458,
+            "sample_std": 0.6154703674170077,
+            "values": [
+              22.130516260843414,
+              20.97527576784936,
+              21.920966485880605
+            ]
+          },
+          "ssim_full": {
+            "mean": 0.846047251092063,
+            "sample_std": 0.002920231926749728,
+            "values": [
+              0.8455678209662437,
+              0.8433964014053345,
+              0.8491775309046109
+            ]
+          }
+        },
+        "metrics": {
+          "2d_mean_px": {
+            "mean": 23.322430002068163,
+            "sample_std": 1.439815153807836,
+            "values": [
+              24.944343090502183,
+              22.195062131711428,
+              22.827884783990886
+            ]
+          },
+          "3d_mean_mm": {
+            "mean": 12.281656238472486,
+            "sample_std": 3.922193301131945,
+            "values": [
+              8.420305677734884,
+              12.162678090389818,
+              16.261984947292756
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "lpips": {
+            "mean": 0.4793351970613003,
+            "sample_std": 0.00401043228221762,
+            "values": [
+              0.47643347904086114,
+              0.4839115306735039,
+              0.4776605814695358
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.260057416052833,
+            "sample_std": 0.03058279318633952,
+            "values": [
+              9.290668411011861,
+              9.260000934272444,
+              9.229502902874193
+            ]
+          },
+          "ssim": {
+            "mean": 0.20870695035490724,
+            "sample_std": 0.0017937246819018746,
+            "values": [
+              0.2072073895484209,
+              0.2082194206615289,
+              0.21069404085477192
+            ]
+          }
+        },
+        "repeat_count": 3
+      },
+      "reconstruction_7to1": {
+        "capability_label": "\u524d80%\u79bb\u7ebf7:1\u91cd\u5efa",
+        "dataset_label": "SIM-02 Planar-Y-Pull",
+        "full_scene_rendering": {
+          "psnr_full_db": {
+            "mean": 32.29884592272294,
+            "sample_std": 0.2624253023249913,
+            "values": [
+              32.49570800699389,
+              32.39991683329154,
+              32.0009129278834
+            ]
+          },
+          "ssim_full": {
+            "mean": 0.9532123916678957,
+            "sample_std": 0.0008992824301491099,
+            "values": [
+              0.953696396946907,
+              0.9521747678518295,
+              0.953766010204951
+            ]
+          }
+        },
+        "metrics": {
+          "2d_mean_px": {
+            "mean": 4.625826783884006,
+            "sample_std": 1.3963609827862253,
+            "values": [
+              3.0835970207409673,
+              4.989548105731591,
+              5.804335225179459
+            ]
+          },
+          "3d_mean_mm": {
+            "mean": 12.573579463038117,
+            "sample_std": 4.751426776295824,
+            "values": [
+              7.644484378913855,
+              12.951485529128048,
+              17.12476848107245
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "lpips": {
+            "mean": 0.38713337464465036,
+            "sample_std": 0.0015149652441816723,
+            "values": [
+              0.3857965926329295,
+              0.3887789453069369,
+              0.3868245859940847
+            ]
+          },
+          "psnr_db": {
+            "mean": 9.514094493312188,
+            "sample_std": 0.029594562149205285,
+            "values": [
+              9.507671732664459,
+              9.546373023789613,
+              9.48823872348249
+            ]
+          },
+          "ssim": {
+            "mean": 0.30023381279574496,
+            "sample_std": 0.00025821169546193885,
+            "values": [
+              0.30048323844869934,
+              0.2999676312009493,
+              0.3002505687375863
+            ]
+          }
+        },
+        "repeat_count": 3
+      }
+    },
+    "sim03": {
+      "future_80to20": {
+        "capability_label": "\u540e20%\u96f6\u6837\u672c\u52a8\u529b\u5b66\u5916\u63a8",
+        "dataset_label": "SIM-03 Edge-Z-Lift",
+        "full_scene_rendering": {
+          "psnr_full_db": {
+            "mean": 19.285680019593517,
+            "sample_std": 1.9750493745639184,
+            "values": [
+              17.947886396220035,
+              21.55412401655216,
+              18.355029646008354
+            ]
+          },
+          "ssim_full": {
+            "mean": 0.8075833971853609,
+            "sample_std": 0.019697602948320327,
+            "values": [
+              0.789889707747433,
+              0.8288074620068073,
+              0.8040530218018426
+            ]
+          }
+        },
+        "metrics": {
+          "2d_mean_px": {
+            "mean": 27.29004956522741,
+            "sample_std": 3.406912724820154,
+            "values": [
+              29.932909401855902,
+              23.445026330331924,
+              28.492212963494403
+            ]
+          },
+          "3d_mean_mm": {
+            "mean": 14.108239890685335,
+            "sample_std": 2.435567536919283,
+            "values": [
+              16.911040677007772,
+              12.907388845660197,
+              12.506290149388034
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "lpips": {
+            "mean": 0.45126356094799663,
+            "sample_std": 0.020407466918775687,
+            "values": [
+              0.470152818908294,
+              0.42961804444591206,
+              0.4540198194897837
+            ]
+          },
+          "psnr_db": {
+            "mean": 12.39246763139152,
+            "sample_std": 0.5134471821885876,
+            "values": [
+              11.970982565755712,
+              12.96430677660268,
+              12.242113551816171
+            ]
+          },
+          "ssim": {
+            "mean": 0.23695622332808045,
+            "sample_std": 0.012522059461603924,
+            "values": [
+              0.22895068685627645,
+              0.2513866237261229,
+              0.23053135940184197
+            ]
+          }
+        },
+        "repeat_count": 3
+      },
+      "reconstruction_7to1": {
+        "capability_label": "\u524d80%\u79bb\u7ebf7:1\u91cd\u5efa",
+        "dataset_label": "SIM-03 Edge-Z-Lift",
+        "full_scene_rendering": {
+          "psnr_full_db": {
+            "mean": 31.514412065760236,
+            "sample_std": 0.19339650719799656,
+            "values": [
+              31.736472349148592,
+              31.42385463523231,
+              31.382909212899804
+            ]
+          },
+          "ssim_full": {
+            "mean": 0.9276191611532812,
+            "sample_std": 0.0010618877101628726,
+            "values": [
+              0.9264167613453336,
+              0.9280123189091682,
+              0.9284284032053418
+            ]
+          }
+        },
+        "metrics": {
+          "2d_mean_px": {
+            "mean": 9.663721311962638,
+            "sample_std": 1.9355535452449055,
+            "values": [
+              11.800424681815057,
+              9.163032870919723,
+              8.02770638315313
+            ]
+          },
+          "3d_mean_mm": {
+            "mean": 12.92387287095759,
+            "sample_std": 2.5467405624244237,
+            "values": [
+              15.769006572549593,
+              12.145354277163278,
+              10.8572577631599
+            ]
+          },
+          "coverage": {
+            "mean": 1.0,
+            "sample_std": 0.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "lpips": {
+            "mean": 0.3358583987035133,
+            "sample_std": 0.0012743425387336546,
+            "values": [
+              0.3373253709740109,
+              0.3352246280345652,
+              0.3350251971019639
+            ]
+          },
+          "psnr_db": {
+            "mean": 13.754384922114914,
+            "sample_std": 0.009220076139156659,
+            "values": [
+              13.764799431181844,
+              13.747263691436624,
+              13.751091643726271
+            ]
+          },
+          "ssim": {
+            "mean": 0.34443722099617674,
+            "sample_std": 0.0009443663279665151,
+            "values": [
+              0.3437380724483066,
+              0.34406207377711934,
+              0.3455115167631043
+            ]
+          }
+        },
+        "repeat_count": 3
+      }
+    }
+  },
+  "method": "official TRACE core + full-K RGB-only SIM adapter",
+  "protocol": {
+    "aggregation": "arithmetic mean and sample standard deviation; no best-run selection",
+    "alignment": "none",
+    "forbidden": "PSM, depth, masks, GT trajectories, held-out/future RGB",
+    "future": "native TRACE translation-rotation dynamics; no future observations/control",
+    "reconstruction": "stride=8 offset=7 held-out interpolation",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "training": "legal first-80% non-holdout stereo RGB and calibrated cameras only"
+  },
+  "raw": {
+    "sim01": {
+      "repeat_01": {
+        "future_80to20": {
+          "2d_mean_px": 20.47918553968508,
+          "3d_mean_mm": 8.2914588331025,
+          "coverage": 1.0,
+          "frames": 60,
+          "lpips": 0.46914580663045247,
+          "psnr_db": 9.375771026229542,
+          "psnr_full_db": 20.91442571959272,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim01/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.22443088392416635,
+          "ssim_full": 0.843543192744255,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim01/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 3.569403235908185,
+          "3d_mean_mm": 7.525649896225433,
+          "coverage": 1.0,
+          "frames": 30,
+          "lpips": 0.3816482797265053,
+          "psnr_db": 9.669452149167288,
+          "psnr_full_db": 32.318301628580826,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.3211194614569346,
+          "ssim_full": 0.9573949545621872,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim01/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      },
+      "repeat_02": {
+        "future_80to20": {
+          "2d_mean_px": 23.309281673402214,
+          "3d_mean_mm": 7.85788122768281,
+          "coverage": 1.0,
+          "frames": 60,
+          "lpips": 0.47540818974375726,
+          "psnr_db": 9.291251267993573,
+          "psnr_full_db": 19.86821914843175,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim01/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.2235528189688921,
+          "ssim_full": 0.8375649824738503,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim01/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 3.054147958164687,
+          "3d_mean_mm": 7.062074804950195,
+          "coverage": 1.0,
+          "frames": 30,
+          "lpips": 0.38196413666009904,
+          "psnr_db": 9.689898174577836,
+          "psnr_full_db": 32.10258922706115,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.3208239421248436,
+          "ssim_full": 0.9548612177371979,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim01/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      },
+      "repeat_03": {
+        "future_80to20": {
+          "2d_mean_px": 26.201166224647647,
+          "3d_mean_mm": 10.62373599399709,
+          "coverage": 1.0,
+          "frames": 60,
+          "lpips": 0.4745284693936507,
+          "psnr_db": 9.330568339703783,
+          "psnr_full_db": 20.27802650170935,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim01/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.22277911317845187,
+          "ssim_full": 0.8392255216836929,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim01/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 3.7884622825061007,
+          "3d_mean_mm": 9.514797363913708,
+          "coverage": 1.0,
+          "frames": 30,
+          "lpips": 0.3829118967056274,
+          "psnr_db": 9.695994512264773,
+          "psnr_full_db": 32.42076741599313,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.3207520867387454,
+          "ssim_full": 0.956671808163325,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim01/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      }
+    },
+    "sim02": {
+      "repeat_01": {
+        "future_80to20": {
+          "2d_mean_px": 24.944343090502183,
+          "3d_mean_mm": 8.420305677734884,
+          "coverage": 1.0,
+          "frames": 60,
+          "lpips": 0.47643347904086114,
+          "psnr_db": 9.290668411011861,
+          "psnr_full_db": 22.130516260843414,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim02/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.2072073895484209,
+          "ssim_full": 0.8455678209662437,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim02/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 3.0835970207409673,
+          "3d_mean_mm": 7.644484378913855,
+          "coverage": 1.0,
+          "frames": 30,
+          "lpips": 0.3857965926329295,
+          "psnr_db": 9.507671732664459,
+          "psnr_full_db": 32.49570800699389,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.30048323844869934,
+          "ssim_full": 0.953696396946907,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim02/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      },
+      "repeat_02": {
+        "future_80to20": {
+          "2d_mean_px": 22.195062131711428,
+          "3d_mean_mm": 12.162678090389818,
+          "coverage": 1.0,
+          "frames": 60,
+          "lpips": 0.4839115306735039,
+          "psnr_db": 9.260000934272444,
+          "psnr_full_db": 20.97527576784936,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim02/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.2082194206615289,
+          "ssim_full": 0.8433964014053345,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim02/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 4.989548105731591,
+          "3d_mean_mm": 12.951485529128048,
+          "coverage": 1.0,
+          "frames": 30,
+          "lpips": 0.3887789453069369,
+          "psnr_db": 9.546373023789613,
+          "psnr_full_db": 32.39991683329154,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.2999676312009493,
+          "ssim_full": 0.9521747678518295,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim02/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      },
+      "repeat_03": {
+        "future_80to20": {
+          "2d_mean_px": 22.827884783990886,
+          "3d_mean_mm": 16.261984947292756,
+          "coverage": 1.0,
+          "frames": 60,
+          "lpips": 0.4776605814695358,
+          "psnr_db": 9.229502902874193,
+          "psnr_full_db": 21.920966485880605,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim02/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.21069404085477192,
+          "ssim_full": 0.8491775309046109,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim02/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 5.804335225179459,
+          "3d_mean_mm": 17.12476848107245,
+          "coverage": 1.0,
+          "frames": 30,
+          "lpips": 0.3868245859940847,
+          "psnr_db": 9.48823872348249,
+          "psnr_full_db": 32.0009129278834,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.3002505687375863,
+          "ssim_full": 0.953766010204951,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim02/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      }
+    },
+    "sim03": {
+      "repeat_01": {
+        "future_80to20": {
+          "2d_mean_px": 29.932909401855902,
+          "3d_mean_mm": 16.911040677007772,
+          "coverage": 1.0,
+          "frames": 72,
+          "lpips": 0.470152818908294,
+          "psnr_db": 11.970982565755712,
+          "psnr_full_db": 17.947886396220035,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim03/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.22895068685627645,
+          "ssim_full": 0.789889707747433,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim03/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 11.800424681815057,
+          "3d_mean_mm": 15.769006572549593,
+          "coverage": 1.0,
+          "frames": 36,
+          "lpips": 0.3373253709740109,
+          "psnr_db": 13.764799431181844,
+          "psnr_full_db": 31.736472349148592,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim03/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.3437380724483066,
+          "ssim_full": 0.9264167613453336,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_01/sim03/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      },
+      "repeat_02": {
+        "future_80to20": {
+          "2d_mean_px": 23.445026330331924,
+          "3d_mean_mm": 12.907388845660197,
+          "coverage": 1.0,
+          "frames": 72,
+          "lpips": 0.42961804444591206,
+          "psnr_db": 12.96430677660268,
+          "psnr_full_db": 21.55412401655216,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim03/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.2513866237261229,
+          "ssim_full": 0.8288074620068073,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim03/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 9.163032870919723,
+          "3d_mean_mm": 12.145354277163278,
+          "coverage": 1.0,
+          "frames": 36,
+          "lpips": 0.3352246280345652,
+          "psnr_db": 13.747263691436624,
+          "psnr_full_db": 31.42385463523231,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.34406207377711934,
+          "ssim_full": 0.9280123189091682,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_02/sim03/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      },
+      "repeat_03": {
+        "future_80to20": {
+          "2d_mean_px": 28.492212963494403,
+          "3d_mean_mm": 12.506290149388034,
+          "coverage": 1.0,
+          "frames": 72,
+          "lpips": 0.4540198194897837,
+          "psnr_db": 12.242113551816171,
+          "psnr_full_db": 18.355029646008354,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim03/metrics/future_80to20/render_metrics.json",
+          "ssim": 0.23053135940184197,
+          "ssim_full": 0.8040530218018426,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim03/metrics/future_80to20/trajectory_metrics.json"
+        },
+        "reconstruction_7to1": {
+          "2d_mean_px": 8.02770638315313,
+          "3d_mean_mm": 10.8572577631599,
+          "coverage": 1.0,
+          "frames": 36,
+          "lpips": 0.3350251971019639,
+          "psnr_db": 13.751091643726271,
+          "psnr_full_db": 31.382909212899804,
+          "render_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/render_metrics.json",
+          "ssim": 0.3455115167631043,
+          "ssim_full": 0.9284284032053418,
+          "trajectory_metrics": "/Media_HDD/jwshan/wad/embodied_gaussians_fixed_super_best_sim/outputs/trace_sim_all_v1/runs/repeat_03/sim03/metrics/reconstruction_7to1/trajectory_metrics.json"
+        }
+      }
+    }
+  },
+  "render_metric_note": "TRACE represents the full scene and exports full opacity. Existing tissue-layer metrics are retained unchanged for protocol continuity; full-scene PSNR/SSIM are also preserved because tissue-only alpha is unavailable without adding segmentation.",
+  "schema": "fixedsuperbest.trace_three_dataset_three_repeat.v1",
+  "trace_commit": "a4597585bc0e56c56922abe75be9198eb119c95a",
+  "trajectory_decoder_version": "query_anchored_gaussian_displacement_v1"
+}

@@ -6,7 +6,7 @@
 
 > 最新正式结论来自 AllTracker + FoundationStereo 的同一 rollout 联合协议三次复测：RGB 轨迹校正是误差下降的主要来源；在线刚度更新在 SIM-03 抬升任务中将未来 3D/2D 误差再降低约 11.8%/13.4%，但在 SIM-01/02 平面牵拉的未来预测中略有退化。完整均值、样本标准差及原始结果见[最新统一协议结果](#76-最新-alltracker-统一协议三次复测)。
 
-[PhysTwin baseline 三次结果](outputs/phystwin_sim_joint_v1/comparison_mean_std.md) · [PhysTwin 适配与复现说明](baselines/phystwin_sim/README.md) · [EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [Embodied Gaussians 软体/公开刚体双轨适配说明](baselines/embodied_gaussians_sim/README.md)
+[PhysTwin baseline 三次结果](outputs/phystwin_sim_joint_v1/comparison_mean_std.md) · [PhysTwin 适配与复现说明](baselines/phystwin_sim/README.md) · [EH-SurGS baseline 三次结果](outputs/eh_surgs_sim_unified_three_repeats_v1/comparison_mean_std.md) · [Embodied Gaussians 软体/公开刚体双轨适配说明](baselines/embodied_gaussians_sim/README.md) · [TRACE baseline 与三次结果](baselines/trace_sim/README.md)
 
 ## 1. 项目要解决的问题
 
